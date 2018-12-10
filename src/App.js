@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, BrowserRouter, Switch, NavLink, Redirect } from 'react-router-dom';
 
+
+import LoginClub from './components/LoginClub';
+import ClubHome from './components/ClubHome';
+import AdminSponsore from './components/AdminSponsore';
+import LoginAdmin from './components/LoginAdmin';
+import AdminHome from './components/AdminHome';
+import AdminClub from './components/AdminClub'
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <BrowserRouter>
+              <div>
+                <Switch>
+                  <Route exact path="/" component={LoginClub} />
+                  <Route path="/admin" component={LoginAdmin} />
+                  <Route path="/adminhome" component={AdminHome} />
+                  <Route path="/clubhome" component={ClubHome} />
+                  <Route path="/AdminSponsored" component={AdminSponsore} />
+                  <Route path="/AdminClub" component={AdminClub} />
+                </Switch>
+              </div>
+            </BrowserRouter>
       </div>
     );
   }
