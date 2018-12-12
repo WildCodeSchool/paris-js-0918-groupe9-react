@@ -25,7 +25,7 @@ class Espace_admin extends Component {
     return (
       <div>
         <div onClick={this.getParameters}>Mes paramètres</div>
-        <div onClick={this.getClubs}>Clubs</div>
+        <div onClick={this.getCcomponentlubs}>Clubs</div>
         <div onClick={this.getSponsors}>Sponsors</div>
         <div onClick={this.getGestion}>Gestion de projet</div>
       </div>

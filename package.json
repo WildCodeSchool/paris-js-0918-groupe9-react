@@ -1,12 +1,25 @@
 {
-  "name": "front",
+  "name": "allsponsored",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+<<<<<<< HEAD
     "axios": "^0.18.0",
+=======
+    "@material-ui/core": "^3.6.1",
+    "@material-ui/icons": "^3.0.1",
+    "axios": "^0.18.0",
+    "install": "^0.12.2",
+    "material-ui": "^0.20.2",
+    "npm": "^6.4.1",
+>>>>>>> dd31b7cc555bf41b225bb663a298b67c35ddacce
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-redux": "^5.1.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.1",
+    "react-tap-event-plugin": "^3.0.3",
+    "redux": "^4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -15,14 +28,7 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "airbnb",
-    "parser": "babel-eslint",
-    "rules": {
-      "react/jsx-filename-extension": [
-        "js",
-        "jsx"
-      ]
-    }
+    "extends": "react-app"
   },
   "browserslist": [
     ">0.2%",
