@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { getToken, getClubId } from '../helper/tokenHelper';
-
+import '../CSS/Adminhome.css';
 import AdminHeader from './AdminHeader';
 
 class AdminHome extends Component {
@@ -37,10 +37,12 @@ class AdminHome extends Component {
             return (
                 <div>
                     <AdminHeader/>
-                    <button>CLUB</button>
+                <div className="groupe-input">
+                    <button>CLUB</button><br />
                     {/* {this.state.user.map(user => <h1>{user.email}</h1>)} */}
-                    <button>SPONSORE</button>
+                    <button>SPONSOR</button><br />
                     <button>GESTION DE PROJET</button>            
+                </div>
                 </div>
             )
         } else {

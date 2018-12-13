@@ -10,7 +10,7 @@ class AdminHeader extends Component {
     render() {
         return (
             <div className="AdminHeader">
-                <img className="logo-allsponsored" src={logo} alt="logo allsponsored" />
+               <a href="http://allsponsored.com/"><img className="logo-allsponsored" src={logo} alt="logo allsponsored" /></a>
                 <div className="menu">
                     <Link className="icon" to='/adminhome'><img src={iconHome} alt="icon home" /></Link>
                     <Link className="icon" to='/adminparameters'><img src={iconUser} alt="icon User" /></Link>
