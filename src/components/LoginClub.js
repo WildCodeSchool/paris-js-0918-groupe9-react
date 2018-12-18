@@ -51,7 +51,7 @@ class LoginClub extends Component {
             <div className="contentGlobal">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                </header>
+                </header> <br/>
                 <div>
                     <MuiThemeProvider>
                         <form onSubmit={this.handleSubmit}>

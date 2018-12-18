@@ -35,7 +35,7 @@ class AdminClub extends Component {
                 })
         axios({
             method: "GET",
-            url: "http://localhost:3030/club/projet/1",
+            url: "http://localhost:3030/club/contract/1",
             // headers: getToken()
         })
             .then(
@@ -54,6 +54,9 @@ class AdminClub extends Component {
                     });
                 })
     }
+    handleOnCLick = () => {
+        this.props.history.push(`/ajoute-projet-club/${this.state.club.id}`)
+    }
     render() {
         const { club, projet } = this.state;
         if (this.state.isLoaded) {
@@ -66,19 +69,32 @@ class AdminClub extends Component {
                     <h3>Email : {club.email}</h3>
                     <h3> Logo </h3><img src={club.url_logo} alt={club.name} width="100px" />
                     <button>Télécharger logo </button>
-                    <h3>Projet</h3>
-                    <ul>
-                       {projet.map(e=>(
-                           <li> {e.name} {e.url_contract} {e.url_signed_contract}</li>
-                       ))}
-                    </ul>
-
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Projet</th>
+                                <th>Convention</th>
+                                <th>Bon de commande</th>
+                                <th>Formulaire de satisfaction</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {projet.map(e => (
+                                <tr>
+                                    <td>{e.name}</td>
+                                    <td>{e.url_contract}</td>
+                                    <td><button>{e.order_id}</button></td>
+                                    <td><button>{e.survey_id}</button></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    <button onClick={this.handleOnCLick}>Ajouter un projet</button>
                 </div>
             )
         } else {
             return (<div>Loading...</div>);
         }
-
     }
 }
 export default AdminClub;

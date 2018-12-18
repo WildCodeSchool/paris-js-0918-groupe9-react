@@ -1,10 +1,34 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
-import AdminHeader from './AdminHeader'
+import { withStyles } from '@material-ui/core/styles';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import Collapse from '@material-ui/core/Collapse';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
 
+import AdminHeader from './AdminHeader';
+import '../CSS/AdminSponsore.css'
+
+// const styles = theme => ({
+//     root: {
+//         width: '100%',
+//         maxWidth: 720,
+//         backgroundColor: theme.palette.background.paper,
+//     },
+//     nested: {
+//         paddingLeft: theme.spacing.unit * 4,
+//     },
+// });
 
 class AdminSponsore extends Component {
     state = {
+        name:undefined,
         open: true,
         isLoaded: false,
         error: null,
@@ -32,7 +56,7 @@ class AdminSponsore extends Component {
                     });
                 })
 
-        fetch('http://localhost:3030/api/project/')
+        fetch('http://localhost:3030/project/')
             .then(res => res.json())
             .then(
                 (result) => {
@@ -48,7 +72,7 @@ class AdminSponsore extends Component {
                     });
                 })
 
-        fetch('http://localhost:3030/api/project_has_sponsor/')
+        fetch('http://localhost:3030/project_has_sponsor/')
             .then(res => res.json())
             .then(
                 (result) => {
@@ -65,13 +89,42 @@ class AdminSponsore extends Component {
                 })
 
     }
-    handleClick = (e, index) => {
-        const collapseIndex = this.state.collapseIndex;
-        const currentValue = collapseIndex[index];
-        collapseIndex[index] = !currentValue;
-        this.setState(state => ({ collapseIndex }));
+    // handleClick = (e, index) => {
+    //     const collapseIndex = this.state.collapseIndex;
+    //     const currentValue = collapseIndex[index];
+    //     collapseIndex[index] = !currentValue;
+    //     this.setState(state => ({ collapseIndex }));
 
-    };
+    // };
+    handleCreationProjet = () => {
+        this.props.history.push('/admin-creation-projetglobal')
+    }
+    
+    
+    handleCreationSponsor = (e) => {
+        e.preventDefault()
+        axios.post("http://localhost:3030/sponsor", {
+            name: e.target.sponsor.value,
+        })
+            .then((res) => {
+                if (res.status == 200) {
+                    console.log("un sponsor ajouté");
+
+                }
+                else if (res.status == 204) {
+                    console.log("error");
+                    alert("error")
+                }
+                else {
+                    console.log("error");
+                    alert("error");
+                }
+            }
+            )
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
 
     render() {
         const { classes } = this.props;
@@ -105,8 +158,27 @@ class AdminSponsore extends Component {
             return (
                 <div>
                     <AdminHeader />
-                   
-                    <div>
+                    {/* <List component="nav"
+                        subheader={<ListSubheader component="div">List sponsor - project</ListSubheader>}
+                        className={classes.root}>
+                        {sponsors.map((sponsor, index) => <ListItem button onClick={e => this.handleClick(e, index)}>
+                            <ListItemText inset primary={sponsor.name} />
+                            {this.state.open ? <ExpandLess /> : <ExpandMore />}
+                            <Collapse in={this.state.collapseIndex[index]} timeout="auto" unmountOnExit>
+                                <List component="div" disablePadding>
+                                    {this.state.projetsBySponsorId[sponsor.id].map((projet) =>
+                                        <ListItem button className={classes.nested}>
+                                            <ListItemAvatar>
+                                                <Avatar alt={projet.name} src={projet.visual_shirt} />
+                                            </ListItemAvatar>
+                                            <ListItemText button inset primary={projet.name} />
+                                        </ListItem>
+                                    )}
+                                </List>
+                            </Collapse>
+                        </ListItem>)}
+                    </List> */}
+                    <div className="sponsore">
                         <ul>
                             {sponsors.map(sponsor => (
                                 <li>{sponsor.name}
@@ -122,6 +194,16 @@ class AdminSponsore extends Component {
                             }
                         </ul>
                     </div>
+                    <div >
+                        <form onSubmit={this.handleCreationSponsor}>
+                            <button className="buttonsponsor" type="submit">Ajouter un sponsor </button>
+                            <input type="text" placeholder="nom de sponsor" name="sponsor"/>
+                        </form>
+                    </div>
+                    <div>
+                        <button className="buttonprojet" onClick={this.handleCreationProjet}>Creer un projet global </button>
+                    </div>
+
                 </div >
             );
         }
@@ -131,3 +213,4 @@ class AdminSponsore extends Component {
     }
 }
 export default AdminSponsore;
+//withStyles(styles)
