@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { getToken, getClubId } from '../helper/tokenHelper';
-import '../CSS/Adminhome.css';
+
 import AdminHeader from './AdminHeader';
 import '../CSS/AdminHome.css'
 
-class AdminHome extends Component {
+class AdminTousClubs extends Component {
     state = {
         open: true,
         isLoaded: false,
@@ -40,9 +40,8 @@ class AdminHome extends Component {
                 <div>
                     <AdminHeader />
                     <div className="groupe-input">
-                        <Link to="/admin-tous-clubs"><button className="inputclub" >CLUB</button></Link>    <br />
-                        <Link to="/admin-sponsor"><button className="inputsponsor" >SPONSORE</button></Link>    <br />
-                        <Link to="/admin-gestion-projet"><button className="inputprojet" >GESTION DE PROJET</button></Link>
+                        <Link to="/"><button>CLUB</button></Link>    <br />
+
                     </div>
                 </div>
 
@@ -53,4 +52,4 @@ class AdminHome extends Component {
 
     }
 }
-export default AdminHome;
+export default AdminTousClubs;

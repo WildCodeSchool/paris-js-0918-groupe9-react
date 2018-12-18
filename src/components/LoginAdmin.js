@@ -55,20 +55,20 @@ class LoginAdmin extends Component {
                     <img src={logo} className="App-logo" alt="logo" />
                 </header>
                 <div>
-                <MuiThemeProvider>
-                    <form onSubmit={this.handleSubmit}>
-                        <TextField
-                            type="text" name="email" placeholder="email"
-                        />
-                        <br />
-                        <TextField
-                            type="password" name="password" placeholder="mot de pass"
-                        />
-                        <br />
-                        <br />
-                        <Button variant="contained" color="primary" type="submit">Login</Button>
-                    </form>
-                </MuiThemeProvider>
+                    <MuiThemeProvider>
+                        <form onSubmit={this.handleSubmit}>
+                            <TextField
+                                type="text" name="email" placeholder="email"
+                            />
+                            <br />
+                            <TextField
+                                type="password" name="password" placeholder="mot de pass"
+                            />
+                            <br />
+                            <br />
+                            <Button variant="contained" color="primary" type="submit">Login</Button>
+                        </form>
+                    </MuiThemeProvider>
                 </div>
             </div>
         )
@@ -77,4 +77,4 @@ class LoginAdmin extends Component {
 
 }
 
-export default LoginAdmin ;
+export default LoginAdmin;

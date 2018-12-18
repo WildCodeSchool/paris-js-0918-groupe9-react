@@ -13,7 +13,7 @@ class AdminHeader extends Component {
                <a href="http://allsponsored.com/"><img className="logo-allsponsored" src={logo} alt="logo allsponsored" /></a>
                 <div className="menu">
                     <Link className="icon" to='/adminhome'><img src={iconHome} alt="icon home" /></Link>
-                    <Link className="icon" to='/adminparameters'><img src={iconUser} alt="icon User" /></Link>
+                    <Link className="icon" to='/admin-parameters'><img src={iconUser} alt="icon User" /></Link>
                 </div>
             </div>
 
