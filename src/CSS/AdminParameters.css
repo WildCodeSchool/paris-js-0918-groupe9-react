@@ -53,3 +53,14 @@ hr
 {
     padding-left: 5px;
 }
+
+.groupe-input > button
+{
+    background-color: #F4943B;
+}
+
+.valider
+{
+    background-color: #a9aaac;
+}
+

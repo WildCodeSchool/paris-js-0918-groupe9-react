@@ -1,33 +1,15 @@
+*
+{
+    font-family: 'Comfortaa', cursive;
+}
+
+
 .groupe-input
 {
     margin-left: 40%;
     margin-top: 10%;
 }
-
-input
-{
-    width: 300px;
-    height: 30px;
-    margin-bottom: 10px;
-    margin-right: 15px;
-    border: 1px black solid;
-}
-
-.valider
-{
-    margin-left: 13%;
-    margin-bottom: 15px;
-    height: 25px;
-    width: 100px;
-    border-radius: 5px;
-}
-
-p
-{
-    font-style: italic;
-}
-
-.groupe-input > button
+.inputclub
 {
     border: 2px solid black;
     width: 35%;
@@ -35,11 +17,25 @@ p
     margin-bottom: 5%;
     border-radius: 5px;
     font-size: 1.2vw;
+    background-color: #F4943B
 }
-
-hr
+.inputsponsor
 {
+    border: 2px solid black;
     width: 35%;
-    margin-left: 0px;
+    padding: 2% 0%;
+    margin-bottom: 5%;
+    border-radius: 5px;
+    font-size: 1.2vw;
+    background-color: #00AEE9
 }
-
+.inputprojet
+{
+    border: 2px solid black;
+    width: 35%;
+    padding: 2% 0%;
+    margin-bottom: 5%;
+    border-radius: 5px;
+    font-size: 1.2vw;
+    background-color: #808284
+}
