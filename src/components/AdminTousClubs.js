@@ -10,7 +10,7 @@ class AdminTousClubs extends Component {
     state = {
         open: true,
         isLoaded: false,
-        user: undefined
+        user: []
     }
 
     componentDidMount() {
@@ -22,9 +22,11 @@ class AdminTousClubs extends Component {
         })
             .then(
                 (result) => {
+                    // console.log(result.data)
                     this.setState({
                         isLoaded: true,
                         user: result.data
+
                     });
                 },
                 (error) => {
@@ -43,23 +45,38 @@ class AdminTousClubs extends Component {
                         <div className="custom-select1">
                             <h1>Nom</h1>
                             {this.state.user.map((e,i) => 
-                                <p key={i}>{e.email}</p>
+                                <p key={i}>{e.clubName}</p>
                             )}
                         </div>
                         <div className="custom-select2">
                             <h1>Convention Signée</h1>
+                            {this.state.user.map((e,i) => 
+                                <p key={i}>{e.contractName}</p>
+                            )}
                         </div>
                         <div className="custom-select3">
                             <h1>Logo</h1>
+                            {this.state.user.map((e,i) => 
+                                <img className="img-logo" key={i} src={e.url_logo} />
+                            )}
                         </div>
                         <div className="custom-select4">
                             <h1>Commande</h1>
+                            {this.state.user.map((e,i) => 
+                                <p key={i}>{e.status}</p>
+                            )}
                         </div>
                         <div className="custom-select5">
                             <h1>Formulaire Satisfaction</h1>
+                            {this.state.user.map((e,i) => 
+                                <p key={i}>{e.surveyStatus}</p>
+                            )}
                         </div>
                         <div className="custom-select6">
                             <h1>Action</h1>
+                            {this.state.user.map((e,i) => 
+                                <p key={i}>{e.actionName}</p>
+                            )}
                         </div>
                     </div>
                 </div>
