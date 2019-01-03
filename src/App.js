@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter, Switch, NavLink, Redirect } from 'react-router-dom';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
 import LoginClub from './components/LoginClub';
 import GenericModelCRUD from './components/GenericModelCRUD';
@@ -15,6 +15,7 @@ import CreationProjetGlobal from './components/CreationProjetGlobal';
 import AdminParameters from './components/AdminParameters';
 import AdminTousClubs from './components/AdminTousClubs';  
 import AdminGestionProjet from'./components/AdminGestionProjet';
+
 class App extends Component {
   render() {
     const mappings = [
