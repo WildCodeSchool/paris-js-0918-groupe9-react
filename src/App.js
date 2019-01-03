@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
 import LoginClub from './components/LoginClub';
+import GenericModelCRUD from './components/GenericModelCRUD';
 import ClubHome from './components/ClubHome';
 import AdminSponsore from './components/AdminSponsore';
 import LoginAdmin from './components/LoginAdmin';
@@ -40,7 +41,7 @@ class App extends Component {
                   <Route path="/adminhome" component={AdminHome} />
                   <Route path="/clubhome" component={ClubHome} />
                   <Route path="/admin-sponsor" component={AdminSponsore} />
-                  <Route path="/admin-club" component={AdminClub} />
+                  <Route path="/admin-club/:id" component={AdminClub} />
                   <Route path="/admin-creation-espace" component={AdminCreationEspace} />
                   <Route path="/ajoute-projet-club" component={AjouteProjet_Club}/>
                   <Route path="/admin-creation-projetglobal" component={CreationProjetGlobal}/>
@@ -48,8 +49,12 @@ class App extends Component {
                   <Route path="/admin-parameters" component={AdminParameters} />
                   <Route path="/admin-tous-clubs" component={AdminTousClubs}/>
                   <Route path="/admin-gestion-projet" component={AdminGestionProjet}/>
+                  
                 </Switch>
             </BrowserRouter>
+        {/* <GenericModelCRUD
+          mappings={mappings} model={model} table={table}
+        /> */}
       </div>
     );
   }

@@ -15,64 +15,67 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import AdminHeader from "./AdminHeader";
 import "../CSS/AdminSponsore.css";
 
-// const styles = theme => ({
-//     root: {
-//         width: '100%',
-//         maxWidth: 720,
-//         backgroundColor: theme.palette.background.paper,
-//     },
-//     nested: {
-//         paddingLeft: theme.spacing.unit * 4,
-//     },
-// });
 
 class AdminSponsore extends Component {
-  state = {
-    name: undefined,
-    open: true,
-    isLoaded: false,
-    error: null,
-    sponsors: [],
-    projets: [],
-    projetsSponsors: [],
-    projetsBySponsorId: {},
-    selectedSponsor: undefined,
-    collapseIndex: []
-  };
-  componentDidMount() {
-    fetch("http://localhost:3030/sponsor/")
-      .then(res => res.json())
-      .then(
-        result => {
-          console.log(result);
-          this.setState({
-            sponsors: result
-          });
-        },
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+    state = {
+        name: undefined,
+        open: true,
+        isLoaded: false,
+        error: null,
+        sponsors: [],
+        projets: [],
+        projetsSponsors: [],
+        projetsBySponsorId: {},
+        selectedSponsor: undefined,
+        collapseIndex: []
+    }
+    componentDidMount() {
+        fetch('http://localhost:3030/sponsor/')
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result);
+                    this.setState({
+                        sponsors: result,
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error,
+                    });
+                })
 
-    fetch("http://localhost:3030/project/")
-      .then(res => res.json())
-      .then(
-        result => {
-          console.log(result);
-          this.setState({
-            projets: result
-          });
-        },
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+        fetch('http://localhost:3030/project/')
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result);
+                    this.setState({
+                        projets: result,
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error,
+                    });
+                })
+        fetch('http://localhost:3030/project_has_sponsor/')
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    console.log(result);
+                    this.setState({
+                        projetsSponsors: result,
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error,
+                    });
+                })
 
     fetch("http://localhost:3030/project_has_sponsor/")
       .then(res => res.json())
@@ -97,11 +100,15 @@ class AdminSponsore extends Component {
   //     collapseIndex[index] = !currentValue;
   //     this.setState(state => ({ collapseIndex }));
 
-  // };
-  handleCreationProjet = () => {
-    this.props.history.push("/admin-creation-projetglobal");
-  };
+    // };
+    handleCreationProjet = () => {
+        this.props.history.push('/admin-creation-projetglobal')
+    }
 
+    handleOnClick = (index) => {
+        this.props.history.push(`/admin-project/${index}`)
+    }
+  
   handleCreationSponsor = e => {
     e.preventDefault();
     axios
@@ -172,42 +179,36 @@ class AdminSponsore extends Component {
                             </Collapse>
                         </ListItem>)}
                     </List> */}
-          <div className="sponsore">
-            <ul>
-              {sponsors.map(sponsor => (
-                <li>
-                  {sponsor.name}
-                  <ul>
-                    {this.state.projetsBySponsorId[sponsor.id].map(projet => (
-                      <li>
-                        <button>{projet.name}</button>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <form onSubmit={this.handleCreationSponsor}>
-              <button className="buttonsponsor" type="submit">
-                Ajouter un sponsor
-              </button>
-              <input type="text" placeholder="nom de sponsor" name="sponsor" />
-            </form>
-          </div>
-          <div>
-            <button
-              className="buttonprojet"
-              onClick={this.handleCreationProjet}
-            >
-              Creer un projet global{" "}
-            </button>
-          </div>
-        </div>
-      );
+                    <div className="sponsore">
+                        <ul>
+                            {sponsors.map(sponsor => (
+                                <li className="sponsorname">{sponsor.name}
+                                    <ul>
+                                        {this.state.projetsBySponsorId[sponsor.id].map((projet) => (
+                                            <li className="sponsorprojet" >
+                                                <button  onClick={()=>this.handleOnClick(projet.id)}>{projet.name}</button>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </li>
+                            ))
+                            }
+                        </ul>
+                    </div>
+                    <div >
+                        <form onSubmit={this.handleCreationSponsor}>
+                            <button className="buttonsponsor" type="submit">Ajouter un sponsor </button>
+                            <input type="text" placeholder="nom de sponsor" name="sponsor" />
+                        </form>
+                    </div>
+                    <div>
+                        <button className="buttonprojet" onClick={this.handleCreationProjet}>Creer un projet global </button>
+                    </div>
+                </div >
+            );
+        }
     }
+    
   }
-}
 export default AdminSponsore;
 //withStyles(styles)
