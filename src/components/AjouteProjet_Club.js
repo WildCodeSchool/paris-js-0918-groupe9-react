@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { getToken, getClubId } from '../helper/tokenHelper';
 import AdminHeader from './AdminHeader';
-
+import '../CSS/AjouteProjet_Club.scss'
 class AjouteProjet_Club extends Component {
     state = {
         isLoaded: false,
@@ -79,7 +79,6 @@ class AjouteProjet_Club extends Component {
     }
     render() {
         const { error, isLoaded, projets, clubs, club_id, project_id } = this.state;
-
         if (error) {
             return (
                 <div>
@@ -91,16 +90,15 @@ class AjouteProjet_Club extends Component {
             return <div> Loading... </div>;
         }
         return (
-            <div>
+            <div className="ajoute-projet-club">
                 <div>
                     <AdminHeader />
                 </div>
-
-
-                <form onSubmit={this.handleSubmit}>
+                <p>Ajouter un projet au club</p>
+                <form className="formulaire" onSubmit={this.handleSubmit} method="POST" enctype="multipart/form-data" action="uploaddufichier">
                     <label>
                         Sélectioner un club :
-          <select name="club_id" value={club_id} onChange={this.handleChange}>
+                            <select name="club_id" value={club_id} onChange={this.handleChange}>
                             {clubs.map(club =>
                                 <option value={club.id}>{club.name}</option>
                             )}
@@ -109,7 +107,7 @@ class AjouteProjet_Club extends Component {
                     <br />
                     <label>
                         Sélectioner un projet global:
-          <select name="project_id" value={project_id} onChange={this.handleChange}>
+                            <select name="project_id" value={project_id} onChange={this.handleChange}>
                             {projets.map(projet =>
                                 <option value={projet.id}>{projet.name}</option>
                             )}
@@ -117,26 +115,27 @@ class AjouteProjet_Club extends Component {
                     </label>
                     <br />
                     <label>
-                        Nom :
+                        Nom de contrat (convention):
                         <input name="name" type="text" value={this.state.name} onChange={this.handleChange} />
                     </label>
                     <br />
                     <label>
-                        url_contract :
-                        <input name="url_contract" type="text" value={this.state.url_contract} onChange={this.handleChange} />
-                    </label>
-                    <br />
-                    <label>
-                        url_signed_contract :
+                        bon de commande :
                         <input name="url_signed_contract" type="text" value={this.state.url_signed_contract} onChange={this.handleChange} />
                     </label>
-
                     <br />
-                    <input type="submit" value="Créer un nouveau contrat" />
+                    <button type="submit" value="Submit"> Créer un nouveau contrat-club </button>
                 </form>
+                <div className="formulaire">
+                <label>
+                    convention :
+                    <input type="file" name="file" accept=".pdf" onChange={this.onChangeFile} /> <br />
+                    <button onClick={this.handleUpload}>Upload</button>
+                </label>
+                </div>
+                
             </div>
         )
-
     }
 }
 export default AjouteProjet_Club; 

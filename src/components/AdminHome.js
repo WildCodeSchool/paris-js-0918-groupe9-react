@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { getToken, getClubId } from '../helper/tokenHelper';
-import '../CSS/Adminhome.css';
+
 import AdminHeader from './AdminHeader';
 import '../CSS/AdminHome.css'
 
@@ -41,7 +41,7 @@ class AdminHome extends Component {
                     <AdminHeader />
                     <div className="groupe-input">
                         <Link to="/admin-tous-clubs"><button className="inputclub" >CLUB</button></Link>    <br />
-                        <Link to="/admin-sponsor"><button className="inputsponsor" >SPONSORE</button></Link>    <br />
+                        <Link to="/admin-sponsor"><button className="inputsponsor" >SPONSOR</button></Link>    <br />
                         <Link to="/admin-gestion-projet"><button className="inputprojet" >GESTION DE PROJET</button></Link>
                     </div>
                 </div>

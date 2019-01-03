@@ -28,7 +28,7 @@ import '../CSS/AdminSponsore.css'
 
 class AdminSponsore extends Component {
     state = {
-        name:undefined,
+        name: undefined,
         open: true,
         isLoaded: false,
         error: null,
@@ -71,7 +71,6 @@ class AdminSponsore extends Component {
                         error,
                     });
                 })
-
         fetch('http://localhost:3030/project_has_sponsor/')
             .then(res => res.json())
             .then(
@@ -99,16 +98,18 @@ class AdminSponsore extends Component {
     handleCreationProjet = () => {
         this.props.history.push('/admin-creation-projetglobal')
     }
-    
-    
+
+    handleOnClick = (index) => {
+        this.props.history.push(`/admin-project/${index}`)
+    }
     handleCreationSponsor = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         axios.post("http://localhost:3030/sponsor", {
             name: e.target.sponsor.value,
         })
             .then((res) => {
                 if (res.status == 200) {
-                    console.log("un sponsor ajouté");
+                    alert('Un sponsor est ajouté');
 
                 }
                 else if (res.status == 204) {
@@ -181,11 +182,11 @@ class AdminSponsore extends Component {
                     <div className="sponsore">
                         <ul>
                             {sponsors.map(sponsor => (
-                                <li>{sponsor.name}
+                                <li className="sponsorname">{sponsor.name}
                                     <ul>
                                         {this.state.projetsBySponsorId[sponsor.id].map((projet) => (
-                                            <li>
-                                                <button>{projet.name}</button>
+                                            <li className="sponsorprojet" >
+                                                <button  onClick={()=>this.handleOnClick(projet.id)}>{projet.name}</button>
                                             </li>
                                         ))}
                                     </ul>
@@ -197,7 +198,7 @@ class AdminSponsore extends Component {
                     <div >
                         <form onSubmit={this.handleCreationSponsor}>
                             <button className="buttonsponsor" type="submit">Ajouter un sponsor </button>
-                            <input type="text" placeholder="nom de sponsor" name="sponsor"/>
+                            <input type="text" placeholder="nom de sponsor" name="sponsor" />
                         </form>
                     </div>
                     <div>
