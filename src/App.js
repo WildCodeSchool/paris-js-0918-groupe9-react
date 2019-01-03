@@ -7,6 +7,7 @@ import LoginAdmin from './components/LoginAdmin';
 import AdminHome from './components/AdminHome';
 import AdminClub from './components/AdminClub';
 import AdminParameters from './components/AdminParameters';
+import ClubConvention from './components/ClubConvention';
 
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
                   <Route path="/clubhome" component={ClubHome} />
                   <Route path="/AdminSponsored" component={AdminSponsore} />
                   <Route path="/AdminClub" component={AdminClub} />
+                  <Route path="/ClubConvention" component={ClubConvention} />
                 </Switch>
               </div>
             </BrowserRouter>
