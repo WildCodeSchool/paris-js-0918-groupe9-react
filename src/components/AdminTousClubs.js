@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 import { getToken } from "../helper/tokenHelper";
 import "../CSS/AdminTousClubs.css";
 import AdminHeader from "./AdminHeader";
@@ -62,6 +63,9 @@ class AdminTousClubs extends Component {
       return (
         <div>
           <AdminHeader />
+          <div className="buttonCreation">
+          <Link to="/admin-creation-espace"><button>Ajouter un club</button></Link>
+          </div>
           <div className="allcards">
             <div className="custom-select1">
               <div className="type">

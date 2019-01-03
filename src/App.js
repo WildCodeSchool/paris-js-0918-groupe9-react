@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
 import LoginClub from './components/LoginClub';
-import GenericModelCRUD from './components/GenericModelCRUD';
 import ClubHome from './components/ClubHome';
 import AdminSponsore from './components/AdminSponsore';
 import LoginAdmin from './components/LoginAdmin';
@@ -18,20 +17,6 @@ import AdminGestionProjet from'./components/AdminGestionProjet';
 
 class App extends Component {
   render() {
-    const mappings = [
-      { name: "last_name", type: "text" },
-      { name: "first_name", type: "text" },
-      { name: "email", type: "text" },
-      { name: "password", type: "password" },
-    ];
-    const model = {
-      id: undefined,
-      last_name: undefined,
-      first_name: undefined,
-      email: undefined,
-      password: undefined
-    };
-    const table = "user";
     return (
       <div className="App">
         <BrowserRouter>

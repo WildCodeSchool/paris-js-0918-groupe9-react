@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import AdminHeader from './AdminHeader';
+import '../CSS/AdminCreationEspace.scss'
 
 export default class AdminCreationEspace extends Component {
     state = {
@@ -29,8 +30,9 @@ export default class AdminCreationEspace extends Component {
         };
         axios.post("http://localhost:3030/club/create", body)
             .then((res) => {
-                if (res.status == 200) {
+                if (res.status === 200) {
                     alert("Un espace club est créé");
+                    this.props.history.push(`/admin-tous-clubs`)
                 }
             }
             )
@@ -46,7 +48,7 @@ export default class AdminCreationEspace extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="AdminCreationEspace">
                 <AdminHeader />
                 <h2>Creation espace pour club </h2>
                 <form className="formulaire" onSubmit={this.handleOnSubmit} >
@@ -59,7 +61,7 @@ export default class AdminCreationEspace extends Component {
                         <input type="text" name="email" value={this.state.email} onChange={this.handleOnChange} />
                     </label> <br />
                     <label>
-                        <h4>Adress</h4>
+                        <h4>Adresse</h4>
                         <input type="text" name="address" value={this.state.address} onChange={this.handleOnChange} />
                     </label> <br />
                     <button type="submit" value="Submit"> envoyer </button>

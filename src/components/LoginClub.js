@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Route, BrowserRouter, Switch, NavLink, Redirect } from 'react-router-dom';
+import {Redirect } from 'react-router-dom';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField';

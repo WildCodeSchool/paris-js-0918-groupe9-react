@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
 import { getToken, getClubId } from '../helper/tokenHelper';
 
 import AdminHeader from './AdminHeader';
@@ -64,8 +65,9 @@ class CreationProjetGlobal extends Component {
         };
         axios.post("http://localhost:3030/project", body)
             .then((res) => {
-                if (res.status == 200) {
+                if (res.status === 200) {
                     alert("Un projet global est créé");
+                    this.props.history.push('/admin-sponsor')
                 }
             }
             )
@@ -85,7 +87,7 @@ class CreationProjetGlobal extends Component {
             config: { headers: { 'Content-Type': 'multipart/form-data' } }
         })
             .then((res) => {
-                if (res.status == 200) {
+                if (res.status === 200) {
                     alert("Fichiers uploadé");
                     this.setState({
                         [key] : res.data

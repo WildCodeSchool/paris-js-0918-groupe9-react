@@ -23,7 +23,7 @@ class AjouteProjet_Club extends Component {
                 (result) => {
                     this.state.projets = result;
                     this.state.project_id = result[0].id;
-                    return fetch("http://localhost:3030/club/");
+                    return fetch("http://localhost:3030/club/all");
                 },
                 (error) => {
                     this.setState({
@@ -62,7 +62,7 @@ class AjouteProjet_Club extends Component {
         axios.post("http://localhost:3030/contract", body)
             .then((res) => {
 
-                if (res.status == 200) {
+                if (res.status === 200) {
                     alert("Contrat est créé");
                 }
             }
