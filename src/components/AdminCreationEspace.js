@@ -33,7 +33,7 @@ export default class AdminCreationEspace extends Component {
                             <TextField type="text" name="email" placeholder="email">
                             </TextField>
                             <br />
-                            <TextField type="password" name="password" placeholder="mot de pass">
+                            <TextField type="password" name="password" placeholder="mot de passe">
                             </TextField>
                             <br />
                             <br />

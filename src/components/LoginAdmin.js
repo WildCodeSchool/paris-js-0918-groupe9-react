@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Route, BrowserRouter, Switch, NavLink, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField';
@@ -12,24 +12,26 @@ class LoginAdmin extends Component {
     state = {
         redirectToReferrer: false
     }
+
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log("coucou", e.target.email.value, e.target.password.value);
+        console.log("coucou", e.target.email.value, e.target.password.value, e.target);
         axios.post("http://localhost:3030/signinadmin", {
             email: e.target.email.value,
             password: e.target.password.value
         })
             .then((res) => {
+                console.log(res)
                 localStorage.setItem("token", res.headers["x-access-token"])
                 console.log("token", localStorage.getItem("token"));
                 console.log(res.status);
-                if (res.status == 200) {
+                if (res.status === 200) {
                     console.log("Login successfull");
                     this.setState({
                         redirectToReferrer: true
                     })
                 }
-                else if (res.status == 204) {
+                else if (res.status === 204) {
                     console.log("Username password do not match");
                     alert("username password do not match")
                 }
@@ -62,7 +64,7 @@ class LoginAdmin extends Component {
                             />
                             <br />
                             <TextField
-                                type="password" name="password" placeholder="mot de pass"
+                                type="password" name="password" placeholder="mot de passe"
                             />
                             <br />
                             <br />
