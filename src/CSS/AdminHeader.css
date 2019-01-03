@@ -1,0 +1,26 @@
+.logo-allsponsored
+{
+  margin-top: 1%;
+  margin-left: 1%;
+ width: 10%;
+ height: 10%;
+}
+
+.AdminHeader
+{
+  display: flex;
+  justify-content: space-between;
+}
+
+.menu
+{
+  margin-right: 5%;
+  width: 10%;
+  margin-top: 2%;
+}
+
+.menu > .icon
+{
+  padding-right: 20%;
+  width: 10px;
+}
