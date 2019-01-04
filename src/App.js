@@ -12,8 +12,13 @@ import AjouteProjet_Club from './components/AjouteProjet_Club';
 import AdminProject from './components/AdminProject';
 import CreationProjetGlobal from './components/CreationProjetGlobal';
 import AdminParameters from './components/AdminParameters';
+
+import ClubConvention from './components/ClubConvention';
+
+
 import AdminTousClubs from './components/AdminTousClubs';  
 import AdminGestionProjet from'./components/AdminGestionProjet';
+
 
 class App extends Component {
   render() {
@@ -25,6 +30,9 @@ class App extends Component {
                   <Route path="/admin" component={LoginAdmin} />
                   <Route path="/adminhome" component={AdminHome} />
                   <Route path="/clubhome" component={ClubHome} />
+
+                  <Route path="/ClubConvention" component={ClubConvention} />
+
                   <Route path="/admin-sponsor" component={AdminSponsore} />
                   <Route path="/admin-club/:id" component={AdminClub} />
                   <Route path="/admin-creation-espace" component={AdminCreationEspace} />
@@ -35,6 +43,7 @@ class App extends Component {
                   <Route path="/admin-tous-clubs" component={AdminTousClubs}/>
                   <Route path="/admin-gestion-projet" component={AdminGestionProjet}/>
                   
+
                 </Switch>
             </BrowserRouter>
         {/* <GenericModelCRUD

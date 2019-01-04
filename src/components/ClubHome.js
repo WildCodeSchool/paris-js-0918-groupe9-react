@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { getToken, getClubId } from '../helper/tokenHelper';
+import ClubHeader from './ClubHeader'
+import '../CSS/AdminParameters.css';
+
 
 class ClubHome extends Component {
     state = {
         open: true,
-        isLoaded: false,
+        isLoaded: true,
         clubs: undefined
     }
 
@@ -34,9 +37,10 @@ class ClubHome extends Component {
         if (this.state.isLoaded) {
             return (
                 <div>
-                    <h3> Clubs</h3>
+                    <ClubHeader/>
+                    {/* <h3> Clubs</h3>
                     {this.state.clubs.map(club => <h1>{club.email}</h1>)}
-                    <h3>Sponsore</h3>
+                    <h3>Sponsor</h3> */}
                 </div>
             )
         } else {
