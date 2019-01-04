@@ -14,6 +14,7 @@ import CreationProjetGlobal from './components/CreationProjetGlobal';
 import AdminParameters from './components/AdminParameters';
 import AdminTousClubs from './components/AdminTousClubs';  
 import AdminGestionProjet from'./components/AdminGestionProjet';
+import LIsteProduits from './components/LIsteProduits';
 
 class App extends Component {
   render() {
@@ -34,7 +35,7 @@ class App extends Component {
                   <Route path="/admin-parameters" component={AdminParameters} />
                   <Route path="/admin-tous-clubs" component={AdminTousClubs}/>
                   <Route path="/admin-gestion-projet" component={AdminGestionProjet}/>
-                  
+                  <Route path="/liste-produits" component={LIsteProduits}/>                  
                 </Switch>
             </BrowserRouter>
         {/* <GenericModelCRUD

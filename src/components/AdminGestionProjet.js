@@ -42,7 +42,8 @@ class AdminGestionProjet extends Component {
                     <AdminHeader />
                     <div className="groupe-input">
                         <Link to="/"><button>Formulaire de satisfaction</button></Link>    <br />
-
+                        <Link to="/liste-produits"><button>liste de produits</button></Link>    <br />
+                        <Link to="/"><button>Action en contrepartie</button></Link>    <br />
                     </div>
                 </div>
 
