@@ -34,7 +34,6 @@ class AdminSponsore extends Component {
                     });
                 })
 
-
             .then(res => res.json())
             .then(
                 (result) => {
@@ -92,7 +91,6 @@ class AdminSponsore extends Component {
                     alert('Un sponsor est ajouté');
                     this.state.name = '';
                     this.componentDidMount();
-
                 }
                 else if (res.status === 204) {
                     console.log("error");
