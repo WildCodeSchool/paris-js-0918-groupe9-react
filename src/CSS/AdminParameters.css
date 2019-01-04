@@ -1,3 +1,7 @@
+*
+{
+    font-family: 'Comfortaa', cursive;
+}
 .groupe-input
 {
     margin-left: 40%;
@@ -42,4 +46,22 @@ hr
     width: 35%;
     margin-left: 0px;
 }
+
+<<<<<<< HEAD
+=======
+::placeholder
+{
+    padding-left: 5px;
+}
+
+.groupe-input > button
+{
+    background-color: #F4943B;
+}
+
+.valider
+{
+    background-color: #a9aaac;
+}
+
 

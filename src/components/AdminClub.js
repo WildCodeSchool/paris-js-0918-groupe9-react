@@ -3,6 +3,7 @@ import axios from 'axios';
 import { getToken, getClubId } from '../helper/tokenHelper';
 
 import AdminHeader from './AdminHeader';
+import'../CSS/AdminClub.scss'
 
 class AdminClub extends Component {
     state = {
@@ -12,7 +13,7 @@ class AdminClub extends Component {
     }
 
     componentDidMount() {
-        const url = "http://localhost:3030/club/1"
+        const url = "http://localhost:3030/club/" + this.props.match.params.id
         axios({
             method: "GET",
             url: url,
@@ -35,7 +36,7 @@ class AdminClub extends Component {
                 })
         axios({
             method: "GET",
-            url: "http://localhost:3030/club/projet/1",
+            url: "http://localhost:3030/club/contract/" + this.props.match.params.id
             // headers: getToken()
         })
             .then(
@@ -54,31 +55,49 @@ class AdminClub extends Component {
                     });
                 })
     }
+    handleOnCLick = () => {
+        this.props.history.push(`/ajoute-projet-club/${this.state.club.id}`)
+    }
     render() {
         const { club, projet } = this.state;
         if (this.state.isLoaded) {
             return (
-                <div>
+                <div className="AdminClub">
                     <AdminHeader />
                     <h1> CLUB {club.name} </h1>
+                    <div className="info">
                     <h3>Address : {club.address}</h3>
                     <h3>Telephone : {club.phone}</h3>
                     <h3>Email : {club.email}</h3>
-                    <h3> Logo </h3><img src={club.url_logo} alt={club.name} width="100px" />
+                    </div>
+                    <p> Logo </p><img src={club.url_logo} alt={club.name} width="100px" /> <br/>
                     <button>Télécharger logo </button>
-                    <h3>Projet</h3>
-                    <ul>
-                       {projet.map(e=>(
-                           <li> {e.name} {e.url_contract} {e.url_signed_contract}</li>
-                       ))}
-                    </ul>
-
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Projet</th>
+                                <th>Convention</th>
+                                <th>Bon de commande</th>
+                                <th>Formulaire de satisfaction</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {projet.map(e => (
+                                <tr>
+                                    <td>{e.name}</td>
+                                    <td><button> {e.url_contract} afficher</button></td>
+                                    <td><button>{e.order_id} afficher</button></td>
+                                    <td><button>{e.survey_id} afficher</button></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                    <button onClick={this.handleOnCLick}>Ajouter un projet</button>
                 </div>
             )
         } else {
             return (<div>Loading...</div>);
         }
-
     }
 }
 export default AdminClub;

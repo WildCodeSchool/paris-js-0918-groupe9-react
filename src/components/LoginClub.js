@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Route, BrowserRouter, Switch, NavLink, Redirect } from 'react-router-dom';
+import {Redirect } from 'react-router-dom';
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField';
@@ -51,7 +51,7 @@ class LoginClub extends Component {
             <div className="contentGlobal">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                </header>
+                </header> <br/>
                 <div>
                     <MuiThemeProvider>
                         <form onSubmit={this.handleSubmit}>

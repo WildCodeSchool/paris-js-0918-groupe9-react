@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
-import AdminHeader from './AdminHeader'
+import AdminHeader from './AdminHeader';
+import '../CSS/AdminSponsore.css'
+
 
 
 class AdminSponsore extends Component {
     state = {
+        name: undefined,
         open: true,
         isLoaded: false,
         error: null,
@@ -13,7 +17,6 @@ class AdminSponsore extends Component {
         projetsSponsors: [],
         projetsBySponsorId: {},
         selectedSponsor: undefined,
-        collapseIndex: []
     }
     componentDidMount() {
         fetch('http://localhost:3030/sponsor/')
@@ -21,9 +24,8 @@ class AdminSponsore extends Component {
             .then(
                 (result) => {
                     console.log(result);
-                    this.setState({
-                        sponsors: result,
-                    });
+                    this.state.sponsors = result;
+                    return fetch('http://localhost:3030/project/');
                 },
                 (error) => {
                     this.setState({
@@ -32,14 +34,12 @@ class AdminSponsore extends Component {
                     });
                 })
 
-        fetch('http://localhost:3030/api/project/')
             .then(res => res.json())
             .then(
                 (result) => {
                     console.log(result);
-                    this.setState({
-                        projets: result,
-                    });
+                    this.state.projets = result;
+                    return fetch('http://localhost:3030/project_has_sponsor/');
                 },
                 (error) => {
                     this.setState({
@@ -48,13 +48,13 @@ class AdminSponsore extends Component {
                     });
                 })
 
-        fetch('http://localhost:3030/api/project_has_sponsor/')
             .then(res => res.json())
             .then(
                 (result) => {
                     console.log(result);
                     this.setState({
                         projetsSponsors: result,
+                        isLoaded: true
                     });
                 },
                 (error) => {
@@ -65,21 +65,51 @@ class AdminSponsore extends Component {
                 })
 
     }
-    handleClick = (e, index) => {
-        const collapseIndex = this.state.collapseIndex;
-        const currentValue = collapseIndex[index];
-        collapseIndex[index] = !currentValue;
-        this.setState(state => ({ collapseIndex }));
 
-    };
+    handleCreationProjet = () => {
+        this.props.history.push('/admin-creation-projetglobal')
+    }
+
+    handleOnClick = (index) => {
+        this.props.history.push(`/admin-project/${index}`)
+    }
+    handleOnChange = (e) => {
+        e.preventDefault();
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+    handleCreationSponsor = (e) => {
+        e.preventDefault();
+        const { name } = this.state;
+        const body = {
+            name
+        }
+        axios.post("http://localhost:3030/sponsor", body)
+            .then((res) => {
+                if (res.status === 200) {
+                    alert('Un sponsor est ajouté');
+                    this.state.name = '';
+                    this.componentDidMount();
+                }
+                else if (res.status === 204) {
+                    console.log("error");
+                    alert("error")
+                }
+                else {
+                    console.log("error");
+                    alert("error");
+                }
+            }
+            )
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
 
     render() {
-        const { classes } = this.props;
-        const { error, isLoaded, sponsors } = this.state;
-        const isFullyLoaded = this.state.sponsors.length > 0
-            && this.state.projets.length > 0
-            && this.state.projetsSponsors.length > 0;
-
+        const { error, isLoaded, sponsors, name } = this.state;
+        const buttonDisabled = ((name === undefined) || (name.trim() === ""));
         if (error) {
             return (
                 <div>
@@ -87,13 +117,12 @@ class AdminSponsore extends Component {
                 </div>
             );
         }
-        if (!isLoaded && !isFullyLoaded) {
+        if (!isLoaded) {
             return <div> Loading... </div>;
         }
-        if (isFullyLoaded) {
+        if (isLoaded) {
             this.state.sponsors.forEach(sponsor => {
                 this.state.projetsBySponsorId[sponsor.id] = [];
-                this.state.collapseIndex.push(false);
             });
             this.state.projetsSponsors.forEach(projetsSponsor => {
                 const project_id = projetsSponsor.project_id;
@@ -105,15 +134,14 @@ class AdminSponsore extends Component {
             return (
                 <div>
                     <AdminHeader />
-                   
-                    <div>
+                    <div className="sponsore">
                         <ul>
                             {sponsors.map(sponsor => (
-                                <li>{sponsor.name}
+                                <li className="sponsorname">{sponsor.name}
                                     <ul>
                                         {this.state.projetsBySponsorId[sponsor.id].map((projet) => (
-                                            <li>
-                                                <button>{projet.name}</button>
+                                            <li className="sponsorprojet" >
+                                                <button onClick={() => this.handleOnClick(projet.id)}>{projet.name}</button>
                                             </li>
                                         ))}
                                     </ul>
@@ -122,11 +150,18 @@ class AdminSponsore extends Component {
                             }
                         </ul>
                     </div>
+                    <div >
+                        <form onSubmit={this.handleCreationSponsor}>
+                            <input className="champs" type="text" placeholder="nom de sponsor" name="name" value={this.state.name} onChange={this.handleOnChange} /> <br />
+                            <button disabled={buttonDisabled} className="buttonsponsor" type="submit">Ajouter un sponsor </button>
+                        </form>
+                    </div>
+                    <div>
+                        <button className="buttonprojet" onClick={this.handleCreationProjet}>Creer un projet global </button>
+                    </div>
                 </div >
             );
         }
-
-
 
     }
 }
