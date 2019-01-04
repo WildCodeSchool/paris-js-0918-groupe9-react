@@ -12,7 +12,7 @@ class AdminTousClubs extends Component {
   };
 
   componentDidMount() {
-    const url = "http://localhost:3030/club";
+    const url = "http://localhost:3030/club/table";
     axios({
       method: "GET",
       url: url,

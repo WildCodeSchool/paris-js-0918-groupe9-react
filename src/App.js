@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
 import LoginClub from './components/LoginClub';
-import GenericModelCRUD from './components/GenericModelCRUD';
 import ClubHome from './components/ClubHome';
 import AdminSponsore from './components/AdminSponsore';
 import LoginAdmin from './components/LoginAdmin';
