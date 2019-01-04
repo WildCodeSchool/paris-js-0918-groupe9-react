@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 import AdminHeader from './AdminHeader';
 import '../CSS/AdminProject.scss';
 
@@ -67,6 +67,7 @@ class AdminProject extends Component {
                 <ol className="contractname">
                     <button className="buttonprojet" onClick={() => this.handleOnClick(contract.club_id)}>{contract.name}</button>
                 </ol>))}
+                <Link to="/ajoute-projet-club"><button>Ajouter un club au projet global</button></Link>
         </div>);
     }
 }
