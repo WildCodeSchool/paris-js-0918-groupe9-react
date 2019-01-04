@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { getToken, getClubId } from '../helper/tokenHelper';
 import ClubHeader from './ClubHeader'
+import '../CSS/AdminParameters.css';
+
 
 class ClubHome extends Component {
     state = {

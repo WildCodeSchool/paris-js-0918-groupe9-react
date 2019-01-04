@@ -39,7 +39,7 @@ class AdminHome extends Component {
                     <AdminHeader/>
                     <button>CLUB</button>
                     {/* {this.state.user.map(user => <h1>{user.email}</h1>)} */}
-                    <button>SPONSORE</button>
+                    <button>SPONSOR</button>
                     <button>GESTION DE PROJET</button>            
                 </div>
             )
