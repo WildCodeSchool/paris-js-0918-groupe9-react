@@ -23,7 +23,7 @@ class AjouteProjet_Club extends Component {
                 (result) => {
                     this.state.projets = result;
                     this.state.project_id = result[0].id;
-                    return fetch("http://localhost:3030/club/all");
+                    return fetch("http://localhost:3030/club");
                 },
                 (error) => {
                     this.setState({

@@ -13,7 +13,7 @@ class AdminTousClubs extends Component {
   };
 
   componentDidMount() {
-    const url = "http://localhost:3030/club";
+    const url = "http://localhost:3030/club/table";
     axios({
       method: "GET",
       url: url,
@@ -76,7 +76,7 @@ class AdminTousClubs extends Component {
                 </select>
               </div>
               {this.state.user.map((e, i) => (
-                <p className="element" key={i}>{e.clubName}</p>
+                <Link to={`/admin-club/${e.id}`}> <p className="element" key={i}>{e.clubName}</p></Link>
               ))}
             </div>
             <div className="custom-select2">
