@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import  '../CSS/ListeProduits.css'
 import axios from 'axios'
 
+
 class LIsteProduits extends Component {
 
     state = {
@@ -9,13 +10,21 @@ class LIsteProduits extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('http://localhost:3030/product')
+        axios.get('http://localhost:3030/product/')
             .then(res => this.setState({
                 resultat : res.data
             }))
     }
 
-
+   
+    changeName = (e) => {
+        console.log(e.target.butt.value)
+        const id = e.target.butt.id
+        const url = `http://localhost:3030/product/${id}`
+        axios.put(url, {
+          name: e.target.butt.value
+        })
+    }
 
   render() {
     return (
@@ -24,10 +33,19 @@ class LIsteProduits extends Component {
         <div>
             {this.state.resultat.map((e,i) => 
             <div className="produits"> 
-                <p className="listes" key={i}>{e.name}</p>
+                <p className="listes" key={i}>- {e.name}</p>
                 <div className="barre_button">
-                    <input></input>
-                    <button className="modif" onClick>MODIFIER</button>
+                <form  onSubmit={this.changeName}>
+                    <input 
+                    className="liste_input"
+                    id={e.id}
+                    name="butt"
+                    ></input>
+                    <button 
+                    type="submit"
+                    className="modif" 
+                    >MODIFIER</button>
+                </form>
                 </div>
             </div>
             )}
