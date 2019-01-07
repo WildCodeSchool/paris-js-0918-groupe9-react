@@ -56,8 +56,12 @@ class AdminClub extends Component {
                 })
     }
     handleOnCLick = () => {
-        this.props.history.push(`/ajoute-projet-club/${this.state.club.id}`)
+        this.props.history.push(`/ajoute-projet-club?clubid=${this.state.club.id}`)
     }
+    handleDownload = (url) => {
+        window.open(url);
+    }
+
     render() {
         const { club, projet } = this.state;
         if (this.state.isLoaded) {
@@ -71,7 +75,7 @@ class AdminClub extends Component {
                     <h3>Email : {club.email}</h3>
                     </div>
                     <p> Logo </p><img src={club.url_logo} alt={club.name} width="100px" /> <br/>
-                    <button>Télécharger logo </button>
+                    <button onClick={()=>this.handleDownload(club.url_logo)} >Télécharger logo </button>
                     <table>
                         <thead>
                             <tr>
@@ -85,9 +89,9 @@ class AdminClub extends Component {
                             {projet.map(e => (
                                 <tr>
                                     <td>{e.name}</td>
-                                    <td><button> {e.url_contract} afficher</button></td>
-                                    <td><button>{e.order_id} afficher</button></td>
-                                    <td><button>{e.survey_id} afficher</button></td>
+                                    <td><button onClick={()=>this.handleDownload(e.url_contract)}> {e.url_contract} afficher</button></td>
+                                    <td><button>{e.order_id}  afficher</button></td>
+                                    <td><button>{e.survey_id}  afficher</button></td>
                                 </tr>
                             ))}
                         </tbody>

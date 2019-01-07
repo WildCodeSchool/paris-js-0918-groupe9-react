@@ -1,0 +1,28 @@
+h1
+{
+    text-align: center;
+}
+
+.produits
+{
+    display: flex;
+}
+
+.modif
+{
+    margin-left: 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.barre_button
+{
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.listes
+{
+    margin-left: 5%;
+}
+
