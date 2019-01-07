@@ -18,6 +18,7 @@ import ClubConvention from './components/ClubConvention';
 
 import AdminTousClubs from './components/AdminTousClubs';  
 import AdminGestionProjet from'./components/AdminGestionProjet';
+import LIsteProduits from './components/LIsteProduits';
 
 
 class App extends Component {
@@ -42,6 +43,8 @@ class App extends Component {
                   <Route path="/admin-parameters" component={AdminParameters} />
                   <Route path="/admin-tous-clubs" component={AdminTousClubs}/>
                   <Route path="/admin-gestion-projet" component={AdminGestionProjet}/>
+
+                  <Route path="/liste-produits" component={LIsteProduits}/>                  
                   
 
                 </Switch>
