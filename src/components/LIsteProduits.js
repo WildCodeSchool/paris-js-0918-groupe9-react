@@ -16,7 +16,8 @@ class LIsteProduits extends Component {
             const id = e.target.add.id
             const url = `http://localhost:3030/product/${id}`
             axios.post(url, {
-              name: e.target.add.value
+              name: e.target.add.value,
+              category : e.target.add2.value
             })
         }
     }
@@ -69,6 +70,12 @@ class LIsteProduits extends Component {
             name ="add"
             className="liste_input_add"
             placeholder="Ajouter un rpoduit"
+            >
+            </input>
+            <input 
+            name ="add2"
+            className="liste_input_add"
+            placeholder="Category"
             >
             </input>
             <button 
