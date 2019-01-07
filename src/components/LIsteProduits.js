@@ -9,6 +9,18 @@ class LIsteProduits extends Component {
         resultat : []
     }
 
+    handleAdd = (e) => {
+        // e.preventDefault()
+        console.log(e.target.add.value)
+        if((e.target.add.value).length > 0 && (e.target.add.value) !== " "){
+            const id = e.target.add.id
+            const url = `http://localhost:3030/product/${id}`
+            axios.post(url, {
+              name: e.target.add.value
+            })
+        }
+    }
+
     componentDidMount = () => {
         axios.get('http://localhost:3030/product/')
             .then(res => this.setState({
@@ -19,11 +31,13 @@ class LIsteProduits extends Component {
    
     changeName = (e) => {
         console.log(e.target.butt.value)
-        const id = e.target.butt.id
-        const url = `http://localhost:3030/product/${id}`
-        axios.put(url, {
-          name: e.target.butt.value
-        })
+        if((e.target.butt.value).length > 0 && (e.target.butt.value) !== " "){
+            const id = e.target.butt.id
+            const url = `http://localhost:3030/product/${id}`
+            axios.put(url, {
+              name: e.target.butt.value
+            })
+        }
     }
 
   render() {
@@ -33,7 +47,7 @@ class LIsteProduits extends Component {
         <div>
             {this.state.resultat.map((e,i) => 
             <div className="produits"> 
-                <p className="listes" key={i}>- {e.name}</p>
+                <h2 className="listes" key={i}>- {e.name}</h2>
                 <div className="barre_button">
                 <form  onSubmit={this.changeName}>
                     <input 
@@ -50,6 +64,20 @@ class LIsteProduits extends Component {
             </div>
             )}
         </div>
+        <form onSubmit={this.handleAdd}>
+            <input 
+            name ="add"
+            className="liste_input_add"
+            placeholder="Ajouter un rpoduit"
+            >
+            </input>
+            <button 
+            onClick={this.handleClick}
+            className="butt_product"
+            >
+            Ajouter 
+            </button>
+        </form>
       </div>
     )
   }
