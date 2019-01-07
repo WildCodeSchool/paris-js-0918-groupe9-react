@@ -67,7 +67,7 @@ class AdminProject extends Component {
                 <ol className="contractname">
                     <button className="buttonprojet" onClick={() => this.handleOnClick(contract.club_id)}>{contract.name}</button>
                 </ol>))}
-                <Link to="/ajoute-projet-club"><button>Ajouter un club au projet global</button></Link>
+                <Link to={`/ajoute-projet-club?projetid=${projet.id}`}><button>Ajouter un club au projet global</button></Link>
         </div>);
     }
 }
