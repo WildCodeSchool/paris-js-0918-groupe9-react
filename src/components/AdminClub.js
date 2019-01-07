@@ -8,7 +8,7 @@ import'../CSS/AdminClub.scss'
 class AdminClub extends Component {
     state = {
         isLoaded: false,
-        club: undefined,
+        club: "",
         projet: []
     }
 
@@ -25,13 +25,12 @@ class AdminClub extends Component {
                         isLoaded: true,
                         club: result.data[0]
                     });
-                    console.log(this.state.club);
 
                 },
                 (error) => {
                     this.setState({
                         isLoaded: true,
-                        error,
+                        error
                     });
                 })
         axios({
@@ -45,7 +44,6 @@ class AdminClub extends Component {
                         isLoaded: true,
                         projet: result.data
                     });
-                    console.log(this.state.club);
 
                 },
                 (error) => {
@@ -54,6 +52,7 @@ class AdminClub extends Component {
                         error,
                     });
                 })
+                console.log(this.state.isLoaded)
     }
     handleOnCLick = () => {
         this.props.history.push(`/ajoute-projet-club?clubid=${this.state.club.id}`)
@@ -63,8 +62,10 @@ class AdminClub extends Component {
     }
 
     render() {
+        
         const { club, projet } = this.state;
         if (this.state.isLoaded) {
+            console.log(club)
             return (
                 <div className="AdminClub">
                     <AdminHeader />
@@ -86,8 +87,8 @@ class AdminClub extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {projet.map(e => (
-                                <tr>
+                            {projet.map((e,i) => (
+                                <tr key={i}>
                                     <td>{e.name}</td>
                                     <td><button onClick={()=>this.handleDownload(e.url_contract)}> {e.url_contract} afficher</button></td>
                                     <td><button>{e.order_id}  afficher</button></td>
