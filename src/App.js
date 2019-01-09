@@ -46,12 +46,9 @@ class App extends Component {
 
                   <Route path="/liste-produits" component={LIsteProduits}/>                  
                   
-
                 </Switch>
             </BrowserRouter>
-        {/* <GenericModelCRUD
-          mappings={mappings} model={model} table={table}
-        /> */}
+            
       </div>
     );
   }
