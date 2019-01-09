@@ -5,7 +5,6 @@ import AdminHeader from './AdminHeader';
 import '../CSS/AdminSponsore.css'
 
 
-
 class AdminSponsore extends Component {
     state = {
         name: undefined,
@@ -139,8 +138,8 @@ class AdminSponsore extends Component {
                             {sponsors.map(sponsor => (
                                 <li className="sponsorname">{sponsor.name}
                                     <ul>
-                                        {this.state.projetsBySponsorId[sponsor.id].map((projet) => (
-                                            <li className="sponsorprojet" >
+                                        {this.state.projetsBySponsorId[sponsor.id].map((projet, index) => (
+                                            <li className="sponsorprojet" key={index} >
                                                 <button onClick={() => this.handleOnClick(projet.id)}>{projet.name}</button>
                                             </li>
                                         ))}

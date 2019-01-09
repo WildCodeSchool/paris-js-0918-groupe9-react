@@ -6,6 +6,7 @@ h1
 .produits
 {
     display: flex;
+    margin-top: 5%;
 }
 
 .modif
@@ -24,5 +25,16 @@ h1
 .listes
 {
     margin-left: 5%;
+    margin-top: 10px;
 }
 
+.butt_product
+{
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.liste_input_add
+{
+    margin-left: 5%;
+}
