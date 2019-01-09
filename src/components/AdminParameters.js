@@ -12,9 +12,6 @@ class AdminParameters extends Component {
     emailState: false,
     resultat : [],
     password: "",
-    oldPassword : "",
-    newPassword : "",
-    confirmationPassword: "",
     adress : "",
     email: "",
     phone: ""
@@ -44,7 +41,7 @@ class AdminParameters extends Component {
 
 
   changePassword = e => {
-    // e.preventDefault();
+    e.preventDefault();
     console.log(e.target.oldPassword.value, e.target.newPassword.value);
     if (
       e.target.oldPassword.value === this.state.password &&
@@ -53,7 +50,7 @@ class AdminParameters extends Component {
     ) {
       const url = "http://localhost:3030/user/1"
       Axios.put(url, {
-        password: e.newPassword.value
+        password: e.target.newPassword.value
       })
     }
   };
@@ -98,6 +95,7 @@ class AdminParameters extends Component {
   }
 
   render() {
+    console.log(this.state.password)
     return (
       <div>
         <AdminHeader />
