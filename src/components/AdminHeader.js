@@ -22,5 +22,6 @@ class AdminHeader extends Component {
         </div>
       </div>
     );
+  }
 }
 export default AdminHeader;
