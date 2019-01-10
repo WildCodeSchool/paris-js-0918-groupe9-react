@@ -9,6 +9,7 @@ import { EditorFormatIndentDecrease } from 'material-ui/svg-icons';
 
 class CreationProjetGlobal extends Component {
     state = {
+
         isLoaded: false,
         sponsor_id: undefined,
         name: undefined,

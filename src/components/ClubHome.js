@@ -3,6 +3,7 @@ import axios from 'axios';
 import { getToken, getClubId } from '../helper/tokenHelper';
 import ClubHeader from './ClubHeader'
 import '../CSS/AdminParameters.css';
+import { log } from 'util';
 
 
 class ClubHome extends Component {
@@ -34,13 +35,15 @@ class ClubHome extends Component {
                 })
     }
     render() {
+        console.log(this.state.clubs);
+        
         if (this.state.isLoaded) {
             return (
                 <div>
                     <ClubHeader/>
-                    {/* <h3> Clubs</h3>
-                    {this.state.clubs.map(club => <h1>{club.email}</h1>)}
-                    <h3>Sponsor</h3> */}
+                    <h3> Clubs</h3>
+                    {this.state.clubs ? this.state.clubs.map(club => <h1>{club.name}</h1>): null}
+                    <h3>Sponsor</h3>
                 </div>
             )
         } else {

@@ -1,3 +1,6 @@
+
+
+
 import React, { Component } from "react";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 
@@ -13,12 +16,11 @@ import AdminProject from "./components/AdminProject";
 import CreationProjetGlobal from "./components/CreationProjetGlobal";
 import AdminParameters from "./components/AdminParameters";
 import Order_render from "./components/Order_render";
-
 import ClubConvention from "./components/ClubConvention";
-
 import AdminTousClubs from "./components/AdminTousClubs";
 import AdminGestionProjet from "./components/AdminGestionProjet";
 import LIsteProduits from "./components/LIsteProduits";
+import BonDeCommande from './components/BonDeCommande';
 
 class App extends Component {
   render() {
@@ -44,8 +46,11 @@ class App extends Component {
                   <Route path="/admin-tous-clubs" component={AdminTousClubs}/>
                   <Route path="/admin-gestion-projet" component={AdminGestionProjet}/>
 
-                  <Route path="/liste-produits" component={LIsteProduits}/>  
+
+                  <Route path="/liste-produits" component={LIsteProduits}/>                  
+                  <Route path="/bon-de-commande" component={BonDeCommande}/>                  
                   <Route path="/order-render/:id" component={Order_render}/>
+
                   
                 </Switch>
             </BrowserRouter>
