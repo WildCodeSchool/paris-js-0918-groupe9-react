@@ -17,7 +17,9 @@ class AjouteProjet_Club extends Component {
     club_id: undefined,
     name: "",
     url_contract: "",
-    file: undefined
+    file: undefined,
+    products: [],
+    productsSelected: []
   };
 
   componentDidMount() {
@@ -56,6 +58,14 @@ class AjouteProjet_Club extends Component {
             error
           });
         }
+      );
+
+    fetch("http://localhost:3030/product")
+      .then(res => res.json())
+      .then(data =>
+        this.setState({
+          products: data
+        })
       );
   }
 
@@ -114,7 +124,22 @@ class AjouteProjet_Club extends Component {
       });
   };
 
+  check = e => {
+    if (e.target.checked) {
+      this.setState({
+        productsSelected: [...this.state.productsSelected, Number(e.target.value)]
+      });
+    } else {
+      this.setState({
+        productsSelected: this.state.productsSelected.filter(
+          el => el !== Number(e.target.value)
+        )
+      });
+    }
+  };
+
   render() {
+    console.log(this.state.productsSelected);
     const { error, isLoaded, projets, clubs, project_id, club_id } = this.state;
     const values = queryString.parse(this.props.location.search);
     const disabledClub = values.clubid !== undefined;
@@ -146,7 +171,9 @@ class AjouteProjet_Club extends Component {
                 ))}
               </select>
             </label>
+
             <br />
+
             <label>
               Sélectioner un projet global:
               <select
@@ -160,7 +187,9 @@ class AjouteProjet_Club extends Component {
                 ))}
               </select>
             </label>
+
             <br />
+
             <label>
               Nom de contrat (convention):
               <input
@@ -172,6 +201,24 @@ class AjouteProjet_Club extends Component {
             </label>
 
             <br />
+
+            <label>
+              bon de commande :
+              {this.state.products
+                ? this.state.products.map((e, i) => (
+                    <div>
+                      <input
+                        type="checkbox"
+                        name={e.name}
+                        value={e.id}
+                        onChange={this.check}
+                      />
+                      {e.name}
+                    </div>
+                  ))
+                : null}
+            </label>
+
             <button type="submit" value="Submit">
               {" "}
               Créer un nouveau contrat-club{" "}
@@ -192,12 +239,6 @@ class AjouteProjet_Club extends Component {
               </button>
             </label>
             <br />
-            <label>
-              bon de commande :
-              <form>
-                  
-              </form>
-            </label>
           </div>
         </div>
       );
