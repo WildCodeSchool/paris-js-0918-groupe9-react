@@ -8,7 +8,6 @@ import AdminHeader from "./AdminHeader";
 import "../CSS/AjouteProjet_Club.scss";
 
 class AjouteProjet_Club extends Component {
-  
   state = {
     isLoaded: false,
     error: null,
@@ -20,7 +19,8 @@ class AjouteProjet_Club extends Component {
     url_contract: "",
     file: undefined,
     products: [],
-    productsSelected: []
+    productsSelected: [],
+    contract_id: undefined
   };
 
   componentDidMount() {
@@ -85,12 +85,22 @@ class AjouteProjet_Club extends Component {
       .then(res => {
         if (res.status === 200) {
           alert("Contrat est créé");
-          this.props.history.push(`/admin-project/${project_id}`);
+          // this.props.history.push(`/admin-project/${project_id}`);
         }
       })
       .catch(function(error) {
         console.log(error);
       });
+
+    axios
+      .get("http://localhost:3030/contract")
+      .then(res => res.data[res.data.length - 1].id)
+      .then(id => this.state.productsSelected.map(e => axios.post("http://localhost:3030/contract_has_product", {
+          product_id: e,
+          contract_id: id
+        }))
+      );
+      console.log(this.state.contract)
   };
   handleChange = event => {
     const key = event.target.name;
@@ -128,7 +138,10 @@ class AjouteProjet_Club extends Component {
   check = e => {
     if (e.target.checked) {
       this.setState({
-        productsSelected: [...this.state.productsSelected, Number(e.target.value)]
+        productsSelected: [
+          ...this.state.productsSelected,
+          Number(e.target.value)
+        ]
       });
     } else {
       this.setState({
