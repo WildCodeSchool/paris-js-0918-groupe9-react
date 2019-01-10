@@ -6,6 +6,7 @@ import queryString from 'query-string';
 import { getToken, getClubId } from '../helper/tokenHelper';
 import AdminHeader from './AdminHeader';
 import '../CSS/AjouteProjet_Club.scss'
+
 class AjouteProjet_Club extends Component {
     state = {
         isLoaded: false,
@@ -21,6 +22,8 @@ class AjouteProjet_Club extends Component {
     
     componentDidMount() {
         const values = queryString.parse(this.props.location.search);
+        let queryProjetId = undefined;
+        let projects = undefined;
         fetch("http://localhost:3030/project/")
             .then(res => res.json())
             .then(
