@@ -5,19 +5,17 @@ import { getToken, getClubId } from '../helper/tokenHelper';
 
 import AdminHeader from './AdminHeader';
 import '../CSS/CreationProjetGlobal.scss'
-import { EditorFormatIndentDecrease } from 'material-ui/svg-icons';
 
-class CreationProjetGlobal extends Component {
+class CreationProjetGlobalBackUp extends Component {
     state = {
         isLoaded: false,
         sponsor_id: undefined,
         name: undefined,
         user_id: 1,
         status: "active",
-        file1: undefined,
-        file2: undefined,
+        file: undefined,
         visual_shirt: undefined,
-        url_summary: undefined,
+        url_summary: undefined
     }
 
     componentDidMount() {
@@ -50,27 +48,51 @@ class CreationProjetGlobal extends Component {
     };
 
     onChangeFile = e => {
-        this.setState({ [e.target.name]: e.target.files[0] });
+        this.setState({ file: e.target.files[0] });
     };
 
-    handleUpload = (e) => {
+    handleOnSubmit = (e) => {
         e.preventDefault();
+        const { sponsor_id, name, user_id,url_summary, visual_shirt} = this.state;
+        const body = {
+            name,
+            user_id,
+            sponsor_id,
+            status: "active",
+            visual_shirt,
+            url_summary
+
+        };
+        axios.post("http://localhost:3030/project", body)
+            .then((res) => {
+                if (res.status === 200) {
+                    alert("Un projet global est créé");
+                    this.props.history.push('/admin-sponsor')
+                }
+            }
+            )
+            .catch(function (error) {
+                console.log(error);
+            })
+    }
+
+    handleUpload = (e) => {
+        const key  = e.target.name;
+        //const id = e.tagret.id;
         const formdata = new FormData()
-        formdata.append('file1', this.state.file1);
-        formdata.append('file2', this.state.file2);
-        formdata.append('sponsor_id', this.state.sponsor_id);
-        formdata.append('user_id', this.state.user_id);
-        formdata.append('status', this.state.status);
-        formdata.append('name', this.state.name)
+        formdata.append('file', this.state.file)
         axios({
             method: 'post',
-            url: 'http://localhost:3030/project/uploaddesfichier',
+            url: 'http://localhost:3030/project/uploaddufichier',
             data: formdata,
             config: { headers: { 'Content-Type': 'multipart/form-data' } }
         })
             .then((res) => {
                 if (res.status === 200) {
                     alert("Fichiers uploadé");
+                    this.setState({
+                        [key] : res.data
+                    })
                 }
             }
             )
@@ -88,7 +110,17 @@ class CreationProjetGlobal extends Component {
                     </div>
                     <div className="projetglobal">
                         <p>Initialisation un projet global</p>
-                        <form className="formulaire" onSubmit={this.handleUpload} encType="multipart/form-data">
+                        <label>
+                            <h4>Resumé de projet </h4>
+                            <input type="file" name="file" accept=".pdf" onChange={this.onChangeFile} /> <br />
+                            <button name="url_summary" onClick={this.handleUpload}>Upload</button>
+                        </label> <br />
+                        <label>
+                            <h4> Visuel de produit</h4>
+                            <input type="file" name="file" accept=".png,.pdf,.jpeg" onChange={this.onChangeFile} /> <br />
+                            <button name="visual_shirt"  onClick={this.handleUpload}>Upload</button>
+                        </label> <br />
+                        <form className="formulaire" onSubmit={this.handleOnSubmit} >
                             <label>
                                 <h4>Sponsor </h4>
                                 <select name="sponsor_id" value={this.state.sponsor_id} onChange={this.handleOnChange} >
@@ -101,10 +133,6 @@ class CreationProjetGlobal extends Component {
                                 <h4>Nom de projet</h4>
                                 <input type="text" name="name" value={this.state.name} onChange={this.handleOnChange} />
                             </label> <br />
-                            <h4> Visuel de produit</h4>
-                            <input type="file" name="file2" accept=".png,.pdf,.jpeg" onChange={this.onChangeFile} /> <br />
-                            <h4>Resumé de projet </h4>
-                            <input type="file" name="file1" accept=".pdf" onChange={this.onChangeFile} /> <br />
                             <button type="submit" value="Submit"> envoyer </button>
                         </form>
                     </div>
@@ -117,4 +145,4 @@ class CreationProjetGlobal extends Component {
 
     }
 }
-export default CreationProjetGlobal;
+export default CreationProjetGlobalBackUp;

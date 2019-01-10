@@ -42,7 +42,6 @@ class AjouteProjet_Club extends Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                   
                     const queryClubId = values.clubid ? values.clubid : result[0].id;
                     this.setState({
                         isLoaded: true,
