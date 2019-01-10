@@ -85,7 +85,7 @@ class AjouteProjet_Club extends Component {
       .then(res => {
         if (res.status === 200) {
           alert("Contrat est créé");
-          // this.props.history.push(`/admin-project/${project_id}`);
+          this.props.history.push(`/admin-project/${project_id}`);
         }
       })
       .catch(function(error) {
