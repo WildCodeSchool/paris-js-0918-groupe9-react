@@ -100,7 +100,7 @@ class AdminTousClubs extends Component {
               </div>
               {this.state.user.map((e, i) => (
                 <p className="element">
-                  <img
+                  <img width="50"
                     key={i}
                     className="img-logo"
                     src={e.url_logo}
