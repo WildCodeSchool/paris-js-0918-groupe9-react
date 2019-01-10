@@ -62,12 +62,9 @@ class AdminClub extends Component {
     }
 
     render() {
-
-        
         const { club, projet } = this.state;
         if (this.state.isLoaded) {
             console.log(club)
-
             return (
                 <div className="AdminClub">
                     <AdminHeader />

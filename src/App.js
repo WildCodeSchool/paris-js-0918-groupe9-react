@@ -29,10 +29,10 @@ class App extends Component {
                 <Switch>
                   <Route exact path="/" component={LoginClub} />
                   <Route path="/admin" component={LoginAdmin} />
-                  <Route path="/adminhome" component={AdminHome} />
-                  <Route path="/clubhome" component={ClubHome} />
+                  <Route path="/admin-home" component={AdminHome} />
+                  <Route path="/club-home" component={ClubHome} />
 
-                  <Route path="/ClubConvention" component={ClubConvention} />
+                  <Route path="/club-convention" component={ClubConvention} />
 
                   <Route path="/admin-sponsor" component={AdminSponsore} />
                   <Route path="/admin-club/:id" component={AdminClub} />
