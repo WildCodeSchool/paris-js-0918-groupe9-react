@@ -8,54 +8,67 @@ import AdminHeader from "./AdminHeader";
 import "../CSS/AjouteProjet_Club.scss";
 
 class AjouteProjet_Club extends Component {
-    state = {
-        isLoaded: false,
-        error: null,
-        projets: [],
-        clubs: [],
-        project_id: undefined,
-        club_id: undefined,
-        name: "",
-        url_contract: "",
-        file: undefined,
-    }
-    
-    componentDidMount() {
-        const values = queryString.parse(this.props.location.search);
-        let queryProjetId = undefined;
-        let projects = undefined;
-        fetch("http://localhost:3030/project/")
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    const queryProjetId = values.projetid  ? values.projetid  :result[0].id
-                    this.state.projets = result;
-                    this.state.project_id = queryProjetId ;
-                    return fetch("http://localhost:3030/club");
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error,
-                    });
-                })
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    const queryClubId = values.clubid ? values.clubid : result[0].id;
-                    this.setState({
-                        isLoaded: true,
-                        clubs: result,
-                        club_id:queryClubId
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error,
-                    });
-                })
-    }
+  
+  state = {
+    isLoaded: false,
+    error: null,
+    projets: [],
+    clubs: [],
+    project_id: undefined,
+    club_id: undefined,
+    name: "",
+    url_contract: "",
+    file: undefined,
+    products: [],
+    productsSelected: []
+  };
+
+  componentDidMount() {
+    const values = queryString.parse(this.props.location.search);
+    fetch("http://localhost:3030/project/")
+      .then(res => res.json())
+      .then(
+        result => {
+          const queryProjetId = values.projetid
+            ? values.projetid
+            : result[0].id;
+          this.state.projets = result;
+          this.state.project_id = queryProjetId;
+          return fetch("http://localhost:3030/club");
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+      .then(res => res.json())
+      .then(
+        result => {
+          const queryClubId = values.clubid ? values.clubid : result[0].id;
+          this.setState({
+            isLoaded: true,
+            clubs: result,
+            club_id: queryClubId
+          });
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      );
+
+    fetch("http://localhost:3030/product")
+      .then(res => res.json())
+      .then(data =>
+        this.setState({
+          products: data
+        })
+      );
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -112,7 +125,22 @@ class AjouteProjet_Club extends Component {
       });
   };
 
+  check = e => {
+    if (e.target.checked) {
+      this.setState({
+        productsSelected: [...this.state.productsSelected, Number(e.target.value)]
+      });
+    } else {
+      this.setState({
+        productsSelected: this.state.productsSelected.filter(
+          el => el !== Number(e.target.value)
+        )
+      });
+    }
+  };
+
   render() {
+    console.log(this.state.productsSelected);
     const { error, isLoaded, projets, clubs, project_id, club_id } = this.state;
     const values = queryString.parse(this.props.location.search);
     const disabledClub = values.clubid !== undefined;
@@ -144,7 +172,9 @@ class AjouteProjet_Club extends Component {
                 ))}
               </select>
             </label>
+
             <br />
+
             <label>
               Sélectioner un projet global:
               <select
@@ -158,7 +188,9 @@ class AjouteProjet_Club extends Component {
                 ))}
               </select>
             </label>
+
             <br />
+
             <label>
               Nom de contrat (convention):
               <input
@@ -170,6 +202,24 @@ class AjouteProjet_Club extends Component {
             </label>
 
             <br />
+
+            <label>
+              bon de commande :
+              {this.state.products
+                ? this.state.products.map((e, i) => (
+                    <div>
+                      <input
+                        type="checkbox"
+                        name={e.name}
+                        value={e.id}
+                        onChange={this.check}
+                      />
+                      {e.name}
+                    </div>
+                  ))
+                : null}
+            </label>
+
             <button type="submit" value="Submit">
               {" "}
               Créer un nouveau contrat-club{" "}
@@ -190,12 +240,6 @@ class AjouteProjet_Club extends Component {
               </button>
             </label>
             <br />
-            <label>
-              bon de commande :
-              <form>
-                  
-              </form>
-            </label>
           </div>
         </div>
       );
