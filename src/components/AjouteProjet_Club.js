@@ -8,56 +8,55 @@ import AdminHeader from "./AdminHeader";
 import "../CSS/AjouteProjet_Club.scss";
 
 class AjouteProjet_Club extends Component {
-  state = {
-    isLoaded: false,
-    error: null,
-    projets: [],
-    clubs: [],
-    project_id: undefined,
-    club_id: undefined,
-    name: "",
-    url_contract: "",
-    file: undefined
-  };
-
-  componentDidMount() {
-    const values = queryString.parse(this.props.location.search);
-    fetch("http://localhost:3030/project/")
-      .then(res => res.json())
-      .then(
-        result => {
-          const queryProjetId = values.projetid
-            ? values.projetid
-            : result[0].id;
-          this.state.projets = result;
-          this.state.project_id = queryProjetId;
-          return fetch("http://localhost:3030/club");
-        },
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
-      .then(res => res.json())
-      .then(
-        result => {
-          const queryClubId = values.clubid ? values.clubid : result[0].id;
-          this.setState({
-            isLoaded: true,
-            clubs: result,
-            club_id: queryClubId
-          });
-        },
-        error => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
-  }
+    state = {
+        isLoaded: false,
+        error: null,
+        projets: [],
+        clubs: [],
+        project_id: undefined,
+        club_id: undefined,
+        name: "",
+        url_contract: "",
+        file: undefined,
+    }
+    
+    componentDidMount() {
+        const values = queryString.parse(this.props.location.search);
+        let queryProjetId = undefined;
+        let projects = undefined;
+        fetch("http://localhost:3030/project/")
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    const queryProjetId = values.projetid  ? values.projetid  :result[0].id
+                    this.state.projets = result;
+                    this.state.project_id = queryProjetId ;
+                    return fetch("http://localhost:3030/club");
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error,
+                    });
+                })
+            .then(res => res.json())
+            .then(
+                (result) => {
+                   
+                    const queryClubId = values.clubid ? values.clubid : result[0].id;
+                    this.setState({
+                        isLoaded: true,
+                        clubs: result,
+                        club_id:queryClubId
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error,
+                    });
+                })
+    }
 
   handleSubmit = e => {
     e.preventDefault();

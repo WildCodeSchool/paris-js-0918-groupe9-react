@@ -49,7 +49,7 @@ class LoginAdmin extends Component {
     render() {
         const { redirectToReferrer } = this.state
         if (redirectToReferrer === true) {
-            return <Redirect to='/adminhome' />
+            return <Redirect to='/admin-home' />
         }
         return (
             <div className="contentGlobal">
