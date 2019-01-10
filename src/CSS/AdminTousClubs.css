@@ -28,63 +28,13 @@ select
 
 }
 
-.custom-select1
+.custom-select
 {
     border: 1px solid black;
     width: 250px;
-    height: 550px;
+    height: 90%;
     background-color: rgb(247, 242, 242);
     border-radius: 3px;
-}
-
-.custom-select2
-{
-    border: 1px solid black;
-    width: 250px;
-    height: 550px;
-    background-color: rgb(247, 242, 242);
-    border-radius: 3px;
-
-}
-
-.custom-select3
-{
-    border: 1px solid black;
-    width: 250px;
-    height: 550px;
-    background-color: rgb(247, 242, 242);
-    border-radius: 3px;
-
-}
-
-.custom-select4
-{
-    border: 1px solid black;
-    width: 250px;
-    height: 550px;
-    background-color: rgb(247, 242, 242);
-    border-radius: 3px;
-
-}
-
-.custom-select5
-{
-    border: 1px solid black;
-    width: 250px;
-    height: 550px;
-    background-color: rgb(247, 242, 242);
-    border-radius: 3px;
-
-}
-
-.custom-select6
-{
-    border: 1px solid black;
-    width: 250px;
-    height: 550px;
-    background-color: rgb(247, 242, 242);
-    border-radius: 3px;
-
 }
 
 .type {
@@ -99,4 +49,8 @@ select
     height: 40px;
     padding: 10px;
     border-bottom: 1px solid grey;
+}
+
+.rows {
+    height: 70px;
 }

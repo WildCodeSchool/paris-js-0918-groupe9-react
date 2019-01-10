@@ -57,7 +57,7 @@ class AdminTousClubs extends Component {
   };
 
   render() {
-    console.log(this.state.user)
+    console.log(this.state.user);
     if (this.state.isLoaded) {
       return (
         <div>
@@ -68,7 +68,7 @@ class AdminTousClubs extends Component {
             </Link>
           </div>
           <div className="allcards">
-            <div className="custom-select1">
+            <div className="custom-select">
               <div className="type">
                 <h1>Nom</h1>
                 <select name="filter" onClick={this.filter}>
@@ -77,66 +77,79 @@ class AdminTousClubs extends Component {
                 </select>
               </div>
               {this.state.user.map((e, i) => (
-                <Link to={`/admin-club/${e.id}`}>
-                  <p className="element" key={i}>
-                    {e.clubName}
-                  </p>
-                </Link>
+                <div className="rows" key={i}>
+                  <Link to={`/admin-club/${e.id}`}>
+                    <p className="element" >
+                      {e.clubName}
+                    </p>
+                  </Link>
+                </div>
               ))}
             </div>
-            <div className="custom-select2">
+            <div className="custom-select">
               <div className="type">
                 <h1>Convention Signée</h1>
               </div>
               {this.state.user.map((e, i) => (
-                <p className="element" key={i}>
-                  {e.contractName}
-                </p>
+                <div className="rows" key={i}>
+                  <p className="element" >
+                    {e.contractName}
+                  </p>
+                </div>
               ))}
             </div>
-            <div className="custom-select3">
+            <div className="custom-select">
               <div className="type">
                 <h1>Logo</h1>
               </div>
               {this.state.user.map((e, i) => (
-                <p className="element">
-                  <img width="50"
-                    key={i}
-                    className="img-logo"
-                    src={e.url_logo}
-                    alt="logo"
-                  />
-                </p>
+                <div className="rows" key={i}>
+                  <p className="element">
+                    <img
+                      width="50"
+                      className="img-logo"
+                      src={e.url_logo}
+                      alt="logo"
+                    />
+                  </p>
+                </div>
               ))}
             </div>
-            <div className="custom-select4">
+            <div className="custom-select">
               <div className="type">
                 <h1>Commande</h1>
               </div>
               {this.state.user.map((e, i) => (
-                <p className="element" key={i}>
-                  {e.status}
-                </p>
+                <div className="rows" key={i}>
+                  <p className="element">
+                    <Link to={`/order-render/${e.orderId}`}> Commande </Link>
+                     / {e.status}
+                  </p>
+                </div>
               ))}
             </div>
-            <div className="custom-select5">
+            <div className="custom-select">
               <div className="type">
                 <h1>Formulaire Satisfaction</h1>
               </div>
               {this.state.user.map((e, i) => (
-                <p className="element" key={i}>
-                  {e.surveyStatus}
-                </p>
+                <div className="rows" key={i}>
+                  <p className="element" >
+                    {e.surveyStatus}
+                  </p>
+                </div>
               ))}
             </div>
-            <div className="custom-select6">
+            <div className="custom-select">
               <div className="type">
                 <h1>Action</h1>
               </div>
               {this.state.user.map((e, i) => (
-                <p className="element" key={i}>
-                  {e.actionName}
-                </p>
+                <div className="rows" key={i}>
+                  <p className="element" >
+                    {e.actionName}
+                  </p>
+                </div>
               ))}
             </div>
           </div>

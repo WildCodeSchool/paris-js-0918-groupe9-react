@@ -1,31 +1,31 @@
-import React, { Component } from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import React, { Component } from "react";
+import { Route, BrowserRouter, Switch } from "react-router-dom";
 
-import LoginClub from './components/LoginClub';
-import ClubHome from './components/ClubHome';
-import AdminSponsore from './components/AdminSponsore';
-import LoginAdmin from './components/LoginAdmin';
-import AdminHome from './components/AdminHome';
-import AdminClub from './components/AdminClub';
-import AdminCreationEspace from './components/AdminCreationEspace';
-import AjouteProjet_Club from './components/AjouteProjet_Club';
-import AdminProject from './components/AdminProject';
-import CreationProjetGlobal from './components/CreationProjetGlobal';
-import AdminParameters from './components/AdminParameters';
+import LoginClub from "./components/LoginClub";
+import ClubHome from "./components/ClubHome";
+import AdminSponsore from "./components/AdminSponsore";
+import LoginAdmin from "./components/LoginAdmin";
+import AdminHome from "./components/AdminHome";
+import AdminClub from "./components/AdminClub";
+import AdminCreationEspace from "./components/AdminCreationEspace";
+import AjouteProjet_Club from "./components/AjouteProjet_Club";
+import AdminProject from "./components/AdminProject";
+import CreationProjetGlobal from "./components/CreationProjetGlobal";
+import AdminParameters from "./components/AdminParameters";
+import Order_render from "./components/Order_render";
 
-import ClubConvention from './components/ClubConvention';
+import ClubConvention from "./components/ClubConvention";
 
-
-import AdminTousClubs from './components/AdminTousClubs';  
-import AdminGestionProjet from'./components/AdminGestionProjet';
-import LIsteProduits from './components/LIsteProduits';
-
+import AdminTousClubs from "./components/AdminTousClubs";
+import AdminGestionProjet from "./components/AdminGestionProjet";
+import LIsteProduits from "./components/LIsteProduits";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <BrowserRouter>
+
                 <Switch>
                   <Route exact path="/" component={LoginClub} />
                   <Route path="/admin" component={LoginAdmin} />
@@ -44,11 +44,12 @@ class App extends Component {
                   <Route path="/admin-tous-clubs" component={AdminTousClubs}/>
                   <Route path="/admin-gestion-projet" component={AdminGestionProjet}/>
 
-                  <Route path="/liste-produits" component={LIsteProduits}/>                  
+                  <Route path="/liste-produits" component={LIsteProduits}/>  
+                  <Route path="/order-render/:id" component={Order_render}/>
                   
                 </Switch>
             </BrowserRouter>
-            
+
       </div>
     );
   }
