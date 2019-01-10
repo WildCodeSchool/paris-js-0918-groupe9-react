@@ -19,6 +19,7 @@ import ClubConvention from './components/ClubConvention';
 import AdminTousClubs from './components/AdminTousClubs';  
 import AdminGestionProjet from'./components/AdminGestionProjet';
 import LIsteProduits from './components/LIsteProduits';
+import BonDeCommande from './components/BonDeCommande';
 
 
 class App extends Component {
@@ -45,6 +46,7 @@ class App extends Component {
                   <Route path="/admin-gestion-projet" component={AdminGestionProjet}/>
 
                   <Route path="/liste-produits" component={LIsteProduits}/>                  
+                  <Route path="/bon-de-commande" component={BonDeCommande}/>                  
                   
 
                 </Switch>
