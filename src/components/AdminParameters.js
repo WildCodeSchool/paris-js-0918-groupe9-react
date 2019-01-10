@@ -3,20 +3,42 @@ import AdminHeader from "./AdminHeader";
 import "../CSS/AdminParameters.css";
 import Axios from "axios";
 
+
 class AdminParameters extends Component {
   state = {
     identifiantState: false,
     adresseState: false,
     telephoneState: false,
     emailState: false,
-    password: ""
+    resultat : [],
+    password: "",
+    adress : "",
+    email: "",
+    phone: ""
   };
+
 
   toggle = e => {
     this.setState({
       [e.target.name]: !this.state[e.target.name]
     });
+    if(e.target.name === "adresseState"){
+      this.changeAdresse()
+    }
+    else if(e.target.name === "telephoneState"){
+      this.changePhone()
+    }
+    else if(e.target.name === "emailState"){
+      this.changeEmail()
+    }
   };
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name] : e.target.value
+    })
+  }
+
 
   changePassword = e => {
     e.preventDefault();
@@ -33,6 +55,32 @@ class AdminParameters extends Component {
     }
   };
 
+    changeAdresse = (e) => {
+      // e.preventDefault();
+        const url = "http://localhost:3030/user/1"
+        Axios.put(url, {
+          adress: this.state.adress
+        })
+      }
+
+    changePhone= (e) => {
+      // e.preventDefault();
+        const url = "http://localhost:3030/user/1"
+        Axios.put(url, {
+          phone: parseInt(this.state.phone)
+        })
+      }
+
+      changeEmail= (e) => {
+        // e.preventDefault();
+          const url = "http://localhost:3030/user/1"
+          Axios.put(url, {
+            email: this.state.email
+          })
+        }
+
+
+        
   componentDidMount() {
     const url = "http://localhost:3030/user/1";
     Axios({
@@ -40,6 +88,7 @@ class AdminParameters extends Component {
       url: url
     }).then(result =>
       this.setState({
+        adress : result.data[0].adress,
         password: result.data[0].password
       })
     );
@@ -90,7 +139,12 @@ class AdminParameters extends Component {
           <br />
           {this.state.adresseState ? (
             <div>
-              <input placeholder="nouvelle adresse" />
+              <input 
+              onChange = {this.handleChange}
+              name="adress" 
+              value={this.state.adress}
+              // placeholder="nouvelle adresse" 
+              />
               <br />
               <br />
               <button
@@ -110,7 +164,11 @@ class AdminParameters extends Component {
           <br />
           {this.state.telephoneState ? (
             <div>
-              <input placeholder="nouveau numéro de téléphone" />
+              <input 
+              value = {this.state.phone}
+              onChange={this.handleChange}
+              name="phone"
+              placeholder="nouveau numéro de téléphone" />
               <br />
               <br />
               <button
@@ -130,7 +188,10 @@ class AdminParameters extends Component {
           <br />
           {this.state.emailState ? (
             <div>
-              <input placeholder="nouvelle adresse email" />
+              <input 
+              name="email"
+              onChange={this.handleChange}
+              placeholder="nouvelle adresse email" />
               <br />
               <br />
               <button

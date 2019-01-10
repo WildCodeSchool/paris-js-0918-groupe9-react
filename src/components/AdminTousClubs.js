@@ -106,7 +106,7 @@ class AdminTousClubs extends Component {
                 <div className="rows" key={i}>
                   <p className="element">
                     <img
-                      
+                      width="50"
                       className="img-logo"
                       src={e.url_logo}
                       alt="logo"

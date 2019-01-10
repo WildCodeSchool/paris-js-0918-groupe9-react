@@ -25,37 +25,31 @@ class App extends Component {
     return (
       <div className="App">
         <BrowserRouter>
-          <Switch>
-            <Route exact path="/" component={LoginClub} />
-            <Route path="/admin" component={LoginAdmin} />
-            <Route path="/adminhome" component={AdminHome} />
-            <Route path="/clubhome" component={ClubHome} />
-            <Route path="/ClubConvention" component={ClubConvention} />
-            <Route path="/admin-sponsor" component={AdminSponsore} />
-            <Route path="/admin-club/:id" component={AdminClub} />
-            <Route
-              path="/admin-creation-espace"
-              component={AdminCreationEspace}
-            />
-            <Route path="/ajoute-projet-club" component={AjouteProjet_Club} />
-            <Route
-              path="/admin-creation-projetglobal"
-              component={CreationProjetGlobal}
-            />
-            <Route path="/admin-project/:id" component={AdminProject} />
-            <Route path="/admin-parameters" component={AdminParameters} />
-            <Route path="/admin-tous-clubs" component={AdminTousClubs} />
-            <Route
-              path="/admin-gestion-projet"
-              component={AdminGestionProjet}
-            />
-            <Route path="/liste-produits" component={LIsteProduits} />
-            <Route path="/order-render/:id" component={Order_render}/>
-          </Switch>
-        </BrowserRouter>
-        {/* <GenericModelCRUD
-          mappings={mappings} model={model} table={table}
-        /> */}
+
+                <Switch>
+                  <Route exact path="/" component={LoginClub} />
+                  <Route path="/admin" component={LoginAdmin} />
+                  <Route path="/admin-home" component={AdminHome} />
+                  <Route path="/club-home" component={ClubHome} />
+
+                  <Route path="/club-convention" component={ClubConvention} />
+
+                  <Route path="/admin-sponsor" component={AdminSponsore} />
+                  <Route path="/admin-club/:id" component={AdminClub} />
+                  <Route path="/admin-creation-espace" component={AdminCreationEspace} />
+                  <Route path="/ajoute-projet-club" component={AjouteProjet_Club}/>
+                  <Route path="/admin-creation-projetglobal" component={CreationProjetGlobal}/>
+                  <Route path="/admin-project/:id" component={AdminProject}/>
+                  <Route path="/admin-parameters" component={AdminParameters} />
+                  <Route path="/admin-tous-clubs" component={AdminTousClubs}/>
+                  <Route path="/admin-gestion-projet" component={AdminGestionProjet}/>
+
+                  <Route path="/liste-produits" component={LIsteProduits}/>  
+                  <Route path="/order-render/:id" component={Order_render}/>
+                  
+                </Switch>
+            </BrowserRouter>
+
       </div>
     );
   }
