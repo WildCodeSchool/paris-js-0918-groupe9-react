@@ -13,7 +13,7 @@ class ClubConvention extends Component {
         isLoaded: true,
         clubs: undefined,
         toggle:false,
-        file: undefined
+        file: ''
     }
 
     toggleConv = () => {
@@ -28,6 +28,21 @@ class ClubConvention extends Component {
       })
     }
 
+    async handleDownload (){
+
+      // const call = await fetch('http://localhost:3030/club/contract/1');
+      // const data = call.json();
+      // console.log(data);
+      // console.log(data.url_contract);
+      // window.open(data.url_contract)
+
+      fetch('http://localhost:3030/club/contract/1')
+      .then(res => res.json())
+      .then(res => this.setState({ file: res[0].url_contract}));
+      .then(res => console.log(this.state.file))
+      window.open(this.state.file);
+    }
+
     handleUpload = (e) => {
       if(this.state.file){
         e.preventDefault();
@@ -38,7 +53,7 @@ class ClubConvention extends Component {
             'content-type': 'multipart/form-data'
           }
         };
-        axios.post("/",formData,config)
+        axios.post("/", formData, config);
           .then((response) => {
               alert("Fichier envoyé avec succès");
           }).catch((error) => {
@@ -58,14 +73,19 @@ class ClubConvention extends Component {
                   <ClubHeader/>
                   <div className="groupe-input">
                     <button onClick={this.toggleConv}>Convention</button>
+
                     {
                     this.state.toggle &&
+                    <div className='download-upload'>
+                    <button onClick={this.handleDownload}>Télécharger</button>
                       <form onSubmit={this.handleUpload}>
-                        <button onClick={() => this.handleDownload}>Télécharger</button>
                         <input type='file' name='fichier' onClick={this.handleChange}/>
                         <button type='submit'>Envoyer</button>
                       </form>
-                    } <br />
+
+                    </div>
+                    }
+                    <br />
                     <button><Link to='/Bon-de-Commande'>Bon de Commande</Link></button><br />
                     <button><Link to='/Actions-en-Contrepartie'>Actions en Contrepartie</Link></button> <br />
                     <button><Link to='/Formulaire-de-Satisfaction'>Formulaire de Satisfaction</Link></button>    <br />
