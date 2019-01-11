@@ -48,7 +48,7 @@ class App extends Component {
 
 
                   <Route path="/liste-produits" component={LIsteProduits}/>                  
-                  <Route path="/bon-de-commande" component={BonDeCommande}/>                  
+                  <Route path="/bon-de-commande/:id" component={BonDeCommande}/>                  
                   <Route path="/order-render/:id" component={Order_render}/>
 
                   

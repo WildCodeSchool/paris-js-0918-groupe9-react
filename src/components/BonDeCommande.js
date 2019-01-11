@@ -15,8 +15,9 @@ class BonDeCommande extends Component {
     productsList : [],
     contractId : ""
   }
+  //axios.get("http:localhost:3030/contract_has_product/:idcontrat"
   componentDidMount() {
-    const url=`http://localhost:3030/contract_has_product/`
+    const url=`http://localhost:3030/contract_has_product/1`
     axios({
       method : "GET",
       url : url
@@ -66,9 +67,10 @@ class BonDeCommande extends Component {
     axios.post(url,{products: this.state.productsLine});
   }
     render() {
-      const produits = ["short", "chaussures"]
+      console.log(this.props.match.params.id)
+      const produits = []
       const couleurs = ["Rouge","Vert","Bleu","Orange"]
-      const taille = ["XXL","XL","L","M","S","XS"]
+      const taille = ["XS","S","M","L","XL","XXL"]
       if (this.state.isLoaded) {
       return(
         <div>

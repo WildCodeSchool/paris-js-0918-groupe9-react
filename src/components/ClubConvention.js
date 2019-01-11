@@ -66,7 +66,7 @@ class ClubConvention extends Component {
                         <button type='submit'>Envoyer</button>
                       </form>
                     } <br />
-                    <button><Link to='/Bon-de-Commande'>Bon de Commande</Link></button><br />
+                    <button><Link to='/Bon-de-Commande/22'>Bon de Commande</Link></button><br />
                     <button><Link to='/Actions-en-Contrepartie'>Actions en Contrepartie</Link></button> <br />
                     <button><Link to='/Formulaire-de-Satisfaction'>Formulaire de Satisfaction</Link></button>    <br />
                   </div>
