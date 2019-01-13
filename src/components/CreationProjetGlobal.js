@@ -55,6 +55,7 @@ class CreationProjetGlobal extends Component {
     };
 
     handleUpload = (e) => {
+        const headers = { 'Content-Type': 'multipart/form-data', ...getToken() };
         e.preventDefault();
         const formdata = new FormData()
         formdata.append('file1', this.state.file1);
@@ -67,7 +68,7 @@ class CreationProjetGlobal extends Component {
             method: 'post',
             url: 'http://localhost:3030/project/uploaddesfichier',
             data: formdata,
-            config: { headers: { 'Content-Type': 'multipart/form-data' } }
+            headers
         })
             .then((res) => {
                 if (res.status === 200) {

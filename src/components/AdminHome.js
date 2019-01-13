@@ -50,10 +50,10 @@ class AdminHome extends Component {
             )
         }
         else {
-          return (
-            <div>Loading...</div>
-          )
+            return (
+                <div>Loading...</div>
+            )
         }
-      }
+    }
 }
 export default AdminHome;

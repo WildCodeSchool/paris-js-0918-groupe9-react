@@ -78,7 +78,7 @@ class AdminTousClubs extends Component {
               </div>
               {this.state.user.map((e, i) => (
                 <div className="rows" key={i}>
-                  <Link to={`/admin-club/${e.id}`}>
+                  <Link to={`/admin-club/${e.clubId}`}>
                     <p className="element" >
                       {e.clubName}
                     </p>

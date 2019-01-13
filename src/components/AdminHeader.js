@@ -24,4 +24,5 @@ class AdminHeader extends Component {
     );
   }
 }
+}
 export default AdminHeader;

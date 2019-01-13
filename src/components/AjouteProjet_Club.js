@@ -78,6 +78,12 @@ class AjouteProjet_Club extends Component {
       club_id,
       name,
       url_contract
+  componentDidMount() {
+    const values = queryString.parse(this.props.location.search);
+    const myInit =
+    {
+      method: 'GET',
+      headers: getToken(),
     };
 
     axios
@@ -113,14 +119,18 @@ class AjouteProjet_Club extends Component {
   };
 
   handleUpload = e => {
+
     const key = e.target.name;
     const formdata = new FormData();
     formdata.append("file", this.state.file);
+    formdata.append("project_id",this.state.project_id);
+    formdata.append("club_id",this.state.club_id);
+    formdata.append("name",this.state.name)
     axios({
       method: "post",
       url: "http://localhost:3030/contract/uploaddufichier",
       data: formdata,
-      config: { headers: { "Content-Type": "multipart/form-data" } }
+      headers: { "Content-Type": "multipart/form-data" ,...getToken()}
     })
       .then(res => {
         if (res.status === 200) {
@@ -130,7 +140,7 @@ class AjouteProjet_Club extends Component {
           });
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   };
