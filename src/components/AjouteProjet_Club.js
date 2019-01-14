@@ -25,6 +25,7 @@ class AjouteProjet_Club extends Component {
 
   componentDidMount() {
     const values = queryString.parse(this.props.location.search);
+    console.log(values);
     fetch("http://localhost:3030/project/")
       .then(res => res.json())
       .then(
@@ -32,8 +33,10 @@ class AjouteProjet_Club extends Component {
           const queryProjetId = values.projetid
             ? values.projetid
             : result[0].id;
-          this.state.projets = result;
-          this.state.project_id = queryProjetId;
+          this.setState({
+            projets: result,
+            project_id: queryProjetId
+          });
           return fetch("http://localhost:3030/club");
         },
         error => {
@@ -54,6 +57,8 @@ class AjouteProjet_Club extends Component {
           });
         },
         error => {
+          console.log(error);
+
           this.setState({
             isLoaded: true,
             error
@@ -88,7 +93,7 @@ class AjouteProjet_Club extends Component {
           this.props.history.push(`/admin-project/${project_id}`);
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
 
@@ -96,11 +101,11 @@ class AjouteProjet_Club extends Component {
       .get("http://localhost:3030/contract")
       .then(res => res.data[res.data.length - 1].id)
       .then(id => this.state.productsSelected.map(e => axios.post("http://localhost:3030/contract_has_product", {
-          product_id: e,
-          contract_id: id
-        }))
+        product_id: e,
+        contract_id: id
+      }))
       );
-      console.log(this.state.contract)
+    console.log(this.state.contract)
   };
   handleChange = event => {
     const key = event.target.name;
@@ -130,7 +135,7 @@ class AjouteProjet_Club extends Component {
           });
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   };
@@ -220,16 +225,16 @@ class AjouteProjet_Club extends Component {
               bon de commande :
               {this.state.products
                 ? this.state.products.map((e, i) => (
-                    <div>
-                      <input
-                        type="checkbox"
-                        name={e.name}
-                        value={e.id}
-                        onChange={this.check}
-                      />
-                      {e.name}
-                    </div>
-                  ))
+                  <div>
+                    <input
+                      type="checkbox"
+                      name={e.name}
+                      value={e.id}
+                      onChange={this.check}
+                    />
+                    {e.name}
+                  </div>
+                ))
                 : null}
             </label>
 
