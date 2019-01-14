@@ -1,7 +1,10 @@
+
 import React, { Component } from "react";
+import { getToken, getClubId } from "../helper/tokenHelper";
 import "../CSS/ListeProduits.css";
 import axios from "axios";
 import AdminHeader from "./AdminHeader";
+
 
 class LIsteProduits extends Component {
   state = {
@@ -9,37 +12,38 @@ class LIsteProduits extends Component {
     success: false
   };
 
-  handleAdd = e => {
-    // e.preventDefault()
-    console.log(e.target.add.value);
-    if (e.target.add.value.length > 0 && e.target.add.value !== " ") {
-      const id = e.target.add.id;
-      const url = `http://localhost:3030/product/${id}`;
-      axios.post(url, {
-        name: e.target.add.value,
-        category: e.target.add2.value
-      });
-    }
-  };
 
-  componentDidMount = () => {
-    axios.get("http://localhost:3030/product/").then(res =>
-      this.setState({
-        resultat: res.data
-      })
-    );
-  };
-
-  changeName = e => {
-    console.log(e.target.butt.value);
-    if (e.target.butt.value.length > 0 && e.target.butt.value !== " ") {
-      const id = e.target.butt.id;
-      const url = `http://localhost:3030/product/${id}`;
-      axios.put(url, {
-        name: e.target.butt.value
-      });
+ 
+    handleAdd = (e) => {
+        // e.preventDefault()
+        console.log(e.target.add.value)
+        if ((e.target.add.value).length > 0 && (e.target.add.value) !== " ") {
+            const id = e.target.add.id
+            const url = `http://localhost:3030/product/${id}`
+            axios.post(url, {
+                name: e.target.add.value,
+                category: e.target.add2.value
+            }, {headers: getToken()})
+        }
     }
-  };
+
+    componentDidMount = () => {
+        axios.get('http://localhost:3030/product/', {headers: getToken()})
+            .then(res => this.setState({
+                resultat: res.data
+            }))
+
+changeName = (e) => {
+        console.log(e.target.butt.value)
+        if ((e.target.butt.value).length > 0 && (e.target.butt.value) !== " ") {
+            const id = e.target.butt.id
+            const url = `http://localhost:3030/product/${id}`
+            axios.put(url, {
+                name: e.target.butt.value
+            })
+        }
+    }
+
 
   handleClick = () => {
     this.setState({
@@ -97,6 +101,7 @@ class LIsteProduits extends Component {
       </div>
     );
   }
+
 }
 
 export default LIsteProduits;

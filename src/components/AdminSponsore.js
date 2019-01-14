@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { getToken, getClubId } from "../helper/tokenHelper";
 
 import AdminHeader from './AdminHeader';
 
@@ -24,13 +25,18 @@ class AdminSponsore extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:3030/sponsor/')
+        const myInit =
+    {
+      method: 'GET',
+      headers: getToken(),
+    };
+        fetch('http://localhost:3030/sponsor/',myInit)
             .then(res => res.json())
             .then(
                 (result) => {
                     console.log(result);
                     this.state.sponsors = result;
-                    return fetch('http://localhost:3030/project/');
+                    return fetch('http://localhost:3030/project/',myInit);
                 },
                 (error) => {
                     this.setState({
@@ -44,7 +50,7 @@ class AdminSponsore extends Component {
                 (result) => {
                     console.log(result);
                     this.state.projets = result;
-                    return fetch('http://localhost:3030/project_has_sponsor/');
+                    return fetch('http://localhost:3030/project_has_sponsor/',myInit);
                 },
                 (error) => {
                     this.setState({
@@ -90,7 +96,8 @@ class AdminSponsore extends Component {
         const body = {
             name
         }
-        axios.post("http://localhost:3030/sponsor", body)
+        const headers = getToken()
+        axios.post("http://localhost:3030/sponsor",body,{headers:headers})
             .then((res) => {
                 if (res.status === 200) {
                   this.setState({ status: 'Sponsor ajouté avec succès !' })

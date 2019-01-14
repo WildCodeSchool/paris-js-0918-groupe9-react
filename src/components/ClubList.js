@@ -36,6 +36,7 @@ class ClubList extends Component {
         <div>Loading...</div>
       )
   }
+
 }
 
 export default ClubList;

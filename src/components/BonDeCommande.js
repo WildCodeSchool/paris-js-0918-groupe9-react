@@ -16,7 +16,7 @@ class BonDeCommande extends Component {
     contractId : ""
   }
   componentDidMount() {
-    const url=`http://localhost:3030/contract_has_product/`
+    const url=`http://localhost:3030/contract_has_product/${this.state.contractId}`
     axios({
       method : "GET",
       url : url

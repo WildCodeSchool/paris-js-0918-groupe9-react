@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import queryString from "query-string";
 
@@ -25,16 +26,26 @@ class AjouteProjet_Club extends Component {
 
   componentDidMount() {
     const values = queryString.parse(this.props.location.search);
-    fetch("http://localhost:3030/project/")
+    const myInit =
+    {
+      method: 'GET',
+      headers: getToken(),
+    };
+    fetch("http://localhost:3030/project/", myInit)
       .then(res => res.json())
       .then(
         result => {
-          const queryProjetId = values.projetid
+          if (result.length !== 0) {
+            const queryProjetId = values.projetid
             ? values.projetid
             : result[0].id;
-          this.state.projets = result;
-          this.state.project_id = queryProjetId;
-          return fetch("http://localhost:3030/club");
+          this.setState({
+           projets: result,
+           project_id: queryProjetId
+          });
+          return fetch("http://localhost:3030/club", myInit);
+          } 
+          return fetch("http://localhost:3030/club", myInit);
         },
         error => {
           this.setState({
@@ -46,11 +57,18 @@ class AjouteProjet_Club extends Component {
       .then(res => res.json())
       .then(
         result => {
-          const queryClubId = values.clubid ? values.clubid : result[0].id;
+          if (result.length !== 0) {
+            const queryClubId = values.clubid ? values.clubid : result[0].id;
           this.setState({
             isLoaded: true,
             clubs: result,
-            club_id: queryClubId
+            club_id: queryClubId,
+          });
+          }
+          this.setState({
+            isLoaded: true,
+            clubs: result,
+           
           });
         },
         error => {
@@ -59,9 +77,10 @@ class AjouteProjet_Club extends Component {
             error
           });
         }
-      );
+      )
+      ;
 
-    fetch("http://localhost:3030/product")
+    fetch("http://localhost:3030/product", myInit)
       .then(res => res.json())
       .then(data =>
         this.setState({
@@ -70,38 +89,42 @@ class AjouteProjet_Club extends Component {
       );
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    const { project_id, name, url_contract, club_id } = this.state;
-    const body = {
-      project_id,
-      club_id,
-      name,
-      url_contract
-    };
+    const formdata = new FormData();
+    const array = this.state.productsSelected;
+    for (var i = 0; i < array.length; i++) {
+      formdata.append('products[]', array[i]);
+    }
+    formdata.append("file", this.state.file);
+    formdata.append("project_id", this.state.project_id);
+    formdata.append("club_id", this.state.club_id);
+    formdata.append("name", this.state.name);
 
-    axios
-      .post("http://localhost:3030/contract/ajouteclub", body)
+    axios({
+      method: "post",
+      url: "http://localhost:3030/contract/uploaddufichier",
+      data: formdata,
+      headers: { "Content-Type": "multipart/form-data", ...getToken() }
+    })
       .then(res => {
         if (res.status === 200) {
-          alert("Contrat est créé");
-          this.props.history.push(`/admin-project/${project_id}`);
+          alert("Contrat créé");
+          this.props.history.push(`/admin-project/${this.state.project_id}`);
+        }
+        if (res.status === 206){
+          alert("Veuillez-vous remplir tous les champs")
+        }
+        if (res.status === 210){
+          alert('ajouter les produits pour le bon de commande');
+          this.props.history.push(`/liste-produits`)
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
-      });
-
-    axios
-      .get("http://localhost:3030/contract")
-      .then(res => res.data[res.data.length - 1].id)
-      .then(id => this.state.productsSelected.map(e => axios.post("http://localhost:3030/contract_has_product", {
-          product_id: e,
-          contract_id: id
-        }))
-      );
-      console.log(this.state.contract)
+      });;
   };
+
   handleChange = event => {
     const key = event.target.name;
     const value = event.target.value;
@@ -110,29 +133,6 @@ class AjouteProjet_Club extends Component {
 
   onChangeFile = e => {
     this.setState({ file: e.target.files[0] });
-  };
-
-  handleUpload = e => {
-    const key = e.target.name;
-    const formdata = new FormData();
-    formdata.append("file", this.state.file);
-    axios({
-      method: "post",
-      url: "http://localhost:3030/contract/uploaddufichier",
-      data: formdata,
-      config: { headers: { "Content-Type": "multipart/form-data" } }
-    })
-      .then(res => {
-        if (res.status === 200) {
-          alert("Fichiers uploadé");
-          this.setState({
-            [key]: res.data
-          });
-        }
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
   };
 
   check = e => {
@@ -164,7 +164,7 @@ class AjouteProjet_Club extends Component {
     if (!isLoaded) {
       return <div> Loading... </div>;
     }
-    if (projets.length !== 0 && clubs.length !== 0) {
+    if (projets.length !== 0 && clubs.length !== 0) { 
       return (
         <div className="ajoute-projet-club">
           <div>
@@ -213,32 +213,7 @@ class AjouteProjet_Club extends Component {
                 onChange={this.handleChange}
               />
             </label>
-
             <br />
-
-            <label>
-              bon de commande :
-              {this.state.products
-                ? this.state.products.map((e, i) => (
-                    <div>
-                      <input
-                        type="checkbox"
-                        name={e.name}
-                        value={e.id}
-                        onChange={this.check}
-                      />
-                      {e.name}
-                    </div>
-                  ))
-                : null}
-            </label>
-
-            <button type="submit" value="Submit">
-              {" "}
-              Créer un nouveau contrat-club{" "}
-            </button>
-          </form>
-          <div className="formulaire">
             <label>
               convention :
               <input
@@ -247,17 +222,48 @@ class AjouteProjet_Club extends Component {
                 accept=".pdf"
                 onChange={this.onChangeFile}
               />{" "}
-              <br />
-              <button name="url_contract" onClick={this.handleUpload}>
-                Upload
-              </button>
             </label>
             <br />
-          </div>
+            <label>
+              bon de commande :
+              {this.state.products
+                ? this.state.products.map((e, i) => (
+                  <div>
+                    <input
+                      type="checkbox"
+                      name={e.name}
+                      value={e.id}
+                      onChange={this.check}
+                    />
+                    {e.name}
+                  </div>
+                ))
+                : null}
+            </label>
+            <button type="submit" value="Submit">
+              {" "}
+              Créer un nouveau contrat-club{" "}
+            </button>
+          </form>
+
         </div>
       );
     }
-    return <Redirect to="/admin-creation-espace" />;
+    if (projets.length == 0){
+      return (
+        <div>
+          <Link to={`/admin-creation-projetglobal`}> Il n'y a pas de projet global, veuillez ajouter un projet global </Link>
+        </div>
+      )
+    }
+    if (clubs.length == 0)
+    return (
+      <div>
+        <Link to={`/admin-creation-espace`}> Il n'y a pas de club, veuillez ajouter un club </Link>
+      </div>
+    )
+
   }
+
 }
 export default AjouteProjet_Club;

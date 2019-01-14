@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { getToken, getClubId } from '../helper/tokenHelper';
 import AdminHeader from "./AdminHeader";
 import "../CSS/AdminParameters.css";
 import Axios from "axios";
@@ -43,42 +44,48 @@ class AdminParameters extends Component {
       e.target.newPassword.value !== e.target.oldPassword.value &&
       e.target.newPassword.value === e.target.confirmationPassword.value
     ) {
-      const url = "http://localhost:3030/user/password/3";
+      const url = "http://localhost:3030/user/password/1";
       Axios.put(url, {
         password: e.target.newPassword.value
+      },{headers: getToken()})
+    }
+  };
+
+    changeAdresse = (e) => {
+      // e.preventDefault();
+        const url = "http://localhost:3030/user/1"
+        Axios.put(url, {
+          adress: this.state.adress
+        },{headers: getToken()})
+      }
+
+    changePhone= (e) => {
+      // e.preventDefault();
+        const url = "http://localhost:3030/user/1"
+        Axios.put(url, {
+          phone: parseInt(this.state.phone)
+        },{headers: getToken()})
+      }
+
+      changeEmail= (e) => {
+        // e.preventDefault();
+          const url = "http://localhost:3030/user/1"
+          Axios.put(url, {
+            email: this.state.email
+          },{headers: getToken()})
+        }
       });
     }
   };
 
-  changeAdresse = e => {
-    // e.preventDefault();
-    const url = "http://localhost:3030/user/3";
-    Axios.put(url, {
-      adress: this.state.adress
-    });
-  };
 
-  changePhone = e => {
-    // e.preventDefault();
-    const url = "http://localhost:3030/user/3";
-    Axios.put(url, {
-      phone: parseInt(this.state.phone)
-    });
-  };
-
-  changeEmail = e => {
-    // e.preventDefault();
-    const url = "http://localhost:3030/user/3";
-    Axios.put(url, {
-      email: this.state.email
-    });
-  };
 
   componentDidMount() {
     const url = "http://localhost:3030/user/3";
     Axios({
       method: "GET",
-      url: url
+      url: url,
+      headers: getToken()
     }).then(result =>
       this.setState({
         adress: result.data[0].adress,
