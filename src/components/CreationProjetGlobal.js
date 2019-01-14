@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
+import { Link } from "react-router-dom";
 import { getToken, getClubId } from '../helper/tokenHelper';
 
 import AdminHeader from './AdminHeader';
@@ -9,7 +9,6 @@ import { EditorFormatIndentDecrease } from 'material-ui/svg-icons';
 
 class CreationProjetGlobal extends Component {
     state = {
-
         isLoaded: false,
         sponsor_id: undefined,
         name: undefined,
@@ -30,10 +29,16 @@ class CreationProjetGlobal extends Component {
         })
             .then(
                 (result) => {
+                    if (result.data.length !== 0) {
+                        this.setState({
+                            isLoaded: true,
+                            sponsors: result.data,
+                            sponsor_id: result.data[0].id
+                        });
+                    };
                     this.setState({
                         isLoaded: true,
                         sponsors: result.data,
-                        sponsor_id: result.data[0].id
                     });
                     console.log(result.data);
                 },
@@ -63,7 +68,8 @@ class CreationProjetGlobal extends Component {
         formdata.append('sponsor_id', this.state.sponsor_id);
         formdata.append('user_id', this.state.user_id);
         formdata.append('status', this.state.status);
-        formdata.append('name', this.state.name)
+        formdata.append('name', this.state.name);
+        console.log("check",formdata.files);  
         axios({
             method: 'post',
             url: 'http://localhost:3030/project/uploaddesfichier',
@@ -72,17 +78,29 @@ class CreationProjetGlobal extends Component {
         })
             .then((res) => {
                 if (res.status === 200) {
-                    alert("Fichiers uploadé");
+                    alert("Un project est crée");
+                    this.props.history.push('/admin-sponsor')
+                }
+                if(res.status === 206){
+                    alert("Veuillez-vous remplir tous les champs")
                 }
             }
             )
             .catch(function (error) {
                 console.log(error);
+
             })
 
     }
     render() {
         if (this.state.isLoaded) {
+            if (this.state.sponsors.length == 0) {
+                return (
+                    <div>
+                        <Link to={`/admin-sponsor`}> Il n'y a pas de sponsor, veuillez ajouter un sponsor</Link>
+                    </div>
+                )
+            }
             return (
                 <div>
                     <div>

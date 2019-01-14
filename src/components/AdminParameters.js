@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { getToken, getClubId } from '../helper/tokenHelper';
 import AdminHeader from "./AdminHeader";
 import "../CSS/AdminParameters.css";
 import Axios from "axios";
@@ -51,7 +52,7 @@ class AdminParameters extends Component {
       const url = "http://localhost:3030/user/1"
       Axios.put(url, {
         password: e.target.newPassword.value
-      })
+      },{headers: getToken()})
     }
   };
 
@@ -60,7 +61,7 @@ class AdminParameters extends Component {
         const url = "http://localhost:3030/user/1"
         Axios.put(url, {
           adress: this.state.adress
-        })
+        },{headers: getToken()})
       }
 
     changePhone= (e) => {
@@ -68,7 +69,7 @@ class AdminParameters extends Component {
         const url = "http://localhost:3030/user/1"
         Axios.put(url, {
           phone: parseInt(this.state.phone)
-        })
+        },{headers: getToken()})
       }
 
       changeEmail= (e) => {
@@ -76,7 +77,7 @@ class AdminParameters extends Component {
           const url = "http://localhost:3030/user/1"
           Axios.put(url, {
             email: this.state.email
-          })
+          },{headers: getToken()})
         }
 
 
@@ -85,7 +86,8 @@ class AdminParameters extends Component {
     const url = "http://localhost:3030/user/1";
     Axios({
       method: "GET",
-      url: url
+      url: url,
+      headers: getToken()
     }).then(result =>
       this.setState({
         adress : result.data[0].adress,

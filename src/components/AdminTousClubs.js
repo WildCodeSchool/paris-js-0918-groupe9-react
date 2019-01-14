@@ -105,12 +105,12 @@ class AdminTousClubs extends Component {
               {this.state.user.map((e, i) => (
                 <div className="rows" key={i}>
                   <p className="element">
-                    <img
+                    {e.url_logo ? <img
                       width="50"
                       className="img-logo"
-                      src={e.url_logo}
+                      src={`http://localhost:3030/${e.url_logo}`}
                       alt="logo"
-                    />
+                    /> : "pas de logo"}
                   </p>
                 </div>
               ))}
@@ -122,8 +122,9 @@ class AdminTousClubs extends Component {
               {this.state.user.map((e, i) => (
                 <div className="rows" key={i}>
                   <p className="element">
-                    <Link to={`/order-render/${e.orderId}`}> Commande </Link>
-                     / {e.status}
+                    {e.orderId ?
+                      <span><Link to={`/order-render/${e.orderId}`}> Commande </Link>
+                        / {e.status}</span> : "ø"}
                   </p>
                 </div>
               ))}
