@@ -15,8 +15,9 @@ class BonDeCommande extends Component {
     productsList : [],
     contractId : ""
   }
+  //axios.get("http:localhost:3030/contract_has_product/:idcontrat"
   componentDidMount() {
-    const url=`http://localhost:3030/contract_has_product/${this.state.contractId}`
+    const url=`http://localhost:3030/contract_has_product/${this.props.match.params.id}`
     axios({
       method : "GET",
       url : url
@@ -62,13 +63,13 @@ class BonDeCommande extends Component {
   handleSubmit=(event)=>{
     alert('La commande a été validée.');
     event.preventDefault();
-    const url = "http://localhost:3030/order_has_product";
+    const url = `http://localhost:3030/order_has_product/${this.props.match.params.id}`;
     axios.post(url,{products: this.state.productsLine});
   }
     render() {
-      const produits = ["short", "chaussures"]
+      console.log(this.props.match.params.id)
       const couleurs = ["Rouge","Vert","Bleu","Orange"]
-      const taille = ["XXL","XL","L","M","S","XS"]
+      const taille = ["XS","S","M","L","XL","XXL","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48"]
       if (this.state.isLoaded) {
       return(
         <div>
@@ -129,7 +130,7 @@ class BonDeCommande extends Component {
           <form onSubmit={this.handleSubmit}>
             <select name="products" onChange={this.handleChange}>
               <option></option>
-              {this.state.productsList.map((el , index) => <option value={el} key={index}>{el}</option>)}
+              { this.state.productsList.map((el , index) => <option value={el} key={index}>{el}</option>)} 
             </select>
             <select name="colors" onChange={this.handleChange}>
               <option></option>
@@ -144,7 +145,7 @@ class BonDeCommande extends Component {
               <input type="Number" min="1" value={this.state.quantity} name="quantity" onChange={this.handleChange} />
             </label>
             <button type="button" onClick={this.onClick}> + </button><br />
-            <button type="button" > Valider la commande </button>
+            <button type="button" onClick={this.handleSubmit} > Valider la commande </button>
           </form>
         </div>
       )

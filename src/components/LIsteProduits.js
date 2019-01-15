@@ -31,7 +31,7 @@ class LIsteProduits extends Component {
         axios.get('http://localhost:3030/product/', {headers: getToken()})
             .then(res => this.setState({
                 resultat: res.data
-            }))
+            }))}
 
 changeName = (e) => {
         console.log(e.target.butt.value)

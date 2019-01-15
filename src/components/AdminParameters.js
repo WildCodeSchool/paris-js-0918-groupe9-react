@@ -74,9 +74,9 @@ class AdminParameters extends Component {
             email: this.state.email
           },{headers: getToken()})
         }
-      });
-    }
-  };
+      
+  
+  
 
 
 

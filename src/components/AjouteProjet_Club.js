@@ -40,8 +40,8 @@ class AjouteProjet_Club extends Component {
             ? values.projetid
             : result[0].id;
           this.setState({
-           projets: result,
-           project_id: queryProjetId
+            projets: result,
+            project_id: queryProjetId
           });
           return fetch("http://localhost:3030/club", myInit);
           } 
@@ -68,10 +68,11 @@ class AjouteProjet_Club extends Component {
           this.setState({
             isLoaded: true,
             clubs: result,
-           
           });
         },
         error => {
+          console.log(error);
+
           this.setState({
             isLoaded: true,
             error
@@ -249,7 +250,7 @@ class AjouteProjet_Club extends Component {
         </div>
       );
     }
-    if (projets.length == 0){
+    if (projets.length === 0){
       return (
         <div>
           <Link to={`/admin-creation-projetglobal`}> Il n'y a pas de projet global, veuillez ajouter un projet global </Link>
