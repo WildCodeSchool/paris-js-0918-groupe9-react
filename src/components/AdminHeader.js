@@ -4,8 +4,13 @@ import logo from "../images/logoAllsponsored.png";
 import { Link } from "react-router-dom";
 import iconHome from "../images/iconHome.svg";
 import iconUser from "../images/iconUser.svg";
+import logout from "../images/logout.svg";
 
 class AdminHeader extends Component {
+  handleClick = () => {
+    localStorage.clear();
+  };
+
   render() {
     return (
       <div className="AdminHeader">
@@ -19,9 +24,13 @@ class AdminHeader extends Component {
           <Link className="icon" to="/admin-parameters">
             <img src={iconUser} alt="icon User" />
           </Link>
+          <Link onClick={this.handleClick} className="icon logout" to="/admin">
+            <img src={logout} alt="icon logout" />
+          </Link>
         </div>
       </div>
     );
   }
 }
+
 export default AdminHeader;

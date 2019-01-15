@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { getToken, getClubId } from '../helper/tokenHelper';
 
 import AdminHeader from './AdminHeader';
 import '../CSS/AdminCreationEspace.scss'
@@ -28,7 +29,8 @@ export default class AdminCreationEspace extends Component {
             address,
             password: this.generateur(6),
         };
-        axios.post("http://localhost:3030/club/create", body)
+
+        axios.post("http://localhost:3030/club/create", body, {headers:  getToken()})
             .then((res) => {
                 if (res.status === 200) {
                     alert("Un espace club est créé");
@@ -40,7 +42,7 @@ export default class AdminCreationEspace extends Component {
                 console.log(error);
             })
     }
-    handleOnChange =(e)=>{
+    handleOnChange = (e) => {
         e.preventDefault();
         this.setState({
             [e.target.name]: e.target.value

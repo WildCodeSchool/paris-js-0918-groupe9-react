@@ -17,7 +17,7 @@ class AdminClub extends Component {
         axios({
             method: "GET",
             url: url,
-            // headers: getToken()
+            headers: getToken()
         })
             .then(
                 (result) => {
@@ -35,8 +35,8 @@ class AdminClub extends Component {
                 })
         axios({
             method: "GET",
-            url: "http://localhost:3030/club/contract/" + this.props.match.params.id
-            // headers: getToken()
+            url: "http://localhost:3030/club/contract/" + this.props.match.params.id,
+            headers: getToken()
         })
             .then(
                 (result) => {
@@ -58,7 +58,7 @@ class AdminClub extends Component {
         this.props.history.push(`/ajoute-projet-club?clubid=${this.state.club.id}`)
     }
     handleDownload = (url) => {
-        window.open(url);
+        window.open(`http://localhost:3030/${url}`);
     }
 
     render() {
@@ -74,7 +74,10 @@ class AdminClub extends Component {
                     <h3>Telephone : {club.phone}</h3>
                     <h3>Email : {club.email}</h3>
                     </div>
-                    <p> Logo </p><img src={club.url_logo} alt={club.name} width="100px" /> <br/>
+                    <p> Logo </p>
+                    {club.url_logo ?<img 
+                    src={`http://localhost:3030/${club.url_logo}`} 
+                    alt={club.name} width="100px" /> : "pas de logo"}  
                     <button onClick={()=>this.handleDownload(club.url_logo)} >Télécharger logo </button>
                     <table>
                         <thead>
@@ -89,9 +92,9 @@ class AdminClub extends Component {
                             {projet.map((e,i) => (
                                 <tr key={i}>
                                     <td>{e.name}</td>
-                                    <td><button onClick={()=>this.handleDownload(e.url_contract)}> {e.url_contract} afficher</button></td>
-                                    <td><button>{e.order_id}  afficher</button></td>
-                                    <td><button>{e.survey_id}  afficher</button></td>
+                                    <td><button onClick={()=>this.handleDownload(e.url_signed_contract)}> {e.url_signed_contract?"Télécharger":"pas de convention signé"}</button></td>
+                                    <td><button>{e.order_id?"Télécharger":"pas de bon de commande"}  </button></td>
+                                    <td><button>{e.survey_id?"Télécharger":"pas de formulaire de statisfaction"} </button></td>
                                 </tr>
                             ))}
                         </tbody>

@@ -22,6 +22,8 @@ import AdminGestionProjet from "./components/AdminGestionProjet";
 import LIsteProduits from "./components/LIsteProduits";
 import BonDeCommande from './components/BonDeCommande';
 
+import ClubList from './components/ClubList';
+
 class App extends Component {
   render() {
     return (
@@ -46,10 +48,11 @@ class App extends Component {
                   <Route path="/admin-tous-clubs" component={AdminTousClubs}/>
                   <Route path="/admin-gestion-projet" component={AdminGestionProjet}/>
 
-
                   <Route path="/liste-produits" component={LIsteProduits}/>                  
                   <Route path="/bon-de-commande/:id" component={BonDeCommande}/>                  
                   <Route path="/order-render/:id" component={Order_render}/>
+
+                  <Route path="/club-list" component={ClubList}/>
 
                   
                 </Switch>

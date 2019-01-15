@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { getToken, getClubId } from "../helper/tokenHelper";
 import AdminHeader from "./AdminHeader";
 import "../CSS/AdminProject.scss";
 
@@ -15,7 +16,12 @@ class AdminProject extends Component {
       "http://localhost:3030/project/" + this.props.match.params.id;
     const contractUrl =
       "http://localhost:3030/contract/project/" + this.props.match.params.id;
-    fetch(projectUrl)
+    const myInit =
+    {
+      method: 'GET',
+      headers: getToken(),
+    };
+    fetch(projectUrl,myInit)
       .then(res => res.json())
       .then(
         result =>
@@ -30,7 +36,7 @@ class AdminProject extends Component {
           });
         }
       );
-    fetch(contractUrl)
+    fetch(contractUrl,myInit)
       .then(res => res.json())
       .then(
         result =>
@@ -84,27 +90,19 @@ class AdminProject extends Component {
                   {contract.url_signed_contract ? (
                     <p> Contrat signé</p>
                   ) : (
-                    <p> Contrat non signé</p>
-                  )}
+                      <p> Contrat non signé</p>
+                    )}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        <Link to={`/ajoute-projet-club?projetid=${projet.id}`}>
+        <Link to={`/ajoute-projet-club?projetid=${projet[0].id}`}>
           <button>Ajouter un club au projet global</button>
         </Link>
       </div>
     );
   }
 }
-//   <ol className="contractname">
-//     <button
-//       className="buttonprojet"
-//       onClick={() => this.handleOnClick(contract.club_id)}
-//     >
-//       {contract.name}
-//     </button>
-//   </ol>
 
 export default AdminProject;

@@ -15,16 +15,12 @@ class LoginAdmin extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log("coucou", e.target.email.value, e.target.password.value, e.target);
         axios.post("http://localhost:3030/signinadmin", {
             email: e.target.email.value,
             password: e.target.password.value
         })
             .then((res) => {
-                console.log(res)
                 localStorage.setItem("token", res.headers["x-access-token"])
-                console.log("token", localStorage.getItem("token"));
-                console.log(res.status);
                 if (res.status === 200) {
                     console.log("Login successfull");
                     this.setState({

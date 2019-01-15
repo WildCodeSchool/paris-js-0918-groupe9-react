@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { getToken, getClubId } from "../helper/tokenHelper";
 
 import AdminHeader from './AdminHeader';
+
+
+import Modal from 'react-responsive-modal';
 import '../CSS/AdminSponsore.css'
 
 
@@ -16,15 +20,23 @@ class AdminSponsore extends Component {
         projetsSponsors: [],
         projetsBySponsorId: {},
         selectedSponsor: undefined,
+        open: false,
+        status: ''
     }
+
     componentDidMount() {
-        fetch('http://localhost:3030/sponsor/')
+        const myInit =
+    {
+      method: 'GET',
+      headers: getToken(),
+    };
+        fetch('http://localhost:3030/sponsor/',myInit)
             .then(res => res.json())
             .then(
                 (result) => {
                     console.log(result);
                     this.state.sponsors = result;
-                    return fetch('http://localhost:3030/project/');
+                    return fetch('http://localhost:3030/project/',myInit);
                 },
                 (error) => {
                     this.setState({
@@ -38,7 +50,7 @@ class AdminSponsore extends Component {
                 (result) => {
                     console.log(result);
                     this.state.projets = result;
-                    return fetch('http://localhost:3030/project_has_sponsor/');
+                    return fetch('http://localhost:3030/project_has_sponsor/',myInit);
                 },
                 (error) => {
                     this.setState({
@@ -84,20 +96,20 @@ class AdminSponsore extends Component {
         const body = {
             name
         }
-        axios.post("http://localhost:3030/sponsor", body)
+        const headers = getToken()
+        axios.post("http://localhost:3030/sponsor",body,{headers:headers})
             .then((res) => {
                 if (res.status === 200) {
-                    alert('Un sponsor est ajouté');
+                  this.setState({ status: 'Sponsor ajouté avec succès !' })
+                    this.openModal();
                     this.state.name = '';
                     this.componentDidMount();
                 }
                 else if (res.status === 204) {
-                    console.log("error");
-                    alert("error")
+                    this.setState({ status: 'Erreur, veuillez renseigner le champ vide !' })
                 }
                 else {
-                    console.log("error");
-                    alert("error");
+                    this.setState({ status: 'Erreur lors de la requête'})
                 }
             }
             )
@@ -106,7 +118,16 @@ class AdminSponsore extends Component {
             })
     }
 
+    openModal = () => {
+      this.setState({ open: true });
+    };
+
+    closeModal = () => {
+      this.setState({ open: false });
+    };
+
     render() {
+        const { open } = this.state;
         const { error, isLoaded, sponsors, name } = this.state;
         const buttonDisabled = ((name === undefined) || (name.trim() === ""));
         if (error) {
@@ -153,6 +174,9 @@ class AdminSponsore extends Component {
                         <form onSubmit={this.handleCreationSponsor}>
                             <input className="champs" type="text" placeholder="nom de sponsor" name="name" value={this.state.name} onChange={this.handleOnChange} /> <br />
                             <button disabled={buttonDisabled} className="buttonsponsor" type="submit">Ajouter un sponsor </button>
+                            <Modal open={open} onClose={this.closeModal} center>
+                              <h3>{this.state.status}</h3>
+                            </Modal>
                         </form>
                     </div>
                     <div>
