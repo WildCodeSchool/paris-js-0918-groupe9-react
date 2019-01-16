@@ -49,7 +49,7 @@ class App extends Component {
                   <Route path="/admin-gestion-projet" component={AdminGestionProjet}/>
 
                   <Route path="/liste-produits" component={LIsteProduits}/>                  
-                  <Route path="/bon-de-commande" component={BonDeCommande}/>                  
+                  <Route path="/bon-de-commande/:id" component={BonDeCommande}/>                  
                   <Route path="/order-render/:id" component={Order_render}/>
 
                   <Route path="/club-list" component={ClubList}/>

@@ -38,8 +38,9 @@ class ClubConvention extends Component {
 
       fetch('http://localhost:3030/club/contract/1')
       .then(res => res.json())
-      .then(res => this.setState({ file: res[0].url_contract}));
-      // .then(res => console.log(this.state.file))
+
+      .then(res => this.setState({ file: res[0].url_contract}))
+      .then(res => console.log(this.state.file))
       window.open(this.state.file);
     }
 
