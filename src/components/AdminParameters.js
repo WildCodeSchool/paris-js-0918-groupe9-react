@@ -53,6 +53,7 @@ class AdminParameters extends Component {
     }
   };
 
+
   changeAdresse = e => {
     // e.preventDefault();
     const url = "http://localhost:3030/user/1";
@@ -88,6 +89,7 @@ class AdminParameters extends Component {
       { headers: getToken() }
     );
   };
+
 
   componentDidMount() {
     const url = "http://localhost:3030/user/1";
