@@ -129,7 +129,7 @@ class BonDeCommande extends Component {
           <form onSubmit={this.handleSubmit}>
             <select name="products" onChange={this.handleChange}>
               <option></option>
-              {this.state.productsList.map((el , index) => <option value={el} key={index}>{el}</option>)}
+              {produits.map((el , index) => <option value={el} key={index}>{el}</option>)}
             </select>
             <select name="colors" onChange={this.handleChange}>
               <option></option>

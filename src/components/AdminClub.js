@@ -57,6 +57,11 @@ class AdminClub extends Component {
     handleOnCLick = () => {
         this.props.history.push(`/ajoute-projet-club?clubid=${this.state.club.id}`)
     }
+
+    handleOrder = (orderId) => { 
+        this.props.history.push(`/order-render/${orderId}`)
+    }
+
     handleDownload = (url) => {
         window.open(`http://localhost:3030/${url}`);
     }
@@ -74,11 +79,18 @@ class AdminClub extends Component {
                     <h3>Telephone : {club.phone}</h3>
                     <h3>Email : {club.email}</h3>
                     </div>
+                    <div>
                     <p> Logo </p>
                     {club.url_logo ?<img 
                     src={`http://localhost:3030/${club.url_logo}`} 
                     alt={club.name} width="100px" /> : "pas de logo"}  
                     <button onClick={()=>this.handleDownload(club.url_logo)} >Télécharger logo </button>
+                    </div>
+                    <p> Logo vectorized </p>
+                    {club.url_logo ?<img 
+                    src={`http://localhost:3030/${club.url_logo_vectorized}`} 
+                    alt={club.name} width="100px" /> : "pas de logo vectorized"}  
+                    <button onClick={()=>this.handleDownload(club.url_logo_vectorized)} >Télécharger logo </button>
                     <table>
                         <thead>
                             <tr>
@@ -93,8 +105,8 @@ class AdminClub extends Component {
                                 <tr key={i}>
                                     <td>{e.name}</td>
                                     <td><button onClick={()=>this.handleDownload(e.url_signed_contract)}> {e.url_signed_contract?"Télécharger":"pas de convention signé"}</button></td>
-                                    <td><button>{e.order_id?"Télécharger":"pas de bon de commande"}  </button></td>
-                                    <td><button>{e.survey_id?"Télécharger":"pas de formulaire de statisfaction"} </button></td>
+                                    <td><button onClick={()=>this.handleOrder(e.order_id)}>{e.order_id?"Afficher":"pas de bon de commande"}  </button></td>
+                                    <td><button>{e.survey_id?"Affichier":"pas de formulaire de statisfaction"} </button></td>
                                 </tr>
                             ))}
                         </tbody>

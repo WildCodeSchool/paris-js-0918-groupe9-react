@@ -37,14 +37,14 @@ class AjouteProjet_Club extends Component {
         result => {
           if (result.length !== 0) {
             const queryProjetId = values.projetid
-            ? values.projetid
-            : result[0].id;
-          this.setState({
-           projets: result,
-           project_id: queryProjetId
-          });
-          return fetch("http://localhost:3030/club", myInit);
-          } 
+              ? values.projetid
+              : result[0].id;
+            this.setState({
+              projets: result,
+              project_id: queryProjetId
+            });
+            return fetch("http://localhost:3030/club", myInit);
+          }
           return fetch("http://localhost:3030/club", myInit);
         },
         error => {
@@ -59,16 +59,16 @@ class AjouteProjet_Club extends Component {
         result => {
           if (result.length !== 0) {
             const queryClubId = values.clubid ? values.clubid : result[0].id;
-          this.setState({
-            isLoaded: true,
-            clubs: result,
-            club_id: queryClubId,
-          });
+            this.setState({
+              isLoaded: true,
+              clubs: result,
+              club_id: queryClubId,
+            });
           }
           this.setState({
             isLoaded: true,
             clubs: result,
-           
+
           });
         },
         error => {
@@ -112,10 +112,10 @@ class AjouteProjet_Club extends Component {
           alert("Contrat créé");
           this.props.history.push(`/admin-project/${this.state.project_id}`);
         }
-        if (res.status === 206){
+        if (res.status === 206) {
           alert("Veuillez-vous remplir tous les champs")
         }
-        if (res.status === 210){
+        if (res.status === 210) {
           alert('ajouter les produits pour le bon de commande');
           this.props.history.push(`/liste-produits`)
         }
@@ -164,7 +164,7 @@ class AjouteProjet_Club extends Component {
     if (!isLoaded) {
       return <div> Loading... </div>;
     }
-    if (projets.length !== 0 && clubs.length !== 0) { 
+    if (projets.length !== 0 && clubs.length !== 0) {
       return (
         <div className="ajoute-projet-club">
           <div>
@@ -249,7 +249,7 @@ class AjouteProjet_Club extends Component {
         </div>
       );
     }
-    if (projets.length == 0){
+    if (projets.length == 0) {
       return (
         <div>
           <Link to={`/admin-creation-projetglobal`}> Il n'y a pas de projet global, veuillez ajouter un projet global </Link>
@@ -257,11 +257,11 @@ class AjouteProjet_Club extends Component {
       )
     }
     if (clubs.length == 0)
-    return (
-      <div>
-        <Link to={`/admin-creation-espace`}> Il n'y a pas de club, veuillez ajouter un club </Link>
-      </div>
-    )
+      return (
+        <div>
+          <Link to={`/admin-creation-espace`}> Il n'y a pas de club, veuillez ajouter un club </Link>
+        </div>
+      )
 
   }
 
