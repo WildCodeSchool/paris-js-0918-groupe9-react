@@ -61,6 +61,10 @@ class AdminClub extends Component {
         window.open(`http://localhost:3030/${url}`);
     }
 
+    renderOrder = id => {
+        this.props.history.push(`/order-render/${id}`)
+    }
+
     render() {
         const { club, projet } = this.state;
         if (this.state.isLoaded) {
@@ -93,7 +97,7 @@ class AdminClub extends Component {
                                 <tr key={i}>
                                     <td>{e.name}</td>
                                     <td><button onClick={()=>this.handleDownload(e.url_signed_contract)}> {e.url_signed_contract?"Télécharger":"pas de convention signé"}</button></td>
-                                    <td><button>{e.order_id?"Télécharger":"pas de bon de commande"}  </button></td>
+                                    <td><button onClick={() => this.renderOrder(e.order_id)}>{e.order_id?"Télécharger":"pas de bon de commande"}  </button></td>
                                     <td><button>{e.survey_id?"Télécharger":"pas de formulaire de statisfaction"} </button></td>
                                 </tr>
                             ))}

@@ -19,6 +19,7 @@ class Order_render extends Component {
     console.log(this.state.productsDetails);
     return (
       <div className="order_render">
+      <p>Adresse de livraison: {this.state.productsDetails.length !== 0 ? this.state.productsDetails[0].delivery_address : null }</p>
         <table>
           <tr>
             <th>Produit</th>
