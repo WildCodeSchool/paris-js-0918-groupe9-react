@@ -15,10 +15,11 @@ class BonDeCommande extends Component {
     isLoaded: false,
     productsList : [],
     contractId : "",
-    command : []
+    deliveryAdress : ""
   }
   componentDidMount() {
     const url=`http://localhost:3030/contract_has_product/${this.props.match.params.id}`
+    const url2=`http://localhost:3030/order/${this.props.match.params.id}`
     axios({
       method : "GET",
       url : url
@@ -37,7 +38,7 @@ class BonDeCommande extends Component {
         })
       }
     )
-    }
+  }
   onClick=(event)=>{
     if (this.state.product!=="" && this.state.color!=="" && this.state.size!=="" && this.state.quantity>=1)
     {
@@ -66,7 +67,12 @@ class BonDeCommande extends Component {
   }
   handleChange=(event) =>{
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
+    });
+  }
+  handleChangeDA=(event) =>{
+    this.setState({
+      deliveryAdress : event.target.value
     });
   }
 
@@ -77,23 +83,24 @@ class BonDeCommande extends Component {
     event.preventDefault();
     const url = `http://localhost:3030/order/${this.props.match.params.id}`;
     axios.post(url,{product: this.state.productsLine});
+    this.props.history.push(`/club-convention/${this.props.match.params.id}`)
     } 
     else {
       alert('Veuillez remplir au moins une commande.')
     }
   }
- 
-    render() {
+  render() {
       const couleur = ["Rouge","Vert","Bleu","Orange"]
-      const taille = ["XS","S","M","L","XL","XXL","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48"]
+      const taille = ["XSS","XS","S","M","L","XL","XXL","25/7.5","26/8.5","27/9","28/10","29/11","30/11.5","31/12.5","32/13","33/1","34/2","35/2.5","36/3.5","37/4","38/5","39/6","40/6.5","41/7.5","42/8","43/9","44/9.5","45/10.5","46/11","47/12","48/13"]
       if (this.state.isLoaded) {
       return(
         <div>
           <ClubHeader/>
+          <h1>Bon de commande</h1>
           <table>
             <tbody>
               <tr>
-              <th>
+                <th>
                   Produit
                 </th>
                 <th>
@@ -131,8 +138,8 @@ class BonDeCommande extends Component {
                       {
                         p.quantity
                       }
-                    <td>
                     </td>
+                    <td>
                       <button onClick={()=>this.handleDelete(index)}>
                         🗑️
                       </button>
@@ -160,9 +167,17 @@ class BonDeCommande extends Component {
               Quantité:
               <input type="Number" min="1" value={this.state.quantity} name="quantity" onChange={this.handleChange} />
             </label>
-            <button type="button" onClick={this.onClick}> + </button><br />
-            <button type="button" onClick={this.handleSubmit} > Valider la commande </button>
+            <button type="button" onClick={this.onClick}> + Ajouter +</button><br />
+            <button type="button" onClick={this.handleSubmit} > Valider la commande </button><br />
           </form>
+          <form ><label>
+              <br />Adresse de livraison :<br />
+              <input type="text" name="deliveryAdress" onChange={this.handleChange} />
+              <button type="submit" onClick={this.handleChangeDA}>Modifier</button>
+            </label>
+          </form>
+          <p>{this.state.deliveryAdress}</p>
+
         </div>
       )
     }
