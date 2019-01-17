@@ -81,7 +81,7 @@ class AdminParameters extends Component {
 
 
   componentDidMount() {
-    const url = "http://localhost:3030/user/3";
+    const url = "http://localhost:3030/user/1";
     Axios({
       method: "GET",
       url: url,
