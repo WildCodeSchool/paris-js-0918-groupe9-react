@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField';
@@ -67,6 +68,10 @@ class LoginAdmin extends Component {
                             <Button variant="contained" color="primary" type="submit">Login</Button>
                         </form>
                     </MuiThemeProvider>
+                    <br/>
+                    <div>
+                        <Link to={`/MDP`}>Mot de passe oublié ?</Link>
+                    </div>
                 </div>
             </div>
         )
