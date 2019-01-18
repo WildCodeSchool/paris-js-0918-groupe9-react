@@ -47,12 +47,11 @@ class AdminParameters extends Component {
           password: e.target.newPassword.value
         },
         { headers: getToken() }
-      ).then(result => alert("mot de passe modifié"))
-    }else{
-      alert("mot de passe différent")
+      ).then(result => alert("mot de passe modifié"));
+    } else {
+      alert("mot de passe différent");
     }
   };
-
 
   changeAdresse = e => {
     // e.preventDefault();
@@ -89,7 +88,6 @@ class AdminParameters extends Component {
       { headers: getToken() }
     );
   };
-
 
   componentDidMount() {
     const url = "http://localhost:3030/user/1";
