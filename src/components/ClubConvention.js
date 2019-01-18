@@ -87,9 +87,9 @@ class ClubConvention extends Component {
                     </div>
                     }
                     <br />
-                    <button><Link to='/Bon-de-Commande'>Bon de Commande</Link></button><br />
-                    <button><Link to='/Actions-en-Contrepartie'>Actions en Contrepartie</Link></button> <br />
-                    <button><Link to='/Formulaire-de-Satisfaction'>Formulaire de Satisfaction</Link></button>    <br />
+                    <button><Link to="/bon-de-commande/1">Bon de Commande</Link></button><br />
+                    <button><Link to="/actions-en-contrepartie/1">Actions en Contrepartie</Link></button><br />
+                    <button><Link to="/formulaire-de-satisfaction/1">Formulaire de Satisfaction</Link></button><br />
                   </div>
                 </div>
             )

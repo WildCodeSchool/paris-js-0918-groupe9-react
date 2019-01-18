@@ -6,18 +6,20 @@ import '../CSS/AdminParameters.css';
 
 class BonDeCommande extends Component {
   state = {
-    products : "",
-    colors : "",
-    sizes : "",
+    product_id: "",
+    product : "",
+    color : "",
+    size : "",
     quantity : 1,
     productsLine : [],
     isLoaded: false,
     productsList : [],
-    contractId : ""
+    contractId : "",
+    deliveryAdress : ""
   }
-  //axios.get("http:localhost:3030/contract_has_product/:idcontrat"
   componentDidMount() {
     const url=`http://localhost:3030/contract_has_product/${this.props.match.params.id}`
+    const url2=`http://localhost:3030/order/${this.props.match.params.id}`
     axios({
       method : "GET",
       url : url
@@ -36,14 +38,15 @@ class BonDeCommande extends Component {
         })
       }
     )
-    }
+  }
   onClick=(event)=>{
-    if (this.state.products!=="" && this.state.colors!=="" && this.state.sizes!=="" && this.state.quantity>=1)
+    if (this.state.product!=="" && this.state.color!=="" && this.state.size!=="" && this.state.quantity>=1)
     {
     this.setState({productsLine: this.state.productsLine.concat({
-      products : this.state.products,
-      colors : this.state.colors, 
-      sizes : this.state.sizes,
+      product_id : this.state.product_id,
+      product : this.state.product,
+      color : this.state.color, 
+      size : this.state.size,
       quantity : this.state.quantity
     })})
     }
@@ -51,33 +54,53 @@ class BonDeCommande extends Component {
       alert("Remplir tous les champs avant d'ajouter la ligne de commande.")
     }
   }
+  handleProduct = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value.split(",")[0],
+      product_id: event.target.value.split(",")[1]
+    })
+  }
   handleDelete=(index)=>{
     this.setState({
       productsLine : this.state.productsLine.filter((el, i)=>i!==index)
     })
   }
   handleChange=(event) =>{
-    this.setState({[event.target.name]: event.target.value});
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+  handleChangeDA=(event) =>{
+    this.setState({
+      deliveryAdress : event.target.value
+    });
   }
 
   handleSubmit=(event)=>{
+    if (this.state.productsLine.length !== 0) {
+      console.log(this.state.product_id)
     alert('La commande a été validée.');
     event.preventDefault();
-    const url = `http://localhost:3030/order_has_product/${this.props.match.params.id}`;
-    axios.post(url,{products: this.state.productsLine});
+    const url = `http://localhost:3030/order/${this.props.match.params.id}`;
+    axios.post(url,{product: this.state.productsLine});
+    this.props.history.push(`/club-convention/${this.props.match.params.id}`)
+    } 
+    else {
+      alert('Veuillez remplir au moins une commande.')
+    }
   }
-    render() {
-      console.log(this.props.match.params.id)
-      const couleurs = ["Rouge","Vert","Bleu","Orange"]
-      const taille = ["XS","S","M","L","XL","XXL","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48"]
+  render() {
+      const couleur = ["Rouge","Vert","Bleu","Orange"]
+      const taille = ["XSS","XS","S","M","L","XL","XXL","25/7.5","26/8.5","27/9","28/10","29/11","30/11.5","31/12.5","32/13","33/1","34/2","35/2.5","36/3.5","37/4","38/5","39/6","40/6.5","41/7.5","42/8","43/9","44/9.5","45/10.5","46/11","47/12","48/13"]
       if (this.state.isLoaded) {
       return(
         <div>
           <ClubHeader/>
+          <h1>Bon de commande</h1>
           <table>
             <tbody>
               <tr>
-              <th>
+                <th>
                   Produit
                 </th>
                 <th>
@@ -98,25 +121,25 @@ class BonDeCommande extends Component {
                   <tr key={index}>
                     <td>
                       {
-                        p.products
+                        p.product
                       }
                     </td>
                     <td>
                       {
-                        p.colors
+                        p.color
                       }
                     </td>
                     <td>
                       {
-                        p.sizes
+                        p.size
                       }
                     </td>
                     <td>
                       {
                         p.quantity
                       }
-                    <td>
                     </td>
+                    <td>
                       <button onClick={()=>this.handleDelete(index)}>
                         🗑️
                       </button>
@@ -128,15 +151,15 @@ class BonDeCommande extends Component {
             </tbody>
           </table>
           <form onSubmit={this.handleSubmit}>
-            <select name="products" onChange={this.handleChange}>
+            <select name="product" onChange={this.handleProduct}>
               <option></option>
-              { this.state.productsList.map((el , index) => <option value={el} key={index}>{el}</option>)} 
+              { this.state.productsList.map((el , index) => <option value={[el.name, el.product_id]} key={index}>{el.name}</option>)} 
             </select>
-            <select name="colors" onChange={this.handleChange}>
+            <select name="color" onChange={this.handleChange}>
               <option></option>
-              {couleurs.map((el, index) => <option value={el} key={index}>{el}</option>)}
+              {couleur.map((el, index) => <option value={el} key={index}>{el}</option>)}
             </select>
-            <select name="sizes" onChange={this.handleChange}>
+            <select name="size" onChange={this.handleChange}>
               <option></option>
               {taille.map((el, index) => <option value={el} key={index}>{el}</option>)}
             </select>
@@ -144,9 +167,17 @@ class BonDeCommande extends Component {
               Quantité:
               <input type="Number" min="1" value={this.state.quantity} name="quantity" onChange={this.handleChange} />
             </label>
-            <button type="button" onClick={this.onClick}> + </button><br />
-            <button type="button" onClick={this.handleSubmit} > Valider la commande </button>
+            <button type="button" onClick={this.onClick}> + Ajouter +</button><br />
+            <button type="button" onClick={this.handleSubmit} > Valider la commande </button><br />
           </form>
+          <form ><label>
+              <br />Adresse de livraison :<br />
+              <input type="text" name="deliveryAdress" onChange={this.handleChange} />
+              <button type="submit" onClick={this.handleChangeDA}>Modifier</button>
+            </label>
+          </form>
+          <p>{this.state.deliveryAdress}</p>
+
         </div>
       )
     }

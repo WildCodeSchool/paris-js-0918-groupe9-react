@@ -12,8 +12,8 @@ class ClubHeader extends Component {
             <div className="ClubHeader">
                 <img className="logo-allsponsored" src={logo} alt="logo allsponsored" />
                 <div className="menu">
-                    <Link className="icon" to='/clubhome'><img src={iconHome} alt="icon home" /></Link>
-                    <Link className="icon" to='/adminparameters'><img src={iconUser} alt="icon User" /></Link>
+                    <Link className="icon" to='/club-home'><img src={iconHome} alt="icon home" /></Link>
+                    <Link className="icon" to='/admin-parameters'><img src={iconUser} alt="icon User" /></Link>
                 </div>
             </div>
 
