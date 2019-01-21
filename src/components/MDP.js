@@ -37,7 +37,6 @@ class MDPForget extends Component {
                 <div>
                     <AdminHeader />
                 </div>
-
                 <div>
                     <form onSubmit={this.handleOnSubmit}></form>
                     <input

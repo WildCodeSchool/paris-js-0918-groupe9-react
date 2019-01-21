@@ -105,7 +105,7 @@ class AdminTousClubs extends Component {
                       <img
                         width="50"
                         className="img-logo"
-                        src={e.url_logo}
+                        src = {`http://localhost:3030/${e.url_logo}`}
                         alt="logo"
                       />
                     ) : (
