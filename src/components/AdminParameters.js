@@ -12,7 +12,7 @@ class AdminParameters extends Component {
     emailState: false,
     resultat: [],
     password: "",
-    adress: "",
+    address: "",
     email: "",
     phone: ""
   };
@@ -21,13 +21,6 @@ class AdminParameters extends Component {
     this.setState({
       [e.target.name]: !this.state[e.target.name]
     });
-    if (e.target.name === "adresseState") {
-      this.changeAdresse();
-    } else if (e.target.name === "telephoneState") {
-      this.changePhone();
-    } else if (e.target.name === "emailState") {
-      this.changeEmail();
-    }
   };
 
   handleChange = e => {
@@ -54,15 +47,17 @@ class AdminParameters extends Component {
   };
 
   changeAdresse = e => {
-    // e.preventDefault();
     const url = "http://localhost:3030/user/1";
     Axios.put(
       url,
       {
-        adress: this.state.adress
+        address: this.state.address
       },
       { headers: getToken() }
     );
+    this.setState({
+      adresseState: !this.state.adresseState
+    })
   };
 
   changePhone = e => {
@@ -71,10 +66,13 @@ class AdminParameters extends Component {
     Axios.put(
       url,
       {
-        phone: parseInt(this.state.phone)
+        phone: this.state.phone
       },
       { headers: getToken() }
     );
+    this.setState({
+     telephoneState: !this.state.telephoneState
+    })
   };
 
   changeEmail = e => {
@@ -87,6 +85,9 @@ class AdminParameters extends Component {
       },
       { headers: getToken() }
     );
+    this.setState({
+      emailState: !this.state.emailState
+    })
   };
 
   componentDidMount() {
@@ -97,14 +98,14 @@ class AdminParameters extends Component {
       headers: getToken()
     }).then(result =>
       this.setState({
-        adress: result.data[0].adress,
+        address: result.data[0].adress,
         password: result.data[0].password
       })
     );
   }
 
   render() {
-    console.log(this.state.password);
+    console.log(this.state.phone);
     return (
       <div>
         <AdminHeader />
@@ -150,7 +151,7 @@ class AdminParameters extends Component {
             <div>
               <input
                 onChange={this.handleChange}
-                name="adress"
+                name="address"
                 value={this.state.adress}
                 // placeholder="nouvelle adresse"
               />
@@ -159,7 +160,7 @@ class AdminParameters extends Component {
               <button
                 name="adresseState"
                 className="valider"
-                onClick={this.toggle}
+                onClick={this.changeAdresse}
               >
                 Valider
               </button>
@@ -184,7 +185,7 @@ class AdminParameters extends Component {
               <button
                 name="telephoneState"
                 className="valider"
-                onClick={this.toggle}
+                onClick={this.changePhone}
               >
                 Valider
               </button>
@@ -208,7 +209,7 @@ class AdminParameters extends Component {
               <button
                 name="emailState"
                 className="valider"
-                onClick={this.toggle}
+                onClick={this.changeEmail}
               >
                 Valider
               </button>
