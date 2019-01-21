@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { getToken, getClubId } from '../helper/tokenHelper';
+import { getToken } from '../helper/tokenHelper';
 
 import AdminHeader from './AdminHeader';
 import'../CSS/AdminClub.scss'

@@ -1,4 +1,3 @@
-import Axios from "axios";
 
 export const getToken = () => {
     const token = localStorage.getItem("token");

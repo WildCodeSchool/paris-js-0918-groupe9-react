@@ -3,7 +3,7 @@ import axios from 'axios';
 import { getToken, getClubId } from '../helper/tokenHelper';
 import ClubHeader from './ClubHeader'
 import '../CSS/AdminParameters.css';
-import { log } from 'util';
+// import { log } from 'util';
 
 
 class ClubHome extends Component {
@@ -14,7 +14,8 @@ class ClubHome extends Component {
     }
 
     componentDidMount() {
-        const url = "http://localhost:3030/club/" + getClubId();
+        // const url = "http://localhost:3030/club/" + getClubId();
+        const url = `http://localhost:3030/club/${this.props.match.params.id}`
         axios({
             method: "GET",
             url: url,
@@ -41,9 +42,7 @@ class ClubHome extends Component {
             return (
                 <div>
                     <ClubHeader/>
-                    <h3> Clubs</h3>
                     {this.state.clubs ? this.state.clubs.map(club => <h1>{club.name}</h1>): null}
-                    <h3>Sponsor</h3>
                 </div>
             )
         } else {
