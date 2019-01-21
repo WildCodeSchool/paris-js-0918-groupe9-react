@@ -1,62 +1,74 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import '../CSS/AdminParameters.css';
+// import '../CSS/AdminParameters.css';
 import ClubHeader from './ClubHeader';
 import '../CSS/ClubList.css';
 
-const urlClub = 'http://localhost:3030/club/';
-const urlContract = 'http://localhost:3030/contract/';
+const url = 'http://localhost:3030/project/1';
+const link = 'localhost:3000/club-convention/'
+
+// project -----> visuel
+
+
 
 
 class ClubList extends Component{
 
   state = {
-    projects: [],
-    clubs: [],
-    isLoaded: false
+    data: []
   }
 
-  getContracts() {
-    fetch(urlContract)
+  getProjects() {
+    fetch(url)
     .then(res => res.json())
-    .then(res => this.setState({ projects: res }))
+    .then(res => this.setState({ data: res }))
+    .then(res => console.log(res))
   }
 
-  getClubs() {
-    fetch(urlClub)
-    .then(res => res.json())
-    .then(res => this.setState({ clubs: res }))
-  }
+  // getClubs() {
+  //   fetch(urlContract)
+  //   .then(res => res.json())
+  //   .then(res => this.setState({ clubs: res }))
+  // }
 
   componentDidMount() {
-    this.getContracts();
-    this.getClubs();
+    this.getProjects();
+    // this.getClubs();
   }
 
   render() {
-    console.log(this.state.projects);
-    console.log(this.state.clubs);
 
-    if(this.state.projects && this.state.clubs){
+    console.log(this.state.data)
+
+    if(this.state.data){
       return(
         <div>
           <ClubHeader/>
         <div className="contain">
 
-          <div className="projects">
+          <div className="project grp-input">
             <h1>Projets</h1>
               {
-                this.state.projects.map((x, i) => (
-                  <li key={i}>{x.name}</li>
+                this.state.data.map((x, i) => (
+                  <button key={i}><a href={'/club-convention/' + x.id}>{x.name}</a></button>
                 ))
               }
           </div>
 
-          <div className="clubs">
-            <h1>Clubs</h1>
+          <div className="resume grp-input">
+            <h1>Résumé</h1>
               {
-                this.state.clubs.map((x, i) => (
-                <li key={i}>{x.name}</li>
+                this.state.data.map((x, i) => (
+                <button key={i}><a href={x.url_summary}>Résumé</a></button>
+              ))
+            }
+          </div>
+
+          <div className="visuel grp-input">
+            <h1>Visuels</h1>
+              {
+                this.state.data.map((x, i) => (
+                <button key={i}><a href={x.visual_shirt}>Visuel</a></button>
               ))
             }
           </div>
