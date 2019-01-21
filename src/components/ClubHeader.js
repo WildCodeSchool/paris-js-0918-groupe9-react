@@ -24,7 +24,7 @@ class ClubHeader extends Component {
           <Link className="icon" to="/club-parameters">
             <img src={iconUser} alt="icon User" />
           </Link>
-          <Link onClick={this.handleClick} className="icon logout" to="/club-home">
+          <Link onClick={this.handleClick} className="icon logout" to="/">
             <img src={logout} alt="icon logout" />
           </Link>
         </div>
