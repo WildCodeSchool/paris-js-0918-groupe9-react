@@ -60,7 +60,7 @@ class LoginClub extends Component {
                             />
                             <br />
                             <TextField
-                                type="password" name="password" placeholder="mot de pass"
+                                type="password" name="password" placeholder="mot de passe"
                             />
                             <br />
                             <br />
