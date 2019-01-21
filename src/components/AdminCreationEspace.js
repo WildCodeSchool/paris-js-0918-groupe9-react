@@ -12,12 +12,12 @@ export default class AdminCreationEspace extends Component {
         address: undefined,
     }
     generateur = (max) => {
-        let motdepass = '';
+        let motdepasse = '';
         const lettre = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
         for (let i = 0; i < max; i++) {
-            motdepass = motdepass + lettre[Math.floor(Math.random() * (lettre.length - 1))]
+            motdepasse = motdepasse + lettre[Math.floor(Math.random() * (lettre.length - 1))]
         }
-        return motdepass
+        return motdepasse
     }
 
     handleOnSubmit = (e) => {

@@ -1,59 +1,32 @@
 h1 {
-  text-align: center;
-  margin-top: 50px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-}
-
-.produits {
-  display: flex;
-  margin-top: 5%;
-}
-
-.modif {
-  margin-left: 15%;
-  margin-top: 10px;
-  border-radius: 5px;
-}
-
-.barre_button {
-  margin-left: 20px;
-  margin-top: 5px;
-}
-
-.listes {
-  margin-left: 5%;
-  margin-top: 10px;
-}
-
-.butt_product {
   margin-top: 5%;
   margin-left: 5%;
 }
 
-.liste_input_add {
-  margin-left: 5%;
-}
-
-.liste_input {
-  margin-top: 20px;
-  margin-left: 18px;
-  border-radius: 20px;
-  border: 0.5px solid black;
+h2 {
   font-size: 20px;
-  margin-left: 15%;
 }
 
 .produit_ajout {
-  margin-top: 30px;
-  padding-top: 20px;
-  text-align: center;
-  font-size: 35px;
+  margin-left: 5%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  display: flex;
 }
 
-.input_product_add {
-  margin-left: 25%;
-  margin-bottom: 20px;
+.formAjout {
+  padding-left: 2%;
+  padding-top: 2%;
+  display: flex;
 }
+
+.butt_product {
+  background: white;
+  height: 35px;
+}
+
+.produits {
+  margin-left: 5%;
+}
+
+

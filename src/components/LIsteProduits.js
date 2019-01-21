@@ -1,10 +1,8 @@
-
 import React, { Component } from "react";
 import { getToken, getClubId } from "../helper/tokenHelper";
 import "../CSS/ListeProduits.css";
 import axios from "axios";
 import AdminHeader from "./AdminHeader";
-
 
 class LIsteProduits extends Component {
   state = {
@@ -12,38 +10,43 @@ class LIsteProduits extends Component {
     success: false
   };
 
-
- 
-    handleAdd = (e) => {
-        // e.preventDefault()
-        console.log(e.target.add.value)
-        if ((e.target.add.value).length > 0 && (e.target.add.value) !== " ") {
-            const id = e.target.add.id
-            const url = `http://localhost:3030/product/${id}`
-            axios.post(url, {
-                name: e.target.add.value,
-                category: e.target.add2.value
-            }, {headers: getToken()})
-        }
+  handleAdd = e => {
+    // e.preventDefault()
+    console.log(e.target.add.value);
+    if (e.target.add.value.length > 0 && e.target.add.value !== " ") {
+      const id = e.target.add.id;
+      const url = `http://localhost:3030/product/${id}`;
+      axios.post(
+        url,
+        {
+          name: e.target.add.value,
+          category: e.target.add2.value
+        },
+        { headers: getToken() }
+      );
     }
+  };
 
-    componentDidMount = () => {
-        axios.get('http://localhost:3030/product/', {headers: getToken()})
-            .then(res => this.setState({
-                resultat: res.data
-            }))}
+  componentDidMount = () => {
+    axios
+      .get("http://localhost:3030/product/", { headers: getToken() })
+      .then(res =>
+        this.setState({
+          resultat: res.data
+        })
+      );
+  };
 
-changeName = (e) => {
-        console.log(e.target.butt.value)
-        if ((e.target.butt.value).length > 0 && (e.target.butt.value) !== " ") {
-            const id = e.target.butt.id
-            const url = `http://localhost:3030/product/${id}`
-            axios.put(url, {
-                name: e.target.butt.value
-            })
-        }
+  changeName = e => {
+    console.log(e.target.butt.value);
+    if (e.target.butt.value.length > 0 && e.target.butt.value !== " ") {
+      const id = e.target.butt.id;
+      const url = `http://localhost:3030/product/${id}`;
+      axios.put(url, {
+        name: e.target.butt.value
+      });
     }
-
+  };
 
   handleClick = () => {
     this.setState({
@@ -56,6 +59,26 @@ changeName = (e) => {
       <div>
         <AdminHeader />
         <h1>LISTE DE PRODUITS</h1>
+        <div className="produit_ajout">
+          <h2>Ajouter un produit</h2>
+          <div className="input_product_add">
+            <form className="formAjout" onSubmit={this.handleAdd}>
+              <input
+                name="add"
+                className="liste_input_add"
+                placeholder="Ajouter un produit"
+              />
+              <input
+                name="add2"
+                className="liste_input_add"
+                placeholder="Category"
+              />
+              <button onClick={this.handleClick} className="butt_product">
+                Ajouter
+              </button>
+            </form>
+          </div>
+        </div>
         <div>
           {this.state.resultat.map((e, i) => (
             <div className="produits">
@@ -80,28 +103,9 @@ changeName = (e) => {
             </div>
           ))}
         </div>
-        <h2 className="produit_ajout">Ajouter un produit</h2>
-        <div className="input_product_add">
-          <form onSubmit={this.handleAdd}>
-            <input
-              name="add"
-              className="liste_input_add"
-              placeholder="Ajouter un rpoduit"
-            />
-            <input
-              name="add2"
-              className="liste_input_add"
-              placeholder="Category"
-            />
-            <button onClick={this.handleClick} className="butt_product">
-              Ajouter
-            </button>
-          </form>
-        </div>
       </div>
     );
   }
-
 }
 
 export default LIsteProduits;
