@@ -1,17 +1,36 @@
 .contain{
-  padding-top: 50px;
+  padding-top: 10px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
+
 }
 
-.clubs{
-  margin-left: 200px;
+
+.grp-input{
+  display: flex;
+  flex-direction: column;
 }
 
-.projects{
-  margin-right: 200px;
+
+
+*
+{
+  font-family: 'Comfortaa', cursive;
 }
 
-li{
-  padding: 20px;
+
+
+button
+{
+    border: 2px solid black;
+    width: 250px;
+    padding: 2% 0%;
+    margin-bottom: 5%;
+    border-radius: 5px;
+    font-size: 1.2vw;
+    background-color: #F4943B;
+}
+
+a{
+  text-decoration: none;
 }
