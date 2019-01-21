@@ -12,11 +12,10 @@ export default class AdminCreationEspace extends Component {
         address: "",
     }
     generateur = (max) => {
-        let motdepass = '';
+        let motdepasse = '';
         const lettre = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
             "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
             "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X"];
-
         for (let i = 0; i < max; i++) {
             motdepasse = motdepasse + lettre[Math.floor(Math.random() * (lettre.length - 1))]
         }
@@ -46,9 +45,9 @@ export default class AdminCreationEspace extends Component {
                 // else if (res.status === 500 || res.status === 400) {
                 //     alert("Erreur lors de l'insertion des données")
                 // }
-                // else if (res.status === 409) {
-                //     alert("Email est déja utiliseé pour un autre club")
-                // }
+                else if (res.status === 409) {
+                    alert("Email est déja utiliseé pour un autre club")
+                }
             }
             )
             .catch(function (error) {
@@ -73,7 +72,7 @@ export default class AdminCreationEspace extends Component {
                     </label> <br />
                     <label>
                         <h4>Email</h4>
-                        <input type="text" name="email" value={this.state.email} onChange={this.handleOnChange} />
+                        <input type="email" name="email" value={this.state.email} onChange={this.handleOnChange} />
                     </label> <br />
                     <label>
                         <h4>Adresse</h4>
