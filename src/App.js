@@ -21,6 +21,8 @@ import BonDeCommande from "./components/BonDeCommande";
 import NotFound from "./components/NotFound";
 import ClubList from "./components/ClubList";
 
+import MDP from "./components/MDP";
+
 class App extends Component {
   render() {
     return (
@@ -59,7 +61,10 @@ class App extends Component {
 
             <Route path="/club-list" component={ClubList} />
 
+            <Route path="/MDP" component={MDP}/>
+
             <Route component={NotFound} />
+
           </Switch>
         </BrowserRouter>
       </div>

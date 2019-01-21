@@ -1,0 +1,17 @@
+.contain{
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.clubs{
+  margin-left: 200px;
+}
+
+.projects{
+  margin-right: 200px;
+}
+
+li{
+  padding: 20px;
+}

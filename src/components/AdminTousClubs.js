@@ -79,9 +79,7 @@ class AdminTousClubs extends Component {
               {this.state.user.map((e, i) => (
                 <div className="rows" key={i}>
                   <Link to={`/admin-club/${e.clubId}`}>
-                    <p className="element" >
-                      {e.clubName}
-                    </p>
+                    <p className="element">{e.clubName}</p>
                   </Link>
                 </div>
               ))}
@@ -92,9 +90,7 @@ class AdminTousClubs extends Component {
               </div>
               {this.state.user.map((e, i) => (
                 <div className="rows" key={i}>
-                  <p className="element" >
-                    {e.contractName}
-                  </p>
+                  <p className="element">{e.contractName}</p>
                 </div>
               ))}
             </div>
@@ -105,12 +101,16 @@ class AdminTousClubs extends Component {
               {this.state.user.map((e, i) => (
                 <div className="rows" key={i}>
                   <p className="element">
-                    {e.url_logo ? <img
-                      width="50"
-                      className="img-logo"
-                      src={`http://localhost:3030/${e.url_logo}`}
-                      alt="logo"
-                    /> : "pas de logo"}
+                    {e.url_logo ? (
+                      <img
+                        width="50"
+                        className="img-logo"
+                        src = {`http://localhost:3030/${e.url_logo}`}
+                        alt="logo"
+                      />
+                    ) : (
+                      "pas de logo"
+                    )}
                   </p>
                 </div>
               ))}
@@ -122,9 +122,17 @@ class AdminTousClubs extends Component {
               {this.state.user.map((e, i) => (
                 <div className="rows" key={i}>
                   <p className="element">
-                    {e.orderId ?
-                      <span><Link to={`/order-render/${e.orderId}`}> Commande </Link>
-                        / {e.status}</span> : "ø"}
+                    {e.orderId ? (
+                      <span>
+                        <Link to={`/order-render/${e.orderId}`}>
+                          {" "}
+                          Commande{" "}
+                        </Link>
+                        / {e.status}
+                      </span>
+                    ) : (
+                      "ø"
+                    )}
                   </p>
                 </div>
               ))}
@@ -135,9 +143,7 @@ class AdminTousClubs extends Component {
               </div>
               {this.state.user.map((e, i) => (
                 <div className="rows" key={i}>
-                  <p className="element" >
-                    {e.surveyStatus}
-                  </p>
+                  <p className="element">{e.surveyStatus}</p>
                 </div>
               ))}
             </div>
@@ -147,9 +153,7 @@ class AdminTousClubs extends Component {
               </div>
               {this.state.user.map((e, i) => (
                 <div className="rows" key={i}>
-                  <p className="element" >
-                    {e.actionName}
-                  </p>
+                  <p className="element">{e.actionName}</p>
                 </div>
               ))}
             </div>

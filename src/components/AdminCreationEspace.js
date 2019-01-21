@@ -14,6 +14,7 @@ export default class AdminCreationEspace extends Component {
     generateur = (max) => {
         let motdepasse = '';
         const lettre = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
         for (let i = 0; i < max; i++) {
             motdepasse = motdepasse + lettre[Math.floor(Math.random() * (lettre.length - 1))]
         }
@@ -35,6 +36,9 @@ export default class AdminCreationEspace extends Component {
                 if (res.status === 200) {
                     alert("Un espace club est créé");
                     this.props.history.push(`/admin-tous-clubs`)
+                }
+                else if (res.status === 206) {
+                    alert("Veuillez remplir tous les champs");
                 }
             }
             )
