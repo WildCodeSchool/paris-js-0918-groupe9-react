@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-// import '../CSS/AdminParameters.css';
+import axios from "axios";
 import ClubHeader from './ClubHeader';
 import '../CSS/ClubList.css';
 
-const url = 'http://localhost:3030/project/1';
-const link = 'localhost:3000/club-convention/'
-
-// project -----> visuel
-
-
-
+const clubId = localStorage.getItem("clubId");
+console.log(clubId)
+const url = `http://localhost:3030/contract/${clubId}/list`;
 
 class ClubList extends Component{
 
@@ -18,11 +13,10 @@ class ClubList extends Component{
     data: []
   }
 
-  getProjects() {
-    fetch(url)
-    .then(res => res.json())
-    .then(res => this.setState({ data: res }))
-    .then(res => console.log(res))
+  getProjects = () => {
+    axios.get(url)
+    .then(res => this.setState({ data: res.data }))
+    .then(result => console.log(result))
   }
 
   // getClubs() {
@@ -50,7 +44,7 @@ class ClubList extends Component{
             <h1>Projets</h1>
               {
                 this.state.data.map((x, i) => (
-                  <button key={i}><a href={'/club-convention/' + x.id}>{x.name}</a></button>
+                  <button key={i}><a href={'/club-convention/' + x.contractId}>{x.contractName}</a></button>
                 ))
               }
           </div>
