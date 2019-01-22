@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { getToken } from "../helper/tokenHelper";
-import "../CSS/AdminTousClubs.css";
+import "../CSS/AdminTousClubs.scss";
 import AdminHeader from "./AdminHeader";
 
 class AdminTousClubs extends Component {
@@ -60,11 +60,15 @@ class AdminTousClubs extends Component {
     console.log(this.state.user);
     if (this.state.isLoaded) {
       return (
-        <div>
+        <div className="tousClubs">
           <AdminHeader />
           <div className="buttonCreation">
             <Link to="/admin-creation-espace">
+<<<<<<< HEAD
+              <button className="addClub">Ajouter un club</button>
+=======
               <button className="button_ajoutClub">Ajouter un club</button>
+>>>>>>> dev
             </Link>
           </div>
           <div className="allcards">
