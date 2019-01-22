@@ -64,7 +64,7 @@ class AdminTousClubs extends Component {
           <AdminHeader />
           <div className="buttonCreation">
             <Link to="/admin-creation-espace">
-              <button>Ajouter un club</button>
+              <button className="button_ajoutClub">Ajouter un club</button>
             </Link>
           </div>
           <div className="allcards">
@@ -105,7 +105,7 @@ class AdminTousClubs extends Component {
                       <img
                         width="50"
                         className="img-logo"
-                        src = {`http://localhost:3030/${e.url_logo}`}
+                        src={`http://localhost:3030/${e.url_logo}`}
                         alt="logo"
                       />
                     ) : (
