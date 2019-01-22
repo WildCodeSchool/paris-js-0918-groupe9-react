@@ -8,10 +8,11 @@ h2 {
 }
 
 .produit_ajout {
+  width: 600px;
   margin-left: 5%;
   margin-top: 5%;
   margin-bottom: 5%;
-  display: flex;
+  flex-direction: column;
 }
 
 .formAjout {
@@ -21,8 +22,10 @@ h2 {
 }
 
 .butt_product {
-  background: white;
-  height: 35px;
+  height: 15px;
+  font-size: 20px;
+  padding-top: 5px;
+  padding-bottom: 25px;
 }
 
 .produits {
@@ -31,5 +34,55 @@ h2 {
 
 ::placeholder {
   color: black;
+  font-weight: bold;
+  font-size: 18px;
 }
 
+.modif {
+  height: 40px;
+  font-size: 20px;
+  margin-top: 15px;
+  padding-top: 5px;
+  padding-bottom: 25px;
+}
+
+.liste_block2 {
+  margin-top: 8%;
+  display: flex;
+}
+
+form {
+  width: 750px;
+}
+
+.title_produit > h1 {
+  text-align: center;
+}
+
+.title_produit {
+  width: 800px;
+  border-right: 2px solid black;
+}
+
+.title_produit > h1 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 30px;
+  border: 3px solid black;
+  text-align: center;
+  background-color: #00aee9;
+  margin-bottom: 50px;
+  margin-right: 30px;
+}
+
+.ajoutProduit_title > h2 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 30px;
+  border: 3px solid black;
+  text-align: center;
+  background-color: #00aee9;
+  margin-bottom: 50px;
+  margin-right: 20px;
+  margin-top: 10%;
+}

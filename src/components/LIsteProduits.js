@@ -58,50 +58,57 @@ class LIsteProduits extends Component {
     return (
       <div>
         <AdminHeader />
-        <h1>LISTE DE PRODUITS</h1>
-        <div className="produit_ajout">
-          <h2>Ajouter un produit</h2>
-          <div className="input_product_add">
-            <form className="formAjout" onSubmit={this.handleAdd}>
-              <input
-                name="add"
-                className="liste_input_add"
-                placeholder="Ajouter un produit"
-              />
-              <input
-                name="add2"
-                className="liste_input_add"
-                placeholder="Category"
-              />
-              <button onClick={this.handleClick} className="butt_product">
-                Ajouter
-              </button>
-            </form>
-          </div>
-        </div>
-        <div>
-          {this.state.resultat.map((e, i) => (
-            <div className="produits">
-              {/* <h2 className="listes" key={i}>
+        <div className="liste_block2">
+          <div className="title_produit">
+            <h1>LISTE DE PRODUITS</h1>
+            <div>
+              {this.state.resultat.map((e, i) => (
+                <div className="produits">
+                  {/* <h2 className="listes" key={i}>
                 - {e.name}
               </h2> */}
-              <div className="barre_button">
-                <div>
-                  <form onSubmit={this.changeName}>
-                    <input
-                      className="liste_input"
-                      id={e.id}
-                      name="butt"
-                      placeholder={e.name}
-                    />
-                    <button className="modif" onClick={this.handleClick}>
-                      MODIFIER
-                    </button>
-                  </form>
+                  <div className="barre_button">
+                    <div>
+                      <form onSubmit={this.changeName}>
+                        -
+                        <input
+                          className="liste_input"
+                          id={e.id}
+                          name="butt"
+                          placeholder={e.name}
+                        />
+                        <button className="modif" onClick={this.handleClick}>
+                          MODIFIER
+                        </button>
+                      </form>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
+          <div className="produit_ajout">
+            <div className="ajoutProduit_title">
+              <h2>Ajouter un produit</h2>
+            </div>
+            <div className="input_product_add">
+              <form className="formAjout" onSubmit={this.handleAdd}>
+                <input
+                  name="add"
+                  className="liste_input_add"
+                  placeholder="Ajouter un produit"
+                />
+                <input
+                  name="add2"
+                  className="liste_input_add"
+                  placeholder="Category"
+                />
+                <button onClick={this.handleClick} className="butt_product">
+                  Ajouter
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     );
