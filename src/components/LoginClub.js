@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField';
@@ -9,7 +10,8 @@ import logo from '../images/logoAllsponsored.png';
 import '../CSS/LoginClub.css';
 class LoginClub extends Component {
     state = {
-        redirectToReferrer: false
+        redirectToReferrer: false,
+        clubId: undefined
     }
     handleSubmit = (e) => {
         e.preventDefault()
@@ -19,15 +21,16 @@ class LoginClub extends Component {
             password: e.target.password.value
         })
             .then((res) => {
-                const clubId = res.data.clubId;
+                const club_Id = res.data.clubId;
                 localStorage.setItem("token", res.headers["x-access-token"])
-                localStorage.setItem("clubId", clubId);
+                localStorage.setItem("clubId", club_Id);
                 console.log("token", localStorage.getItem("token"));
                 console.log(res.status);
                 if (res.status === 200) {
                     console.log("Login successfull");
                     this.setState({
-                        redirectToReferrer: true
+                        redirectToReferrer: true,
+                        clubId: club_Id
                     })
                 }
                 else if (res.status === 204) {
@@ -43,15 +46,15 @@ class LoginClub extends Component {
 
     }
     render() {
-        const { redirectToReferrer } = this.state
+        const { redirectToReferrer, clubId } = this.state
         if (redirectToReferrer === true) {
-            return <Redirect to='/club-home' />
+            return <Redirect to={`/club-list/${clubId}`} />
         }
         return (
             <div className="contentGlobal">
                 <header className="App-header">
                     <img src={logo} className="App-logo" alt="logo" />
-                </header> <br/>
+                </header> <br />
                 <div>
                     <MuiThemeProvider>
                         <form onSubmit={this.handleSubmit}>
@@ -67,6 +70,10 @@ class LoginClub extends Component {
                             <Button variant="contained" color="primary" type="submit">Login</Button>
                         </form>
                     </MuiThemeProvider>
+                </div>
+                <br/>
+                <div>
+                    <Link to={`/MDP`}>Mot de passe oublié ?</Link>
                 </div>
             </div>
         )

@@ -53,7 +53,7 @@ class CreationProjetGlobalBackUp extends Component {
 
     handleOnSubmit = (e) => {
         e.preventDefault();
-        const { sponsor_id, name, user_id,url_summary, visual_shirt} = this.state;
+        const {sponsor_id,name,user_id,url_summary,visual_shirt} = this.state;
         const body = {
             name,
             user_id,
@@ -61,7 +61,6 @@ class CreationProjetGlobalBackUp extends Component {
             status: "active",
             visual_shirt,
             url_summary
-
         };
         axios.post("http://localhost:3030/project", body)
             .then((res) => {

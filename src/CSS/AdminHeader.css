@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
   .logo-allsponsored {
     margin-top: 1%;
     margin-left: 1%;
@@ -7,6 +8,19 @@
   .iconLogo {
     width: 20vw;
   }
+=======
+.iconLogo {
+  width: 150px;
+  padding-bottom: 10px;
+}
+
+.AdminHeader {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 3px solid black;
+  border-bottom-left-radius: 25px;
+}
+>>>>>>> dev
 
   .AdminHeader {
     display: flex;

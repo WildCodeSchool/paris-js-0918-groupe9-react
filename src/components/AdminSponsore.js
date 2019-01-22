@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { getToken, getClubId } from "../helper/tokenHelper";
+import { getToken } from "../helper/tokenHelper";
 
 import AdminHeader from "./AdminHeader";
 
@@ -10,7 +10,7 @@ import "../CSS/AdminSponsore.css";
 class AdminSponsore extends Component {
   state = {
     name: undefined,
-    open: true,
+    //open: true,
     isLoaded: false,
     error: null,
     sponsors: [],
@@ -32,7 +32,9 @@ class AdminSponsore extends Component {
       .then(
         result => {
           console.log(result);
-          this.state.sponsors = result;
+          this.setState({
+            sponsors: result
+          });
           return fetch("http://localhost:3030/project/", myInit);
         },
         error => {
@@ -47,7 +49,10 @@ class AdminSponsore extends Component {
       .then(
         result => {
           console.log(result);
-          this.state.projets = result;
+          //this.state.projets = result;
+          this.setState({
+            projets: result
+          });
           return fetch("http://localhost:3030/project_has_sponsor/", myInit);
         },
         error => {
@@ -149,56 +154,60 @@ class AdminSponsore extends Component {
       return (
         <div>
           <AdminHeader />
-          <div className="sponsore">
-            <ul>
-              {sponsors.map(sponsor => (
-                <li className="sponsorname">
-                  {sponsor.name}
-                  <ul>
-                    {this.state.projetsBySponsorId[sponsor.id].map(
-                      (projet, index) => (
-                        <li className="sponsorprojet" key={index}>
-                          <button onClick={() => this.handleOnClick(projet.id)}>
-                            {projet.name}
-                          </button>
-                        </li>
-                      )
-                    )}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <form onSubmit={this.handleCreationSponsor}>
-              <input
-                className="champs"
-                type="text"
-                placeholder="nom de sponsor"
-                name="name"
-                value={this.state.name}
-                onChange={this.handleOnChange}
-              />{" "}
-              <br />
+          <div className="div_block">
+            <div className="sponsore">
+              <h2>Liste sponsors</h2>
+              <ul>
+                {sponsors.map(sponsor => (
+                  <li className="sponsorname">
+                    {sponsor.name}
+                    <ul>
+                      {this.state.projetsBySponsorId[sponsor.id].map(
+                        (projet, index) => (
+                          <li className="sponsorprojet" key={index}>
+                            <button
+                              onClick={() => this.handleOnClick(projet.id)}
+                            >
+                              {projet.name}
+                            </button>
+                          </li>
+                        )
+                      )}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="input_block">
+              <h2>Ajouter / Créer</h2>
+              <form onSubmit={this.handleCreationSponsor}>
+                <input
+                  className="champs"
+                  type="text"
+                  placeholder="nom du sponsor à ajouter"
+                  name="name"
+                  value={this.state.name}
+                  onChange={this.handleOnChange}
+                />{" "}
+                <br />
+                <button
+                  disabled={buttonDisabled}
+                  className="buttonsponsor"
+                  type="submit"
+                >
+                  Ajouter un sponsor{" "}
+                </button>
+                <Modal open={open} onClose={this.closeModal} center>
+                  <h3>{this.state.status}</h3>
+                </Modal>
+              </form>
               <button
-                disabled={buttonDisabled}
-                className="buttonsponsor"
-                type="submit"
+                className="buttonprojet"
+                onClick={this.handleCreationProjet}
               >
-                Ajouter un sponsor{" "}
+                Creer un projet global{" "}
               </button>
-              <Modal open={open} onClose={this.closeModal} center>
-                <h3>{this.state.status}</h3>
-              </Modal>
-            </form>
-          </div>
-          <div>
-            <button
-              className="buttonprojet"
-              onClick={this.handleCreationProjet}
-            >
-              Creer un projet global{" "}
-            </button>
+            </div>
           </div>
         </div>
       );

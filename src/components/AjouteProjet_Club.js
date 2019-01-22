@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { Redirect } from "react-router-dom";
 import queryString from "query-string";
 
-import { getToken, getClubId } from "../helper/tokenHelper";
+import { getToken } from "../helper/tokenHelper";
 import AdminHeader from "./AdminHeader";
 import "../CSS/AjouteProjet_Club.scss";
 
@@ -258,7 +257,7 @@ class AjouteProjet_Club extends Component {
         </div>
       )
     }
-    if (clubs.length == 0)
+    if (clubs.length === 0)
       return (
         <div>
           <Link to={`/admin-creation-espace`}> Il n'y a pas de club, veuillez ajouter un club </Link>

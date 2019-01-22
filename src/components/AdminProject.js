@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { getToken, getClubId } from "../helper/tokenHelper";
+import { getToken } from "../helper/tokenHelper";
 import AdminHeader from "./AdminHeader";
 import "../CSS/AdminProject.scss";
 
@@ -63,7 +63,7 @@ class AdminProject extends Component {
     if (error) {
       return <div>Error:{error.message}</div>;
     }
-    if (!isLoaded) {
+    if (!isLoaded || projet.length ) {
       return <div> Loading... </div>;
     }
     return (

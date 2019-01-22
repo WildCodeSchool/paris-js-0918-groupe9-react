@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { getToken, getClubId } from "../helper/tokenHelper";
+import { getToken} from "../helper/tokenHelper";
 
 import AdminHeader from "./AdminHeader";
 import "../CSS/CreationProjetGlobal.scss";
-import { EditorFormatIndentDecrease } from "material-ui/svg-icons";
+
 
 class CreationProjetGlobal extends Component {
   state = {
@@ -91,7 +91,7 @@ class CreationProjetGlobal extends Component {
   };
   render() {
     if (this.state.isLoaded) {
-      if (this.state.sponsors.length == 0) {
+      if (this.state.sponsors.length === 0) {
         return (
           <div>
             <Link to={`/admin-sponsor`}>
