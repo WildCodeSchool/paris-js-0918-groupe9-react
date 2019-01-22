@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { getToken, getClubId } from "../helper/tokenHelper";
+import { getToken } from "../helper/tokenHelper";
 
 import AdminHeader from "./AdminHeader";
 
@@ -10,7 +10,7 @@ import "../CSS/AdminSponsore.css";
 class AdminSponsore extends Component {
   state = {
     name: undefined,
-    open: true,
+    //open: true,
     isLoaded: false,
     error: null,
     sponsors: [],
@@ -32,7 +32,8 @@ class AdminSponsore extends Component {
       .then(
         result => {
           console.log(result);
-          this.state.sponsors = result;
+          this.setState({
+            sponsors : result});
           return fetch("http://localhost:3030/project/", myInit);
         },
         error => {
@@ -47,7 +48,10 @@ class AdminSponsore extends Component {
       .then(
         result => {
           console.log(result);
-          this.state.projets = result;
+          //this.state.projets = result;
+          this.setState ({
+            projets : result
+          })
           return fetch("http://localhost:3030/project_has_sponsor/", myInit);
         },
         error => {
