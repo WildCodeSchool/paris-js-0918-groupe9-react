@@ -20,21 +20,6 @@ generateur = (max) => {
       for (let i = 0; i < max; i++) {
           motdepasse = motdepasse + lettre[Math.floor(Math.random() * (lettre.length - 1))]
         }
-<<<<<<< HEAD
-        return motdepasse
-    }
-
-    handleOnSubmit = (e) => {
-        e.preventDefault();
-        const { name, email, address } = this.state;
-        const body = {
-            name,
-            email,
-            address,
-            password: this.generateur(6),
-        };
-        axios.post("http://localhost:3030/club/create", body, {headers:  getToken()})
-=======
       return motdepasse
   };
 
@@ -49,7 +34,6 @@ handleOnSubmit = e => {
    };
   
         axios.post("http://localhost:3030/club/create", body, { headers: getToken() })
->>>>>>> dev
             .then((res) => {
                 console.log("code", res);
                 if (res.status === 200) {
@@ -69,12 +53,8 @@ handleOnSubmit = e => {
             }
             )
             .catch(function (error) {
-<<<<<<< HEAD
-                alert(error);
-=======
                 console.log(error);
                 alert(`Erreur lors de l'insertion des données: email est dèja utiliseé pour autre compte`)
->>>>>>> dev
             })
     }
     handleOnChange = (e) => {
