@@ -64,11 +64,7 @@ class AdminTousClubs extends Component {
           <AdminHeader />
           <div className="buttonCreation">
             <Link to="/admin-creation-espace">
-<<<<<<< HEAD
               <button className="addClub">Ajouter un club</button>
-=======
-              <button className="button_ajoutClub">Ajouter un club</button>
->>>>>>> dev
             </Link>
           </div>
           <div className="allcards">
