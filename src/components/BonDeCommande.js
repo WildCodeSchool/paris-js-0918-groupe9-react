@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { getToken, getClubId } from '../helper/tokenHelper';
 import ClubHeader from './ClubHeader'
 import '../CSS/AdminParameters.css';
 
@@ -21,7 +22,8 @@ class BonDeCommande extends Component {
     const url=`http://localhost:3030/contract_has_product/${this.props.match.params.id}`
     axios({
       method : "GET",
-      url : url
+      url : url, 
+      headers: getToken()
     })
     .then(
       (result) => {
@@ -78,7 +80,7 @@ class BonDeCommande extends Component {
     alert('La commande a été validée.');
     event.preventDefault();
     const url = `http://localhost:3030/order/${this.props.match.params.id}`;
-    axios.post(url,{products: this.state.productsLine});
+    axios.post(url,{products: this.state.productsLine}, {headers: getToken()});
     this.props.history.push(`/club-convention/${this.props.match.params.id}`)
     } 
     else {

@@ -35,7 +35,7 @@ class ClubConvention extends Component {
       // console.log(data.url_contract);
       // window.open(data.url_contract)
 
-      axios.get("http://localhost:3030/club/contract/" + this.props.match.params.id)
+      axios.get("http://localhost:3030/club/contract/" + this.props.match.params.id,{ headers: getToken() })
       .then(res => window.open(`http://localhost:3030/${res.data[0].url_contract}`))
     }
 
@@ -44,12 +44,13 @@ class ClubConvention extends Component {
         e.preventDefault();
         const formData = new FormData();
         formData.append('file',this.state.file);
-        const config = {
-          headers: {
-            'content-type': 'multipart/form-data'
-          }
-        };
-        axios.put(`http://localhost:3030/club/uploaddufichier/${this.props.match.params.id}`, formData, config)
+        // const config = {
+        //   headers: {
+        //     'content-type': 'multipart/form-data'
+        //   }
+        // };
+        const headers = { "Content-Type": "multipart/form-data", ...getToken() }
+        axios.put(`http://localhost:3030/club/uploaddufichier/${this.props.match.params.id}`, formData, {headers: headers})
           .then((response) => {
               alert("Fichier envoyé avec succès");
               this.setState ({
@@ -90,7 +91,7 @@ class ClubConvention extends Component {
                     </div>
                     }
                     <br />
-                    <button><Link to="/bon-de-commande/1">Bon de Commande</Link></button><br />
+                    <button><Link to={"/bon-de-commande/"+this.props.match.params.id}>Bon de Commande</Link></button><br />
                     <button><Link to="/actions-en-contrepartie/1">Actions en Contrepartie</Link></button><br />
                     <button><Link to="/formulaire-de-satisfaction/1">Formulaire de Satisfaction</Link></button><br />
                   </div>
