@@ -14,22 +14,13 @@ class ClubList extends Component{
 
   getProjects = () => {
     const clubId = localStorage.getItem("clubId")
-    axios.get(`http://localhost:3030/contract/${clubId}/list`,{ headers: getToken() })
-   
-    // axios.get(`http://localhost:3030/contract/1/list`)
+    axios.get(`http://localhost:3030/contract/${clubId}/list`,{ headers: getToken() } )
     .then(res => this.setState({ data: res.data }))
     .then(result => console.log(result))
   }
 
-  // getClubs() {
-  //   fetch(urlContract)
-  //   .then(res => res.json())
-  //   .then(res => this.setState({ clubs: res }))
-  // }
-
   componentDidMount() {
     this.getProjects();
-    // this.getClubs();
   }
 
   render() {

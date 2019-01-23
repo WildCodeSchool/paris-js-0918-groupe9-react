@@ -66,7 +66,7 @@ class AdminClub extends Component {
         window.open(`http://localhost:3030/${url}`);
     }
 
-    renderOrder = id => {
+    renderOrder = (id) => {
         this.props.history.push(`/order-render/${id}`)
     }
 
