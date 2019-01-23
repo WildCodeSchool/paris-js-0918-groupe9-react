@@ -1,42 +1,83 @@
-*
-{
-    font-family: 'Comfortaa', cursive;
+* {
+  font-family: "Comfortaa", cursive;
 }
 .sponsore {
-    margin-left: 30%;
-    margin-top: 5%;
-    font-size: 30px;
+  /* margin-left: 30%; */
+  padding-right: 10%;
+  font-size: 30px;
+  border-right: 2px solid black;
 }
 .champs {
-    margin-left:20% ;
-    margin-right: 5%;
+  margin-left: 20%;
+  margin-right: 5%;
+  margin-top: 10%;
 }
 .buttonsponsor {
-        border: 2px solid black;
-        width: 15%;
-        margin-left:20% ;
-        margin-right: 5%;
-        margin-bottom: 5%;
-        border-radius: 5px;
-        font-size: 1vw;
-        background-color: #00AEE9
-    
+  border: 2px solid black;
+  width: 55%;
+  margin-left: 20%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  border-radius: 5px;
+  font-size: 1vw;
+  background-color: #f4943b;
+  text-shadow: 1px 1px 1px white;
 }
 .buttonprojet {
-        border: 2px solid black;
-        width: 15%;
-        margin-left: 20%;
-        margin-bottom: 5%;
-        border-radius: 5px;
-        font-size: 1vw;
-        background-color: #00AEE9
-    
+  border: 2px solid black;
+  width: 55%;
+  margin-left: 20%;
+  margin-bottom: 5%;
+  border-radius: 5px;
+  font-size: 1vw;
+  background-color: #f4943b;
 }
-.sponsorname
-{
-    margin-bottom: 2%;
-    color: #231F20
+.sponsorname {
+  margin-bottom: 2%;
+  color: #231f20;
 }
-.sponsorprojet{
-    margin-left: 5%;
-}  
+.sponsorprojet {
+  margin-left: 5%;
+}
+
+.div_block {
+  display: flex;
+  justify-content: center;
+  /* border-top: 2px solid black; */
+  margin-top: 1%;
+  padding-top: 5%;
+}
+
+.input_block {
+  margin-top: 30px;
+  margin-left: 10%;
+}
+
+.sponsore > h2 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 30px;
+  border: 3px solid black;
+  text-align: center;
+  background-color: #00aee9;
+  margin-bottom: 30px;
+}
+
+.input_block > h2 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: -5px;
+  font-size: 30px;
+  border: 3px solid black;
+  text-align: center;
+  background-color: #00aee9;
+  margin-bottom: 30px;
+}
+
+.projectList {
+  list-style: none;
+}
+
+hr {
+  width: 20vw;
+}

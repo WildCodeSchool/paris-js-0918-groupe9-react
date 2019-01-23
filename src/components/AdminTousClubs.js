@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { getToken } from "../helper/tokenHelper";
-import "../CSS/AdminTousClubs.css";
+import "../CSS/AdminTousClubs.scss";
 import AdminHeader from "./AdminHeader";
 
 class AdminTousClubs extends Component {
@@ -60,11 +60,11 @@ class AdminTousClubs extends Component {
     console.log(this.state.user);
     if (this.state.isLoaded) {
       return (
-        <div>
+        <div className="tousClubs">
           <AdminHeader />
           <div className="buttonCreation">
             <Link to="/admin-creation-espace">
-              <button>Ajouter un club</button>
+              <button className="addClub">Ajouter un club</button>
             </Link>
           </div>
           <div className="allcards">
@@ -105,7 +105,7 @@ class AdminTousClubs extends Component {
                       <img
                         width="50"
                         className="img-logo"
-                        src = {`http://localhost:3030/${e.url_logo}`}
+                        src={`http://localhost:3030/${e.url_logo}`}
                         alt="logo"
                       />
                     ) : (

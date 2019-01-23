@@ -18,14 +18,14 @@ class AdminHeader extends Component {
           <img className="iconLogo" src={logo} alt="logo allsponsored" />
         </a>
         <div className="menu">
-          <Link className="icon" to="/admin-home">
-            <img src={iconHome} alt="icon home" />
+          <Link to="/admin-home">
+            <img className="icon" src={iconHome} alt="icon home" />
           </Link>
-          <Link className="icon" to="/admin-parameters">
-            <img src={iconUser} alt="icon User" />
+          <Link to="/admin-parameters">
+            <img className="icon" src={iconUser} alt="icon User" />
           </Link>
-          <Link onClick={this.handleClick} className="icon logout" to="/admin">
-            <img src={logout} alt="icon logout" />
+          <Link onClick={this.handleClick} className="logout" to="/admin">
+            <img className="icon" src={logout} alt="icon logout" />
           </Link>
         </div>
       </div>
