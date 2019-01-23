@@ -159,9 +159,10 @@ class AdminSponsore extends Component {
               <h2>Liste sponsors</h2>
               <ul>
                 {sponsors.map(sponsor => (
+                  <div>
                   <li className="sponsorname">
                     {sponsor.name}
-                    <ul>
+                    <ul className="projectList">
                       {this.state.projetsBySponsorId[sponsor.id].map(
                         (projet, index) => (
                           <li className="sponsorprojet" key={index}>
@@ -175,6 +176,8 @@ class AdminSponsore extends Component {
                       )}
                     </ul>
                   </li>
+                  <hr/>
+                  </div>
                 ))}
               </ul>
             </div>
