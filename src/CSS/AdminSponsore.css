@@ -73,3 +73,11 @@
   background-color: #00aee9;
   margin-bottom: 30px;
 }
+
+.projectList {
+  list-style: none;
+}
+
+hr {
+  width: 20vw;
+}
