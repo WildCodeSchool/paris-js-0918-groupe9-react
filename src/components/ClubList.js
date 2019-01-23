@@ -3,9 +3,7 @@ import axios from "axios";
 import ClubHeader from './ClubHeader';
 import '../CSS/ClubList.css';
 
-const clubId = localStorage.getItem("clubId");
-console.log(clubId)
-const url = `http://localhost:3030/contract/${clubId}/list`;
+
 
 class ClubList extends Component{
 
@@ -14,7 +12,10 @@ class ClubList extends Component{
   }
 
   getProjects = () => {
-    axios.get(url)
+    // const clubId = localStorage.getItem("clubId")
+    // axios.get(`http://localhost:3030/contract/${clubId}/list`)
+   
+    axios.get(`http://localhost:3030/contract/1/list`)
     .then(res => this.setState({ data: res.data }))
     .then(result => console.log(result))
   }
@@ -53,7 +54,7 @@ class ClubList extends Component{
             <h1>Résumé</h1>
               {
                 this.state.data.map((x, i) => (
-                <button key={i}><a href={x.url_summary}>Résumé</a></button>
+                <button key={i}><a href={"http://localhost:3030/" + x.url_summary}>Résumé</a></button>
               ))
             }
           </div>
@@ -62,7 +63,7 @@ class ClubList extends Component{
             <h1>Visuels</h1>
               {
                 this.state.data.map((x, i) => (
-                <button key={i}><a href={x.visual_shirt}>Visuel</a></button>
+                <button key={i}><a href={"http://localhost:3030/" + x.visual_shirt}>Visuel</a></button>
               ))
             }
           </div>

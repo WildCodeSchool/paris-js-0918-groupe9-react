@@ -36,7 +36,7 @@ class ClubParameters extends Component {
   changePassword = e => {
     e.preventDefault();
     if (e.target.newPassword.value === e.target.confirmationPassword.value) {
-      const url = "http://localhost:3030/user/password/1";
+      const url = `http://localhost:3030/club/password/${this.props.match.params.id}`;
       Axios.put(
         url,
         {
@@ -51,7 +51,7 @@ class ClubParameters extends Component {
   };
 
   changeAdresse = e => {
-    const url = "http://localhost:3030/user/1";
+    const url = `http://localhost:3030/club/${this.props.match.params.id}`;
     Axios.put(
       url,
       {
@@ -66,7 +66,7 @@ class ClubParameters extends Component {
 
   changePhone = e => {
     // e.preventDefault();
-    const url = "http://localhost:3030/user/1";
+    const url = `http://localhost:3030/club/${this.props.match.params.id}`;
     Axios.put(
       url,
       {
@@ -81,7 +81,7 @@ class ClubParameters extends Component {
 
   changeEmail = e => {
     // e.preventDefault();
-    const url = "http://localhost:3030/user/1";
+    const url = `http://localhost:3030/club/${this.props.match.params.id}`;
     Axios.put(
       url,
       {
@@ -100,16 +100,40 @@ class ClubParameters extends Component {
   }
 
   handleUpload = (e) => {
+    //const clubId = localStorage.getItem("clubId")
     if(this.state.file){
       e.preventDefault();
       const formData = new FormData();
-      formData.append('fichier',this.state.file);
+      formData.append('file',this.state.file);
       const config = {
         headers: {
           'content-type': 'multipart/form-data'
         }
       };
-      Axios.post("localhost:3030/club/url_logo", formData, config)
+      Axios.put(`http://localhost:3030/club/uploadlogopdf/`+this.props.match.params.id, formData, config)
+        .then((response) => {
+            alert("Fichier envoyé avec succès");
+        }).catch((error) => {
+          console.log('erreur : ', error);
+      });
+    }
+    else{
+      e.preventDefault();
+      alert('Veuillez sélectionner un fichier');
+    }
+  }
+  handleUpload2 = (e) => {
+    //const clubId = localStorage.getItem("clubId")
+    if(this.state.file){
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append('file',this.state.file);
+      const config = {
+        headers: {
+          'content-type': 'multipart/form-data'
+        }
+      };
+      Axios.put(`http://localhost:3030/club/uploadlogovecto/`+this.props.match.params.id, formData, config)
         .then((response) => {
             alert("Fichier envoyé avec succès");
         }).catch((error) => {
@@ -123,7 +147,7 @@ class ClubParameters extends Component {
   }
 
   componentDidMount() {
-    const url = "http://localhost:3030/user/1";
+    const url = `http://localhost:3030/club/${this.props.match.params.id}`;
     Axios({
       method: "GET",
       url: url,
@@ -256,14 +280,14 @@ class ClubParameters extends Component {
           <button name='logoState' onClick={this.toggle}>Télécharger Logo<br />Format : .jpeg, .jpg, .png</button>
           {this.state.logoState ? (
           <form onSubmit={this.handleUpload}>
-            <input type='file' name='logo' onClick={this.handleChangeFile}/>
-            <button type='submit' name='logoState'>Envoyer</button>
+            <input type='file' name='logo' onChange={this.handleChangeFile}/>
+            <button type='submit' name='logoState' >Envoyer</button>
           </form>
           ) : null}<br />
           <button name='logoSVGState' onClick={this.toggle}>Télécharger Logo<br />Format : SVG</button>
           {this.state.logoSVGState ? (
-          <form onSubmit={this.handleUpload}>
-            <input type='file' name='logoSVG' onClick={this.handleChangeFile}/>
+          <form onSubmit={this.handleUpload2}>
+            <input type='file' name='logoSVG' onChange={this.handleChangeFile}/>
             <button type='submit' name='logoSVGState'>Envoyer</button>
           </form>
           ) : null}
