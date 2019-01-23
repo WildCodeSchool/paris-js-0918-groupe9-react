@@ -80,7 +80,7 @@ class ClubParameters extends Component {
   };
 
   changeEmail = e => {
-    // e.preventDefault();
+    //  e.preventDefault();
     const url = "http://localhost:3030/user/1";
     Axios.put(
       url,
