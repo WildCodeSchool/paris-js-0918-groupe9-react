@@ -105,12 +105,13 @@ class ClubParameters extends Component {
       e.preventDefault();
       const formData = new FormData();
       formData.append('file',this.state.file);
-      const config = {
-        headers: {
-          'content-type': 'multipart/form-data'
-        }
-      };
-      Axios.put(`http://localhost:3030/club/uploadlogopdf/`+this.props.match.params.id, formData, config)
+      // const config = {
+      //   headers: {
+      //     'content-type': 'multipart/form-data'
+      //   }
+      // };
+      const headers = { "Content-Type": "multipart/form-data", ...getToken() }
+      Axios.put(`http://localhost:3030/club/uploadlogopdf/`+this.props.match.params.id, formData,{headers: headers})
         .then((response) => {
             alert("Fichier envoyé avec succès");
         }).catch((error) => {
@@ -128,12 +129,13 @@ class ClubParameters extends Component {
       e.preventDefault();
       const formData = new FormData();
       formData.append('file',this.state.file);
-      const config = {
-        headers: {
-          'content-type': 'multipart/form-data'
-        }
-      };
-      Axios.put(`http://localhost:3030/club/uploadlogovecto/`+this.props.match.params.id, formData, config)
+      // const config = {
+      //   headers: {
+      //     'content-type': 'multipart/form-data'
+      //   }
+      // };
+      const headers = { "Content-Type": "multipart/form-data", ...getToken()};
+      Axios.put(`http://localhost:3030/club/uploadlogovecto/`+this.props.match.params.id, formData, {headers: headers})
         .then((response) => {
             alert("Fichier envoyé avec succès");
         }).catch((error) => {

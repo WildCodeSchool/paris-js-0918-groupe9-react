@@ -3,18 +3,22 @@ import axios from "axios";
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import "../CSS/Order_render.scss";
+import { getToken } from "../helper/tokenHelper";
 
 class Order_render extends Component {
   state = {
     productsDetails: []
   };
 
-  async componentDidMount() {
-    const results = await axios.get(`http://localhost:3030/order/${this.props.match.params.id}/details`);
-    const data = results.data;
-    this.setState({
+ componentDidMount() {
+    axios.get(`http://localhost:3030/order/${this.props.match.params.id}/details`,{headers:getToken()})
+    .then (res => res.data)
+    .then (
+      data  =>this.setState({
       productsDetails: data
-    });
+    })
+    )
+    
   }
   // pour imprimer la page en PDF
   printDocument() {

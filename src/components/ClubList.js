@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import { getToken, getClubId } from '../helper/tokenHelper';
 import ClubHeader from './ClubHeader';
 import '../CSS/ClubList.css';
 
@@ -12,23 +13,14 @@ class ClubList extends Component{
   }
 
   getProjects = () => {
-    // const clubId = localStorage.getItem("clubId")
-    // axios.get(`http://localhost:3030/contract/${clubId}/list`)
-   
-    axios.get(`http://localhost:3030/contract/1/list`)
+    const clubId = localStorage.getItem("clubId")
+    axios.get(`http://localhost:3030/contract/${clubId}/list`,{ headers: getToken() } )
     .then(res => this.setState({ data: res.data }))
     .then(result => console.log(result))
   }
 
-  // getClubs() {
-  //   fetch(urlContract)
-  //   .then(res => res.json())
-  //   .then(res => this.setState({ clubs: res }))
-  // }
-
   componentDidMount() {
     this.getProjects();
-    // this.getClubs();
   }
 
   render() {
