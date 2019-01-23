@@ -69,3 +69,6 @@ hr
 	color: blueviolet;
 	margin-left: 10%
   }
+button {
+    cursor: pointer;
+}

@@ -71,7 +71,7 @@ class AdminParameters extends Component {
       { headers: getToken() }
     );
     this.setState({
-     telephoneState: !this.state.telephoneState
+      telephoneState: !this.state.telephoneState
     })
   };
 

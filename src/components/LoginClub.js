@@ -48,7 +48,7 @@ class LoginClub extends Component {
     render() {
         const { redirectToReferrer, clubId } = this.state
         if (redirectToReferrer === true) {
-            return <Redirect to={`/club-home/${clubId}`} />
+            return <Redirect to={`/club-list/${clubId}`} />
         }
         return (
             <div className="contentGlobal">
