@@ -13,7 +13,7 @@ class ClubConvention extends Component {
         isLoaded: true,
         clubs: undefined,
         toggle:false,
-        file: ''
+        file: null
     }
 
     toggleConv = () => {
@@ -28,35 +28,33 @@ class ClubConvention extends Component {
       })
     }
 
-    async handleDownload (){
-
+    handleDownload = () => {
       // const call = await fetch('http://localhost:3030/club/contract/1');
       // const data = call.json();
       // console.log(data);
       // console.log(data.url_contract);
       // window.open(data.url_contract)
 
-      fetch('http://localhost:3030/club/contract/1')
-      .then(res => res.json())
-
-      .then(res => this.setState({ file: res[0].url_contract}))
-      .then(res => console.log(this.state.file))
-      window.open(this.state.file);
+      axios.get("http://localhost:3030/club/contract/" + this.props.match.params.id)
+      .then(res => window.open(`http://localhost:3030/${res.data[0].url_contract}`))
     }
 
     handleUpload = (e) => {
       if(this.state.file){
         e.preventDefault();
         const formData = new FormData();
-        formData.append('fichier',this.state.file);
+        formData.append('file',this.state.file);
         const config = {
           headers: {
             'content-type': 'multipart/form-data'
           }
         };
-        axios.post("/", formData, config)
+        axios.put(`http://localhost:3030/club/uploaddufichier/${this.props.match.params.id}`, formData, config)
           .then((response) => {
               alert("Fichier envoyé avec succès");
+              this.setState ({
+                toggle: !this.state.toggle
+              })
           }).catch((error) => {
             console.log('erreur : ', error);
         });
@@ -68,7 +66,10 @@ class ClubConvention extends Component {
     }
 
     render() {
-        if (this.state.isLoaded) {
+      console.log(this.state.file)
+      console.log(this.formData) 
+      
+      if (this.state.isLoaded) {
             return (
                 <div>
                   <ClubHeader/>
@@ -78,9 +79,11 @@ class ClubConvention extends Component {
                     {
                     this.state.toggle &&
                     <div className='download-upload'>
+                    <p>Convention à signer: </p>
                     <button onClick={this.handleDownload}>Télécharger</button>
+                    <p>Convention signée: </p>
                       <form onSubmit={this.handleUpload}>
-                        <input type='file' name='fichier' onClick={this.handleChange}/>
+                        <input type='file' name='file' onChange={this.handleChange}/>
                         <button type='submit'>Envoyer</button>
                       </form>
 

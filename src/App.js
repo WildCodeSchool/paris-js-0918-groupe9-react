@@ -22,6 +22,7 @@ import NotFound from "./components/NotFound";
 import ClubList from "./components/ClubList";
 
 import MDP from "./components/MDP";
+import ClubParameters from "./components/ClubParameters";
 
 class App extends Component {
   render() {
@@ -32,9 +33,10 @@ class App extends Component {
             <Route exact path="/" component={LoginClub} />
             <Route path="/admin" component={LoginAdmin} />
             <Route path="/admin-home" component={AdminHome} />
-            <Route path="/club-home/:id" component={ClubHome} />
+            <Route path="/club-home" component={ClubHome} />
+            <Route path="/club-parameters/:id" component={ClubParameters} />
 
-            <Route path="/club-convention" component={ClubConvention} />
+            <Route path="/club-convention/:id" component={ClubConvention} />
 
             <Route path="/admin-sponsor" component={AdminSponsore} />
             <Route path="/admin-club/:id" component={AdminClub} />
@@ -59,7 +61,7 @@ class App extends Component {
             <Route path="/bon-de-commande/:id" component={BonDeCommande} />
             <Route path="/order-render/:id" component={Order_render} />
 
-            <Route path="/club-list" component={ClubList} />
+            <Route path="/club-list/:id" component={ClubList} />
 
             <Route path="/MDP" component={MDP}/>
 

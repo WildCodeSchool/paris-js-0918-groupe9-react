@@ -62,3 +62,13 @@ hr
     background-color: #a9aaac;
 }
 
+.identifiant
+{
+	width: 150px;
+	margin-block-end: 77px;
+	color: blueviolet;
+	margin-left: 10%
+  }
+button {
+    cursor: pointer;
+}
