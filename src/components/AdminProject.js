@@ -64,7 +64,7 @@ class AdminProject extends Component {
       return <div>Error:{error.message}</div>;
     }
 
-    if (!isLoaded || projet.length ) {
+    if (!isLoaded || projet.length == 0 ) {
       return <div> Loading... </div>;
     }
     return (
