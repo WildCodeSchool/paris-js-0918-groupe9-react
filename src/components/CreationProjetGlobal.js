@@ -107,14 +107,14 @@ class CreationProjetGlobal extends Component {
             <AdminHeader />
           </div>
           <div className="projetglobal">
-            <p>Initialisation d'un projet global</p>
+            <h2>Initialisation d'un projet global</h2>
             <form
               className="formulaire"
               onSubmit={this.handleUpload}
               encType="multipart/form-data"
             >
               <label>
-                <h4>Sponsor </h4>
+                <h4>SPONSOR</h4>
                 <select
                   name="sponsor_id"
                   value={this.state.sponsor_id}
@@ -127,7 +127,7 @@ class CreationProjetGlobal extends Component {
               </label>{" "}
               <br />
               <label>
-                <h4>Nom de projet</h4>
+                <h4>PROJET</h4>
                 <input
                   type="text"
                   name="name"
@@ -136,7 +136,7 @@ class CreationProjetGlobal extends Component {
                 />
               </label>{" "}
               <br />
-              <h4> Visuel du produit</h4>
+              <h4> VISUEL PRODUIT</h4>
               <input
                 type="file"
                 name="file2"
@@ -144,7 +144,7 @@ class CreationProjetGlobal extends Component {
                 onChange={this.onChangeFile}
               />{" "}
               <br />
-              <h4>Resumé du projet </h4>
+              <h4>DESCRIPTION</h4>
               <input
                 type="file"
                 name="file1"
@@ -152,7 +152,7 @@ class CreationProjetGlobal extends Component {
                 onChange={this.onChangeFile}
               />{" "}
               <br />
-              <button type="submit" value="Submit">
+              <button className="butt-submit" type="submit" value="Submit">
                 {" "}
                 Envoyer{" "}
               </button>
