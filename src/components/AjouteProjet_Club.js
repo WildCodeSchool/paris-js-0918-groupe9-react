@@ -170,10 +170,10 @@ class AjouteProjet_Club extends Component {
           <div>
             <AdminHeader />
           </div>
-          <p>Ajouter un projet au club</p>
-          <form className="formulaire" onSubmit={this.handleSubmit}>
+          <h2>Ajouter un projet (convention) au club</h2>
+          <form onSubmit={this.handleSubmit}>
             <label>
-              Sélectioner un club :
+              <h4>Sélectionner un club</h4>
               <select
                 disabled={disabledClub}
                 name="club_id"
@@ -185,11 +185,9 @@ class AjouteProjet_Club extends Component {
                 ))}
               </select>
             </label>
-
             <br />
-
             <label>
-              Sélectioner un projet global:
+              <h4>Sélectionner un projet global</h4>
               <select
                 disabled={disabledProject}
                 name="project_id"
@@ -201,11 +199,9 @@ class AjouteProjet_Club extends Component {
                 ))}
               </select>
             </label>
-
             <br />
-
             <label>
-              Nom de contrat (convention):
+              <h4>Nom de contrat (convention)</h4>
               <input
                 name="name"
                 type="text"
@@ -215,7 +211,7 @@ class AjouteProjet_Club extends Component {
             </label>
             <br />
             <label>
-              convention :
+              <h4> Téléchager la convention  </h4>
               <input
                 type="file"
                 name="file"
@@ -225,32 +221,33 @@ class AjouteProjet_Club extends Component {
             </label>
             <br />
             <label>
-              bon de commande :
+              <h4> Sélectionner les produit pour le bon de commande </h4>
+              <div className="product">
               {this.state.products
                 ? this.state.products.map((e, i) => (
                   <div>
-                    <input
+                    <input className = "inputselect"
                       type="checkbox"
                       name={e.name}
                       value={e.id}
                       onChange={this.check}
                     />
-                    {e.name}
+                    <h5>{e.name}</h5>
                   </div>
                 ))
                 : null}
+                </div>
             </label>
-            <button type="submit" value="Submit">
+            <button className="butt-submit" type="submit" value="Submit">
               {" "}
-              Créer un nouveau contrat-club{" "}
+              Créer un nouveau convention (contrat) {" "}
             </button>
           </form>
-
         </div>
       );
     }
 
-    if (projets.length === 0){
+    if (projets.length === 0) {
       return (
         <div>
           <Link to={`/admin-creation-projetglobal`}> Il n'y a pas de projet global, veuillez ajouter un projet global </Link>
