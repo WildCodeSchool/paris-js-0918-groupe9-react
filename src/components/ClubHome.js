@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { getToken, getClubId } from "../helper/tokenHelper";
+import { getToken } from "../helper/tokenHelper";
 import ClubHeader from "./ClubHeader";
 import "../CSS/AdminParameters.css";
 // import { log } from 'util';
@@ -13,7 +13,6 @@ class ClubHome extends Component {
   };
 
   componentDidMount() {
-    // const url = "http://localhost:3030/club/" + getClubId();
     const url = `http://localhost:3030/club/${this.props.match.params.id}`;
     axios({
       method: "GET",
