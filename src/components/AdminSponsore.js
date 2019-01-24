@@ -107,7 +107,8 @@ class AdminSponsore extends Component {
         if (res.status === 200) {
           this.setState({ status: "Sponsor ajouté avec succès !" });
           this.openModal();
-          this.state.name = "";
+          this.setState ({ name :""})
+          //this.state.name = "";
           this.componentDidMount();
         } else if (res.status === 204) {
           this.setState({

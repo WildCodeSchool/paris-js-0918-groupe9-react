@@ -44,7 +44,9 @@ class LIsteProduits extends Component {
       const url = `http://localhost:3030/product/${id}`;
       axios.put(url, {
         name: e.target.butt.value
-      });
+      },
+      { headers: getToken() }
+      );
     }
   };
 
