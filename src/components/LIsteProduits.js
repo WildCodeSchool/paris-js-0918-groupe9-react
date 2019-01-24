@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { getToken } from "../helper/tokenHelper";
-import "../CSS/ListeProduits.css";
+import { getToken, getClubId } from "../helper/tokenHelper";
+import "../CSS/ListeProduits.scss";
 import axios from "axios";
 import AdminHeader from "./AdminHeader";
 
@@ -58,7 +58,7 @@ class LIsteProduits extends Component {
 
   render() {
     return (
-      <div>
+      <div className="productList">
         <AdminHeader />
         <div className="liste_block2">
           <div className="title_produit">
@@ -72,7 +72,6 @@ class LIsteProduits extends Component {
                   <div className="barre_button">
                     <div>
                       <form onSubmit={this.changeName}>
-                        -
                         <input
                           className="liste_input"
                           id={e.id}
@@ -91,7 +90,7 @@ class LIsteProduits extends Component {
           </div>
           <div className="produit_ajout">
             <div className="ajoutProduit_title">
-              <h2>Ajouter un produit</h2>
+              <h2>AJOUTER UN PRODUIT</h2>
             </div>
             <div className="input_product_add">
               <form className="formAjout" onSubmit={this.handleAdd}>
