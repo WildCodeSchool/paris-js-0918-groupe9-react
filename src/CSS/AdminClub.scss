@@ -35,7 +35,7 @@
   .logo1Download {
     margin-top: 5vw;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
   }
   .logo1Download p {
     margin-right: 5vw;
@@ -44,7 +44,7 @@
   .logo2Download {
     margin-top: 2vw;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
   }
   .logo2Download p {
     margin-right: 5vw;
@@ -71,6 +71,15 @@
   a {
       cursor: pointer;
       color: blue;
+  }
+
+  .logoImg {
+    width: 15vw;
+    height: 15vw;
+  }
+  .butt-download {
+    height: 2vw;
+    margin-right: 0;
   }
 
   .buttonAjout {

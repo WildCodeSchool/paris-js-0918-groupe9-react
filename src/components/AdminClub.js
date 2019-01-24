@@ -88,6 +88,7 @@ class AdminClub extends Component {
             <p>Logo :</p>
             {club.url_logo ? (
               <img
+                className="logoImg"
                 src={`http://localhost:3030/${club.url_logo}`}
                 alt={club.name}
                 width="100px"
@@ -96,7 +97,10 @@ class AdminClub extends Component {
               <p>Pas encore de Logo</p>
             )}
             {club.url_logo ? (
-              <button onClick={() => this.handleDownload(club.url_logo)}>
+              <button
+                className="butt-download"
+                onClick={() => this.handleDownload(club.url_logo)}
+              >
                 Télécharger logo{" "}
               </button>
             ) : null}
@@ -105,6 +109,7 @@ class AdminClub extends Component {
             <p> Logo vectorizé :</p>
             {club.url_logo ? (
               <img
+                className="logoImg"
                 src={`http://localhost:3030/${club.url_logo_vectorized}`}
                 alt={club.name}
                 width="100px"
@@ -115,6 +120,7 @@ class AdminClub extends Component {
 
             {club.url_logo ? (
               <button
+                className="butt-download"
                 onClick={() => this.handleDownload(club.url_logo_vectorized)}
               >
                 Télécharger logo
@@ -122,8 +128,8 @@ class AdminClub extends Component {
             ) : null}
           </div>
 
-          <hr/>
-          
+          <hr />
+
           <table>
             <thead>
               <tr>
@@ -163,7 +169,11 @@ class AdminClub extends Component {
               ))}
             </tbody>
           </table>
-          <div><button className="buttonAjout" onClick={this.handleOnCLick}>Ajouter un projet</button></div>
+          <div>
+            <button className="buttonAjout" onClick={this.handleOnCLick}>
+              Ajouter un projet
+            </button>
+          </div>
         </div>
       );
     } else {
