@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getToken, getClubId } from "../helper/tokenHelper";
+import { getToken } from "../helper/tokenHelper";
 import "../CSS/ListeProduits.css";
 import axios from "axios";
 import AdminHeader from "./AdminHeader";
@@ -44,7 +44,9 @@ class LIsteProduits extends Component {
       const url = `http://localhost:3030/product/${id}`;
       axios.put(url, {
         name: e.target.butt.value
-      });
+      },
+      { headers: getToken() }
+      );
     }
   };
 
