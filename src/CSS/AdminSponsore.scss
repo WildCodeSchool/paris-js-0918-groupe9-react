@@ -1,0 +1,86 @@
+.adminSponsor{
+    .format{
+        display: flex;
+        margin-top: 7vw;
+        margin-left: 10vw;
+    }
+
+    .listSponsor{
+        margin-right: 10vw;
+        border-right: 0.3vw solid black;
+        padding-right: 7vw;
+    }
+    
+    h2{
+        font-size: 2vw;
+        margin-bottom: 4vw;
+        border: 0.2vw solid black;
+        background-color: lightblue;
+        width: 30vw;
+        text-align: center;
+        padding: 1vw;
+    }
+    p {
+        font-style: normal;
+    }
+    .projet {
+        font-size: 1.2vw;
+        text-align: center;
+        color: blue;
+        cursor: pointer;
+    }
+
+    h3 {
+        font-size: 1.5vw;
+        border: 0.2vw solid black;
+        text-align: center;
+        padding: 0.8vw;
+        width: 10vw;
+        margin: auto;
+    }
+    
+    hr {
+        width: 32vw;
+        margin: auto;
+    }
+
+    .aucun {
+        text-align: center;
+        font-size: 1.2vw;
+    }
+
+    .inputAjout {
+        margin: auto;
+        border: none;
+        border-bottom: 0.1vw solid grey;
+        width: 15vw;
+        transition: 0.5s;
+    }
+
+    .inputAjout:focus{
+        outline: none;
+        width: 25vw;
+    }
+
+    .inputAjout::placeholder{
+        font-size: 1.2vw;
+        opacity: 0.8;
+        color: lightgrey;
+    }
+
+    .butt-ajout-sponsor {
+        margin-top: 1vw;
+        border: none;
+        width: 15vw;
+        background-color: rgb(228, 217, 217);
+    }
+
+    .butt-ajout-sponsor:focus {
+        outline: none;
+    }
+
+    .butt-global-project {
+        margin-top: 3vw;
+        background-color: lightblue;
+    }
+}

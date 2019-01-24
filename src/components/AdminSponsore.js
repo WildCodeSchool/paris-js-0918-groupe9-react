@@ -5,7 +5,7 @@ import { getToken } from "../helper/tokenHelper";
 import AdminHeader from "./AdminHeader";
 
 import Modal from "react-responsive-modal";
-import "../CSS/AdminSponsore.css";
+import "../CSS/AdminSponsore.scss";
 
 class AdminSponsore extends Component {
   state = {
@@ -152,63 +152,55 @@ class AdminSponsore extends Component {
         array.push(project);
       });
       return (
-        <div>
+        <div className="adminSponsor">
           <AdminHeader />
-          <div className="div_block">
-            <div className="sponsore">
+          <div className="format">
+            <div className="listSponsor">
               <h2>Liste sponsors</h2>
-              <ul>
-                {sponsors.map(sponsor => (
-                  <div>
-                  <li className="sponsorname">
-                    {sponsor.name}
-                    <ul className="projectList">
-                      {this.state.projetsBySponsorId[sponsor.id].map(
+
+              {sponsors.map(sponsor => (
+                <div>
+                  <p>
+                    <h3>{sponsor.name}</h3>
+                    
+                      {this.state.projetsBySponsorId[sponsor.id].length !== 0 ? this.state.projetsBySponsorId[sponsor.id].map(
                         (projet, index) => (
-                          <li className="sponsorprojet" key={index}>
-                            <button
+                          <div className="projet" key={index}>
+                            <p
                               onClick={() => this.handleOnClick(projet.id)}
                             >
                               {projet.name}
-                            </button>
-                          </li>
+                            </p>
+                          </div>
                         )
-                      )}
-                    </ul>
-                  </li>
-                  <hr/>
-                  </div>
-                ))}
-              </ul>
+                      ): <p className="aucun">Aucun projet créé</p>}
+                      
+                    
+                  </p>
+                  <hr />
+                </div>
+              ))}
             </div>
-            <div className="input_block">
+            <div className="add">
               <h2>Ajouter / Créer</h2>
               <form onSubmit={this.handleCreationSponsor}>
-                <input
-                  className="champs"
+                <input className="inputAjout"
                   type="text"
-                  placeholder="nom du sponsor à ajouter"
+                  placeholder="Sponsor à ajouter"
                   name="name"
                   value={this.state.name}
                   onChange={this.handleOnChange}
                 />{" "}
                 <br />
-                <button
-                  disabled={buttonDisabled}
-                  className="buttonsponsor"
-                  type="submit"
-                >
-                  Ajouter un sponsor{" "}
+                <button className="butt-ajout-sponsor" disabled={buttonDisabled} type="submit">
+                  Ajouter sponsor{" "}
                 </button>
                 <Modal open={open} onClose={this.closeModal} center>
                   <h3>{this.state.status}</h3>
                 </Modal>
               </form>
-              <button
-                className="buttonprojet"
-                onClick={this.handleCreationProjet}
-              >
-                Creer un projet global{" "}
+              <button className="butt-global-project" onClick={this.handleCreationProjet}>
+                Créer un projet{" "}
               </button>
             </div>
           </div>
