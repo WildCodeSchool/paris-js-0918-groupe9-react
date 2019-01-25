@@ -86,7 +86,7 @@ class AdminTousClubs extends Component {
             </div>
             <div className="custom-select">
               <div className="type">
-                <h1>Convention Signée</h1>
+                <h1>Convention</h1>
               </div>
               {this.state.user.map((e, i) => (
                 <div className="rows" key={i}>
@@ -103,7 +103,6 @@ class AdminTousClubs extends Component {
                   <p className="element">
                     {e.url_logo ? (
                       <img
-                        width="50"
                         className="img-logo"
                         src={`http://localhost:3030/${e.url_logo}`}
                         alt="logo"

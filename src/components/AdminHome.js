@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { getToken} from '../helper/tokenHelper';
 
 import AdminHeader from './AdminHeader';
-import '../CSS/AdminHome.css'
+import '../CSS/AdminHome.scss'
 
 class AdminHome extends Component {
     state = {
@@ -42,8 +42,8 @@ class AdminHome extends Component {
 
             <AdminHeader />
                     <div className="groupe-input">
-                        <Link to="/admin-tous-clubs"><button className="inputclub" >CLUB</button></Link>    <br />
                         <Link to="/admin-sponsor"><button className="inputsponsor" >SPONSOR</button></Link>    <br />
+                        <Link to="/admin-tous-clubs"><button className="inputclub" >CLUB</button></Link>    <br />
                         <Link to="/admin-gestion-projet"><button className="inputprojet" >GESTION DE PROJET</button></Link>
                     </div>
                 </div>

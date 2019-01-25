@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { getToken } from "../helper/tokenHelper";
 import ClubHeader from "./ClubHeader";
-import "../CSS/AdminParameters.css";
+import "../CSS/AdminParameters.scss";
 // import { log } from 'util';
 
 class ClubHome extends Component {

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { getToken } from '../helper/tokenHelper';
 
 import AdminHeader from './AdminHeader';
-import '../CSS/AdminHome.css'
+import '../CSS/AdminGestionProjet.scss'
 
 class AdminGestionProjet extends Component {
     state = {
@@ -41,9 +41,9 @@ class AdminGestionProjet extends Component {
                 <div>
                     <AdminHeader />
                     <div className="groupe-input">
-                        <Link to="/"><button>Formulaire de satisfaction</button></Link>    <br />
-                        <Link to="/liste-produits"><button>liste de produits</button></Link>    <br />
-                        <Link to="/"><button>Action en contrepartie</button></Link>    <br />
+                        <Link to="/"><button className="button1">FORMULAIRE DE SATISFACTION</button></Link>    <br />
+                        <Link to="/liste-produits"><button className="button2">LISTE DE PRODUITS </button></Link>    <br />
+                        <Link to="/"><button className="button3">ACTIONS CONTREPARTIES</button></Link>    <br />
                     </div>
                 </div>
 
