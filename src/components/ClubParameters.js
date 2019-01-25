@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { getToken } from "../helper/tokenHelper";
 import ClubHeader from "./ClubHeader";
-import "../CSS/AdminParameters.css";
+import "../CSS/AdminParameters.scss";
 import Axios from "axios";
 
 class ClubParameters extends Component {

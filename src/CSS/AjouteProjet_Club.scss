@@ -52,9 +52,9 @@
     }
     .inputselect {
     font-size: 1vw;
-    width: 5vw;
-    height: 2vw;
-    
+    width: 3vw;
+    height: 1.5vw;
+    margin-right: 2vw;
     }
     // h5 {
     // font-size: 1vw;
@@ -64,9 +64,10 @@
     // }
     .product {
         display: flex;
-        width: 200px;
+        flex-wrap: wrap;
+        width: 50%;
         align-items: center;
-        margin-left: 15vw;
+        margin-left: 20vw;
         margin-right: 10vw;
     }
 }

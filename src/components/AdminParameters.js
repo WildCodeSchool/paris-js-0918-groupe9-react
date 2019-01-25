@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { getToken } from "../helper/tokenHelper";
 import AdminHeader from "./AdminHeader";
-import "../CSS/AdminParameters.css";
+import "../CSS/AdminParameters.scss";
 import Axios from "axios";
 
 class AdminParameters extends Component {
@@ -136,7 +136,7 @@ class AdminParameters extends Component {
                 />
                 <br />
                 <br />
-                <button type="submit">Valider</button>
+                <button className="butt-password" type="submit">Valider</button>
               </form>
               <hr />
               <br />{" "}

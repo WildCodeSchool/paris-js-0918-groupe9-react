@@ -3,7 +3,7 @@ import axios from 'axios';
 import { getToken } from '../helper/tokenHelper';
 import ClubHeader from './ClubHeader'
 import { Link } from 'react-router-dom'
-import '../CSS/AdminParameters.css';
+import '../CSS/AdminParameters.scss';
 
 
 
@@ -91,9 +91,9 @@ class ClubConvention extends Component {
                     </div>
                     }
                     <br />
-                    <button><Link to={"/bon-de-commande/"+this.props.match.params.id}>Bon de Commande</Link></button><br />
-                    <button><Link to="/actions-en-contrepartie/1">Actions en Contrepartie</Link></button><br />
-                    <button><Link to="/formulaire-de-satisfaction/1">Formulaire de Satisfaction</Link></button><br />
+                    <button className="club-butt"><Link to={"/bon-de-commande/"+this.props.match.params.id}>Bon de Commande</Link></button><br />
+                    <button className="club-butt"><Link to="/actions-en-contrepartie/1">Actions en Contrepartie</Link></button><br />
+                    <button className="club-butt"><Link to="/formulaire-de-satisfaction/1">Formulaire de Satisfaction</Link></button><br />
                   </div>
                 </div>
             )

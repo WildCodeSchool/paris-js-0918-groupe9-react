@@ -64,6 +64,7 @@ class BonDeCommande extends Component {
     })
   }
   handleDelete = (index) => {
+
     this.setState({
       productsLine: this.state.productsLine.filter((el, i) => i !== index)
     })
@@ -76,11 +77,27 @@ class BonDeCommande extends Component {
 
   handleSubmit = (event) => {
     if (this.state.productsLine.length !== 0) {
-      alert('La commande a été validée.');
+      //alert('La commande a été validée.');
       event.preventDefault();
       const url = `http://localhost:3030/order/${this.props.match.params.id}`;
-      axios.post(url, { products: this.state.productsLine }, { headers: getToken() });
-      this.props.history.push(`/club-convention/${this.props.match.params.id}`)
+      axios.post(url, { products: this.state.productsLine }, { headers: getToken() })
+      .then(res => {
+        if (res.status === 200) {
+          alert("La commande a été validée");
+          this.props.history.push(`/club-convention/${this.props.match.params.id}`)
+        }
+        // if (res.status === 206) {
+        //   alert("Veuillez-vous remplir tous les champs")
+        // }
+        // if (res.status === 210) {
+        //   alert('ajouter les produits pour le bon de commande');
+        //   this.props.history.push(`/liste-produits`)
+        // }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });;
+     
     }
     else {
       alert('Veuillez remplir au moins une commande.')
@@ -102,23 +119,23 @@ class BonDeCommande extends Component {
               </label>
               <br />
               <div className="lign">
-              <div>
-              <select name="product" onChange={this.handleProduct}>
-                <option></option>
-                {this.state.productsList.map((el, index) => <option value={[el.name, el.product_id]} key={index}>{el.name}</option>)}
-              </select>
-              <select name="color" onChange={this.handleChange}>
-                <option></option>
-                {couleur.map((el, index) => <option value={el} key={index}>{el}</option>)}
-              </select>
-              <select name="size" onChange={this.handleChange}>
-                <option></option>
-                {taille.map((el, index) => <option value={el} key={index}>{el}</option>)}
-              </select>
-              </div>
-              <label>
-                <input className="quantité" type="Number" min="1" value={this.state.quantity} name="quantity" onChange={this.handleChange} />
-              </label>
+                <div>
+                  <select name="product" onChange={this.handleProduct}>
+                    <option></option>
+                    {this.state.productsList.map((el, index) => <option value={[el.name, el.product_id]} key={index}>{el.name}</option>)}
+                  </select>
+                  <select name="color" onChange={this.handleChange}>
+                    <option></option>
+                    {couleur.map((el, index) => <option value={el} key={index}>{el}</option>)}
+                  </select>
+                  <select name="size" onChange={this.handleChange}>
+                    <option></option>
+                    {taille.map((el, index) => <option value={el} key={index}>{el}</option>)}
+                  </select>
+                </div>
+                <label>
+                  <input className="quantité" type="Number" min="1" value={this.state.quantity} name="quantity" onChange={this.handleChange} />
+                </label>
               </div>
               <button className="butt-submit2" type="button" onClick={this.onClick}> Ajouter la ligne </button><br />
               <table>
@@ -176,7 +193,7 @@ class BonDeCommande extends Component {
                   }
                 </tbody>
               </table>
-              <button className="butt-submit" type="button" onClick={this.handleSubmit} > Valider la commande </button><br />
+              <button className="butt-submit" type="submit" onClick={this.handleSubmit} > Valider la commande </button><br />
             </form>
           </div>
         </div>

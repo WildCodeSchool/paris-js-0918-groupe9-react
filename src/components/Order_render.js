@@ -38,9 +38,6 @@ class Order_render extends Component {
     console.log(this.state.productsDetails);
     return (
       <div className="order_render">
-        <div className="mb5">
-          <button onClick={this.printDocument}>Print</button>
-        </div>
         <div id="divToPrint" className="mt4">
           <p>Adresse de livraison: {this.state.productsDetails.length !== 0 ? this.state.productsDetails[0].delivery_address : null}</p>
           <table>
@@ -62,7 +59,9 @@ class Order_render extends Component {
               : null}
           </table>
         </div>
-
+        <div className="mb5">
+          <button onClick={this.printDocument}>Print</button>
+        </div>
       </div>
     );
   }

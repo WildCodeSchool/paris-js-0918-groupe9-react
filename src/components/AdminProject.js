@@ -82,7 +82,7 @@ class AdminProject extends Component {
             {contracts.map((contract, index) => (
               <tr key={index}>
                 <td>
-                  <button onClick={() => this.handleOnClick(contract.club_id)}>
+                  <button className="buttontable" onClick={() => this.handleOnClick(contract.club_id)}>
                     {contract.clubName}
                   </button>
                 </td>
