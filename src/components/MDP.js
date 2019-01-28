@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { getToken } from "../helper/tokenHelper";
 import AdminHeader from "./AdminHeader";
 import axios from "axios";
+import '../CSS/MDP.scss'
 
 class MDPForget extends Component {
     state = {
@@ -23,7 +24,9 @@ class MDPForget extends Component {
             email: this.state.email,
             password: this.generateur(6)
         }
-        axios.put("http://localhost:3030/MDP", body, { headers: getToken() });
+        axios.put("http://localhost:3030/MDP", body, { headers: getToken() })
+        .then (this.props.history.push(`/`))
+        
     }
     handleOnchange = (e) => {
         e.preventDefault();
@@ -37,8 +40,8 @@ class MDPForget extends Component {
                 <div>
                     <AdminHeader />
                 </div>
-                <div>
-                    <form onSubmit={this.handleOnSubmit}></form>
+                <div className="MDP">
+                    <form onSubmit={this.handleOnSubmit}>
                     <input
                         placeholder="votre email"
                         name="email"
@@ -46,7 +49,8 @@ class MDPForget extends Component {
                         onChange={this.handleOnchange}
                     >
                     </input>
-                    <button type="submit" value="Submit">Recevoir mon nouveau mot de pass</button>
+                    <button type="submit" value="Submit">Recevoir mon nouveau mot de passe</button>
+                    </form>
                 </div>
             </div>
         )

@@ -12,28 +12,27 @@ export default class AdminCreationEspace extends Component {
         address: "",
     }
 
-generateur = (max) => {
-      let motdepasse = '';
-      const lettre = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-
+    generateur = (max) => {
+        let motdepasse = '';
+        const lettre = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
             "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
             "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X"];
-      for (let i = 0; i < max; i++) {
-          motdepasse = motdepasse + lettre[Math.floor(Math.random() * (lettre.length - 1))]
+        for (let i = 0; i < max; i++) {
+            motdepasse = motdepasse + lettre[Math.floor(Math.random() * (lettre.length - 1))]
         }
-      return motdepasse
-  };
+        return motdepasse
+    };
 
-handleOnSubmit = e => {
-     e.preventDefault();
-     const { name, email, address } = this.state;
-     const body = {
-      name,
-      email,
-      address,
-      password: this.generateur(6)
-   };
-  
+    handleOnSubmit = e => {
+        e.preventDefault();
+        const { name, email, address } = this.state;
+        const body = {
+            name,
+            email,
+            address,
+            password: this.generateur(6)
+        };
+
         axios.post("http://localhost:3030/club/create", body, { headers: getToken() })
             .then((res) => {
                 console.log("code", res);

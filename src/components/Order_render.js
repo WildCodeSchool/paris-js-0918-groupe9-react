@@ -39,6 +39,8 @@ class Order_render extends Component {
     return (
       <div className="order_render">
         <div id="divToPrint" className="mt4">
+          <p> Nom de club : {this.state.productsDetails.length !== 0 ? this.state.productsDetails[0].clubName :null}</p>
+          <p> Téléphone: {this.state.productsDetails.length !== 0 ? this.state.productsDetails[0].phone :null}</p>
           <p>Adresse de livraison: {this.state.productsDetails.length !== 0 ? this.state.productsDetails[0].delivery_address : null}</p>
           <table>
             <tr>
