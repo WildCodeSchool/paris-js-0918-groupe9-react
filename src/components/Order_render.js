@@ -5,6 +5,8 @@ import jsPDF from 'jspdf';
 import "../CSS/Order_render.scss";
 import { getToken } from "../helper/tokenHelper";
 
+import AdminHeader from "./AdminHeader";
+
 class Order_render extends Component {
   state = {
     productsDetails: []
@@ -38,6 +40,7 @@ class Order_render extends Component {
     console.log(this.state.productsDetails);
     return (
       <div className="order_render">
+      <AdminHeader />
         <div id="divToPrint" className="mt4">
           <p> Nom de club : {this.state.productsDetails.length !== 0 ? this.state.productsDetails[0].clubName :null}</p>
           <p> Téléphone: {this.state.productsDetails.length !== 0 ? this.state.productsDetails[0].phone :null}</p>
