@@ -122,6 +122,12 @@ class AjouteProjet_Club extends Component {
       })
       .catch(function (error) {
         console.log(error);
+                if(error.response.status === 401){
+                    alert(`Opération non autorisée!`) 
+                }
+                else {
+                    alert(`Erreur lors de l'insertion des données`)
+                }
       });;
   };
 

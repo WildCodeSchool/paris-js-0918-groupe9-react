@@ -105,7 +105,6 @@ class AdminParameters extends Component {
   }
 
   render() {
-    console.log(this.state.phone);
     return (
       <div>
         <AdminHeader />

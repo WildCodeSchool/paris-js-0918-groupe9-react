@@ -14,8 +14,9 @@ class LIsteProduits extends Component {
     // e.preventDefault()
     console.log(e.target.add.value);
     if (e.target.add.value.length > 0 && e.target.add.value !== " ") {
-      const id = e.target.add.id;
-      const url = `http://localhost:3030/product/${id}`;
+      // const id = e.target.add.id;
+      // const url = `http://localhost:3030/product/${id}`;
+      const url = `http://localhost:3030/product/`
       axios.post(
         url,
         {

@@ -47,14 +47,20 @@ export default class AdminCreationEspace extends Component {
                 // else if (res.status === 500 || res.status === 400) {
                 //     alert("Erreur lors de l'insertion des données")
                 // }
-                // else if (res.status === 409) {
-                //     alert("Email est déja utiliseé pour un autre club")
-                // }
+                
             }
             )
             .catch(function (error) {
                 console.log(error);
-                alert(`Erreur lors de l'insertion des données: email est dèja utiliseé pour autre compte`)
+                if(error.response.status === 401){
+                    alert(`Opération non autorisée!`) 
+                }
+                else if (error.response.status === 409) {
+                    alert("Email est déja utiliseé pour un autre club")
+                } 
+                else {
+                    alert(`Erreur lors de l'insertion des données`)
+                }
             })
     }
     handleOnChange = (e) => {
