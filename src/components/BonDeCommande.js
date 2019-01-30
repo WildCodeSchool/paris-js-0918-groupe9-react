@@ -64,7 +64,6 @@ class BonDeCommande extends Component {
     })
   }
   handleDelete = (index) => {
-
     this.setState({
       productsLine: this.state.productsLine.filter((el, i) => i !== index)
     })
@@ -193,7 +192,7 @@ class BonDeCommande extends Component {
                   }
                 </tbody>
               </table>
-              <button className="butt-submit" type="submit" onClick={this.handleSubmit} > Valider la commande </button><br />
+              <button className="butt-submit" type="submit" > Valider la commande </button><br />
             </form>
           </div>
         </div>
