@@ -1,0 +1,35 @@
+
+
+.adminprojet {
+    table {
+        border-collapse: collapse;
+        width: 80%;
+        margin: auto;
+        margin-top: 5%;
+    }
+
+    th, td {
+        border: 2px solid black;
+        padding: 3%;
+    }
+
+    td, tr {
+        text-align: center;
+        align-items: center;
+    }
+    
+    button {
+        margin-top: 3vw;
+        margin-left: 40%;
+        border-width: 0.1vw;
+        width: 25vw;
+        background-color: lightblue;  
+    }
+    .buttontable {
+        margin-top: 1vw;
+        margin: auto;
+        border-width: 0.1vw;
+        width: 10vw;
+        background-color: lightblue;
+    }
+}

@@ -2,7 +2,6 @@
 {
     font-family: 'Comfortaa', cursive;
 }
-
 .groupe-input
 {
     margin-left: 40%;
@@ -11,6 +10,7 @@
 
 input
 {
+    
     width: 300px;
     height: 30px;
     margin-bottom: 10px;
@@ -20,11 +20,14 @@ input
 
 .valider
 {
-    margin-left: 13%;
-    margin-bottom: 15px;
-    height: 25px;
-    width: 100px;
+    
+    border: 2px solid black;
+    width: 250px;
+    padding: 2% 0%;
+    margin-bottom: 5%;
     border-radius: 5px;
+    font-size: 1.2vw;
+    background-color: lightblue !important;
 }
 
 p
@@ -34,6 +37,7 @@ p
 
 .groupe-input > button
 {
+    color: white;
     font-weight: bold;
     border: 2px solid black;
     width: 35%;
@@ -52,4 +56,36 @@ hr
 ::placeholder
 {
     padding-left: 5px;
+}
+
+.groupe-input > button
+{
+    background-color: #F4943B;
+}
+
+.valider
+{
+    background-color: #a9aaac;
+}
+
+.identifiant
+{
+	width: 150px;
+	margin-block-end: 77px;
+	color: blueviolet;
+	margin-left: 10%
+  }
+button {
+    cursor: pointer;
+    
+}
+
+.butt-password {
+    background-color: lightblue;
+}
+
+.club-butt a {
+
+    color: white;
+    
 }

@@ -1,0 +1,34 @@
+.AdminCreationEspace {
+  .formulaire{
+      margin-top: 5vw;
+      margin-left: 35vw;
+  }
+  h2 {
+    font-size: 2.2vw;
+    background-color: lightblue;
+    border-top: 0.15vw black solid;
+    border-bottom: 0.15vw black solid;
+    padding: 1vw;
+    text-align: center;
+  }
+
+  h4 {
+    font-size: 1.5vw;
+}
+
+  input {
+      border-radius: 1vw;
+      border: 0.15vw black solid;
+      text-align: center;
+      width: 35vw;
+      height: 2vw;
+  }
+
+  .button-send {
+      margin-top: 5vw;
+      border-width: 0.2vw;
+      font-weight: bold;
+      background-color: lightblue;
+      width: 15vw;
+  }
+}

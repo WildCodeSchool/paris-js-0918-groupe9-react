@@ -1,15 +1,26 @@
 .contentGlobal {
-    text-align: center;
-  }
-  
+  flex-direction: row;
+  text-align: center;
+}
 
-  .App-header {
-    min-height: 30vh; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
-  }
- 
-  
+/* .App-header {
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: 8%;
+} */
+
+.admin_login_input {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login_part1 {
+  justify-content: center;
+}

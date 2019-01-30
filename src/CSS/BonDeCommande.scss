@@ -1,0 +1,101 @@
+.bondecommande {
+    h2 {
+      font-size: 3vw;
+      border-top: 0.15vw solid black;
+      border-bottom: 0.15vw solid black;
+      background-color: lightblue;
+      margin-left: 0;
+      margin-bottom: 4vw;
+      padding: 1vw;
+      text-align: center;
+    }
+    // h4{
+    //     font-size: 1.5vw;
+    //     margin-top: 2vw;
+    //     margin-left: 5vw;
+    // }
+    form {
+      margin: auto;
+      width: 80vw;
+      margin-top: 5vw;
+      padding-top: 1vw;
+      text-align: center;
+      border-right: 0.1vw solid black;
+      border-left: 0.1vw solid black;
+    }
+  
+    select {
+      margin-top: 3vw;
+      width: 10vw;
+      height: 2vw;
+      font-size: 1vw;
+    }
+  
+    input {
+        font-size: 1vw;
+        width: 40vw;
+        height: 2vw;
+    }
+  
+    .butt-submit {
+        margin-top: 3vw;
+        border-width: 0.1vw;
+        width: 20vw;
+        background-color: lightblue;
+    }
+
+    .butt-submit2 {
+      width: 10vw;
+      height: 2vw;
+      padding-bottom: 3vw;
+      background-color: lightblue
+    }
+    button {
+      width: 5vw;
+    }
+    .quantité {
+      margin-top: 3vw;
+      width: 10vw;
+      height: 2vw;
+      font-size: 1vw;
+    }
+    .lign {
+      display:flex;
+      justify-content: center;
+    }
+    table {
+      table-layout: fixed;
+      width: 100%;
+      border-collapse: collapse;
+      border: 3px solid #137CBD;
+      
+    }
+    th, td {
+      padding: 0.3vw;
+      border: 3px solid #137CBD;
+      text-align: center
+  
+    }
+    th {
+      letter-spacing: 2px;
+      border: 3px solid #137CBD;
+    }
+    
+    td {
+      letter-spacing: 1px;
+    }
+    
+    tbody td {
+      text-align: center;
+    }
+    tbody tr:nth-child(odd) {
+      background-color: rgb(33, 178, 204);
+      text-align: center
+    }
+    
+    tbody tr:nth-child(even) {
+      background-color: rgb(59, 189, 200);
+      text-align: center
+    }
+  
+  }

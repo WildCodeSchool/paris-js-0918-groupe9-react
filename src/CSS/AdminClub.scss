@@ -1,0 +1,93 @@
+.AdminClub {
+  h1 {
+    font-size: 3vw;
+    border-top: 0.15vw solid black;
+    border-bottom: 0.15vw solid black;
+    background-color: lightblue;
+    margin-left: 0;
+    margin-bottom: 4vw;
+    padding: 1vw;
+    text-align: center;
+  }
+
+  .info {
+    text-align: center;
+    border: 0.2vw solid black;
+    width: 30vw;
+    margin: auto;
+  }
+
+  h3 {
+    font-size: 1.5vw;
+    margin-bottom: 2vw;
+  }
+
+  hr {
+    width: 80vw;
+    margin-top: 5vw;
+    margin-left: auto;
+  }
+
+  p {
+    font-style: normal;
+  }
+
+  .logo1Download {
+    margin-top: 5vw;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .logo1Download p {
+    margin-right: 5vw;
+  }
+
+  .logo2Download {
+    margin-top: 2vw;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .logo2Download p {
+    margin-right: 5vw;
+  }
+
+  .tableInformation {
+      margin: auto;
+      margin-top: 3vw;
+  }
+
+  table {
+    margin: auto;
+    margin-top: 5vw;
+    border: 0.2vw solid black;
+    border-collapse: collapse;
+  }
+
+  td, th {
+    border: 1px solid black;
+    text-align: center;
+    padding: 1vw;
+  }
+
+  a {
+      cursor: pointer;
+      color: blue;
+  }
+
+  .logoImg {
+    width: 15vw;
+    height: 15vw;
+  }
+  .butt-download {
+    height: 2vw;
+    margin-right: 0;
+  }
+
+  .buttonAjout {
+      margin: auto;
+      border: 0.2vw solid black;
+      background-color: lightblue;
+      margin-left: 37vw;
+      margin-top: 5vw;
+      width: 25vw;
+  }
+}

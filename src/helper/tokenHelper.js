@@ -1,8 +1,15 @@
-export function getToken() {
+
+export const getToken = () => {
     const token = localStorage.getItem("token");
     return { Authorization: `Bearer ${token}` };
 };
 
-export function getClubId() {
+export const getClubId = () => {
     return  localStorage.getItem("clubId");
 };
+
+// const makeRequest = ({method, url, body}) => 
+// Axios({
+//     method,
+//     headers:
+// })

@@ -1,20 +1,24 @@
 import React, { Component } from "react";
 import { getToken } from "../helper/tokenHelper";
-import AdminHeader from "./AdminHeader";
+import ClubHeader from "./ClubHeader";
 import "../CSS/AdminParameters.scss";
 import Axios from "axios";
 
-class AdminParameters extends Component {
+class ClubParameters extends Component {
   state = {
     identifiantState: false,
     adresseState: false,
     telephoneState: false,
     emailState: false,
+    logoState: false,
+    logoSVGState: false,
     resultat: [],
     password: "",
     address: "",
     email: "",
-    phone: ""
+    phone: "",
+    file: '',
+    userName: ""
   };
 
   toggle = e => {
@@ -32,7 +36,7 @@ class AdminParameters extends Component {
   changePassword = e => {
     e.preventDefault();
     if (e.target.newPassword.value === e.target.confirmationPassword.value) {
-      const url = "http://localhost:3030/user/password/1";
+      const url = `http://localhost:3030/club/password/${this.props.match.params.id}`;
       Axios.put(
         url,
         {
@@ -47,7 +51,7 @@ class AdminParameters extends Component {
   };
 
   changeAdresse = e => {
-    const url = "http://localhost:3030/user/1";
+    const url = `http://localhost:3030/club/${this.props.match.params.id}`;
     Axios.put(
       url,
       {
@@ -62,7 +66,7 @@ class AdminParameters extends Component {
 
   changePhone = e => {
     // e.preventDefault();
-    const url = "http://localhost:3030/user/1";
+    const url = `http://localhost:3030/club/${this.props.match.params.id}`;
     Axios.put(
       url,
       {
@@ -77,7 +81,7 @@ class AdminParameters extends Component {
 
   changeEmail = e => {
     // e.preventDefault();
-    const url = "http://localhost:3030/user/1";
+    const url = `http://localhost:3030/club/${this.props.match.params.id}`;
     Axios.put(
       url,
       {
@@ -89,9 +93,63 @@ class AdminParameters extends Component {
       emailState: !this.state.emailState
     })
   };
+  handleChangeFile = (e) => {
+    this.setState({
+      file: e.target.files[0]
+    })
+  }
+
+  handleUpload = (e) => {
+    //const clubId = localStorage.getItem("clubId")
+    if(this.state.file){
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append('file',this.state.file);
+      // const config = {
+      //   headers: {
+      //     'content-type': 'multipart/form-data'
+      //   }
+      // };
+      const headers = { "Content-Type": "multipart/form-data", ...getToken() }
+      Axios.put(`http://localhost:3030/club/uploadlogopdf/`+this.props.match.params.id, formData,{headers: headers})
+        .then((response) => {
+            alert("Fichier envoyé avec succès");
+        }).catch((error) => {
+          console.log('erreur : ', error);
+      });
+    }
+    else{
+      e.preventDefault();
+      alert('Veuillez sélectionner un fichier');
+    }
+  }
+  handleUpload2 = (e) => {
+    //const clubId = localStorage.getItem("clubId")
+    if(this.state.file){
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append('file',this.state.file);
+      // const config = {
+      //   headers: {
+      //     'content-type': 'multipart/form-data'
+      //   }
+      // };
+      const headers = { "Content-Type": "multipart/form-data", ...getToken()};
+      Axios.put(`http://localhost:3030/club/uploadlogovecto/`+this.props.match.params.id, formData, {headers: headers})
+        .then((response) => {
+            alert("Fichier envoyé avec succès");
+        }).catch((error) => {
+          console.log('erreur : ', error);
+      });
+    }
+    else{
+      e.preventDefault();
+      alert('Veuillez sélectionner un fichier');
+    }
+  }
 
   componentDidMount() {
-    const url = "http://localhost:3030/user/1";
+    const url = `http://localhost:3030/club/${this.props.match.params.id}`;
     Axios({
       method: "GET",
       url: url,
@@ -99,18 +157,23 @@ class AdminParameters extends Component {
     }).then(result =>
       this.setState({
         address: result.data[0].adress,
-        password: result.data[0].password
+        password: result.data[0].password,
+        userName: result.data[0].email
       })
     );
   }
 
   render() {
+    console.log(this.state.userName);
     return (
       <div>
-        <AdminHeader />
+        <ClubHeader />
         <div className="groupe-input">
+          <div className="identifiant">   
+            Identifiant : {this.state.userName}
+          </div>
           <button name="identifiantState" onClick={this.toggle}>
-            Identifiant
+            Mot de passe
           </button>
           <br />
           {this.state.identifiantState ? (
@@ -135,7 +198,7 @@ class AdminParameters extends Component {
                 />
                 <br />
                 <br />
-                <button className="butt-password" type="submit">Valider</button>
+                <button type="submit">Valider</button>
               </form>
               <hr />
               <br />{" "}
@@ -152,7 +215,7 @@ class AdminParameters extends Component {
                 onChange={this.handleChange}
                 name="address"
                 value={this.state.adress}
-                // placeholder="nouvelle adresse"
+                placeholder="nouvelle adresse"
               />
               <br />
               <br />
@@ -216,10 +279,24 @@ class AdminParameters extends Component {
               <br />
             </div>
           ) : null}
+          <button name='logoState' onClick={this.toggle}>Télécharger Logo<br />Format : .jpeg, .jpg, .png</button>
+          {this.state.logoState ? (
+          <form onSubmit={this.handleUpload}>
+            <input type='file' name='logo' onChange={this.handleChangeFile}/>
+            <button type='submit' name='logoState' >Envoyer</button>
+          </form>
+          ) : null}<br />
+          <button name='logoSVGState' onClick={this.toggle}>Télécharger Logo<br />Format : SVG</button>
+          {this.state.logoSVGState ? (
+          <form onSubmit={this.handleUpload2}>
+            <input type='file' name='logoSVG' onChange={this.handleChangeFile}/>
+            <button type='submit' name='logoSVGState'>Envoyer</button>
+          </form>
+          ) : null}
         </div>
       </div>
     );
   }
 }
 
-export default AdminParameters;
+export default ClubParameters;

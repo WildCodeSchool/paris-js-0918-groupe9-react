@@ -1,0 +1,47 @@
+.projetglobal {
+  h2 {
+    font-size: 3vw;
+    border-top: 0.15vw solid black;
+    border-bottom: 0.15vw solid black;
+    background-color: lightblue;
+    margin-left: 0;
+    margin-bottom: 4vw;
+    padding: 1vw;
+    text-align: center;
+  }
+
+  h4{
+      font-size: 1.5vw;
+      margin-top: 4vw;
+  }
+
+  form {
+    margin: auto;
+    width: 80vw;
+    margin-top: 5vw;
+    padding-top: 1vw;
+    text-align: center;
+    border-right: 0.1vw solid black;
+    border-left: 0.1vw solid black;
+  }
+
+  select {
+      width: 20vw;
+      height: 2vw;
+      font-size: 1vw;
+  }
+
+  input {
+      font-size: 1vw;
+      width: 40vw;
+      height: 2vw;
+  }
+
+  .butt-submit {
+      margin-top: 3vw;
+      border-width: 0.1vw;
+      width: 30vw;
+      background-color: lightblue;
+  }
+
+}

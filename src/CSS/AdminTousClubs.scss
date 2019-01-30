@@ -1,0 +1,70 @@
+.tousClubs {
+
+  h1 {
+    font-size: 2.2vw;
+  }
+  
+  p {
+    font-style: normal;
+  }
+
+  .addClub {
+    border: 0.20vw solid black;
+    width: 20vw;
+    cursor: pointer;
+    padding: 2% 0%;
+    margin-bottom: 5%;
+    border-radius: 2vw;
+    font-size: 1.5vw;
+    background-color: lightblue;
+  }
+
+  .custom {
+    margin-top: 50px;
+    margin-left: 2%;
+    width: 20%;
+  }
+
+  select {
+    width: 8.5vw;
+    height: 2.5vw;
+    font-size: 1.4vw;
+  }
+
+  .buttonCreation {
+    margin-top: 50px;
+    margin-left: 5%;
+    width: 20%;
+  }
+
+  .allcards {
+    font-size: 1.6vw;
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+  }
+
+  .custom-select {
+    border: 1px solid black;
+    width: 250px;
+    background-color: rgb(247, 242, 242);
+    border-radius: 3px;
+  }
+
+  .type {
+    height: 6.5vw;
+    border-bottom: 1px solid black;
+  }
+
+  .element {
+    height: 4vw;
+    padding: 10px;
+    border-bottom: 1px solid grey;
+    font-size: 1.1vw;
+  }
+  .img-logo {
+    width: 2vw;
+  }
+}
+

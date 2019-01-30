@@ -1,13 +1,12 @@
-
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { getToken} from '../helper/tokenHelper';
+import { getToken } from '../helper/tokenHelper';
 
 import AdminHeader from './AdminHeader';
-import '../CSS/AdminHome.scss'
+import '../CSS/AdminGestionProjet.scss'
 
-class AdminHome extends Component {
+class AdminGestionProjet extends Component {
     state = {
         open: true,
         isLoaded: false,
@@ -36,24 +35,23 @@ class AdminHome extends Component {
                 })
     }
     render() {
+        console.log(this.state.user);
         if (this.state.isLoaded) {
             return (
                 <div>
-
-            <AdminHeader />
+                    <AdminHeader />
                     <div className="groupe-input">
-                        <Link to="/admin-sponsor"><button className="inputsponsor" >SPONSOR</button></Link>    <br />
-                        <Link to="/admin-tous-clubs"><button className="inputclub" >CLUB</button></Link>    <br />
-                        <Link to="/admin-gestion-projet"><button className="inputprojet" >GESTION DE PROJET</button></Link>
+                        <Link to="/"><button className="button1">FORMULAIRE DE SATISFACTION</button></Link>    <br />
+                        <Link to="/liste-produits"><button className="button2">LISTE DE PRODUITS </button></Link>    <br />
+                        <Link to="/"><button className="button3">ACTIONS CONTREPARTIES</button></Link>    <br />
                     </div>
                 </div>
+
             )
+        } else {
+            return (<div>Loading...</div>);
         }
-        else {
-            return (
-                <div>Loading...</div>
-            )
-        }
+
     }
 }
-export default AdminHome;
+export default AdminGestionProjet;
